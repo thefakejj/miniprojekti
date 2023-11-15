@@ -4,9 +4,10 @@ import methods
 
 
 @app.route("/index")
-def post_reference():
-    if request.method == "POST":
-        return render_template("post.html")
-    if request.methid == "GET":
-        
+def index():
+    return render_template("index.html")
 
+@app.route("/postbook")
+def post_book():
+    return render_template("post.html")
+        

@@ -1,4 +1,5 @@
 from flask import make_response
+from app import db
 
 def post_book(username, key, author, title, year, publisher):
     sql = "INSERT INTO book (username, key, author, title, year, publisher) VALUES (:username, :key, :author, :title, :year, :publisher)"
