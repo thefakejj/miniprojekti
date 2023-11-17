@@ -3,3 +3,7 @@ __pycache__
 .coverage
 htmlcov/
 coverage.xml
+output.xml
+report.html
+log.html
+instance/site.db
