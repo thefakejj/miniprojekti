@@ -3,9 +3,10 @@ Library  SeleniumLibrary
 Library  ../AppLibrary.py
 
 *** Variables ***
-${SERVER}  localhost:5001
+${SERVER}  localhost:5000
 ${DELAY}  0.5 seconds
 ${HOME_URL}  http://${SERVER}
+${POSTBOOK_URL}  http://${SERVER}/postbook
 
 *** Keywords ***
 Open And Configure Browser
@@ -16,7 +17,10 @@ Open And Configure Browser
     Set Selenium Speed  ${DELAY}
 
 Home Page Should Be Open
-    Title Should Be  ###########
+    Title Should Be  APPI
 
 Go To Home Page
     Go To  ${HOME_URL}
+
+Go To Postbook Page
+    Go To  ${POSTBOOK_URL}
