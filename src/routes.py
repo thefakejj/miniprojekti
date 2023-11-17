@@ -21,5 +21,6 @@ def send_book():
         return redirect("/")
 
 @app.route("/")
-def view():
-    return render_template("index.html")
+def get_books():
+    books = methods.get_books()
+    return render_template("index.html", books=books)

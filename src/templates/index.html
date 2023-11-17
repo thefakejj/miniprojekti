@@ -9,7 +9,15 @@
         </h1>
     <div>
     <li><a href="/postbook">Lisää kirjaviite</a></li>
-    <li><a href="/nyll">..s</a></li>
-    <li><a href="/null">..</a></li>
-    <br>
+    <h2>Book List</h2>
+    <ul>
+        {% for book in books %}
+            <li>@book&#123;{{ book.key }}, 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;author = &#123;{{ book.author }}&#125;, 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;title = &#123;{{ book.title }}&#125;, 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;year = &#123;{{ book.year }}&#125;, 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;publisher = &#123;{{ book.publisher }}&#125;, 
+                <br>&#125;</li>
+        {% endfor %}
+    </ul>
 </body>
