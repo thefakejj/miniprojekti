@@ -17,6 +17,18 @@ git clone git@github.com:thefakejj/miniprojekti.git
 poetry install
 ```
 ```
+cd src
+```
+```
+sqlite3 site.db
+```
+```
+CREATE TABLE book (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, key TEXT NOT NULL, author TEXT NOT NULL, title TEXT NOT NULL, year INTEGER NOT NULL, publisher TEXT NOT NULL);
+```
+```
+cd  ..
+```
+```
 poetry run flask run
 ```
 
