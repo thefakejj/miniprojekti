@@ -9,7 +9,7 @@ Add Book With Valid Inputs
     Click Link  Lisää kirjaviite
     Set Kayttajatunnus  Test_tunnus
     Set Key  Test_key
-    Set Author  Test_author
+    # Set Author  Test_author
     Set Title  Test_title
     Set Year  Test_year
     Set Publisher  Test_Publisher
