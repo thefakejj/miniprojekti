@@ -13,7 +13,7 @@ Add Book With Valid Inputs
     Set Title  Test_title
     Set Year  Test_year
     Set Publisher  Test_Publisher
-    # Click Button  Lisää
+    Click Button  Lisää
     Home Page Should Be Open
 
 
