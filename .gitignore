@@ -6,5 +6,5 @@ coverage.xml
 output.xml
 report.html
 log.html
-src/instance/site.db
+/src/instance/site.db
 /miniprojekti.code-workspace
