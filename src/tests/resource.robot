@@ -1,5 +1,5 @@
 *** Settings ***
-Library  SeleniumLibrary
+Library  SeleniumLibrary  run_on_failure=Nothing
 Library  ../AppLibrary.py
 
 *** Variables ***
