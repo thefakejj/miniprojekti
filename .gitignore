@@ -9,3 +9,4 @@ log.html
 /src/instance/site.db
 /miniprojekti.code-workspace
 selenium-screenshot*
+**/site.db
