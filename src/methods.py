@@ -3,14 +3,25 @@ from sqlalchemy.sql import text
 from app import db
 
 def send_book(username, key, author, title, year, publisher):
-    sql = text("INSERT INTO book (username, key, author, title, year, publisher) VALUES (:username, :key, :author, :title, :year, :publisher)")
+    sql = text("INSERT INTO reference (username, key, author, title, year, publisher) VALUES (:username, :key, :author, :title, :year, :publisher)")
     db.session.execute(sql, {"username":username, "key":key, "author":author, "title":title, "year":year, "publisher":publisher})
     db.session.commit()
     return True
 
 def get_books():
-    sql = text("SELECT username, key, author, title, year, publisher FROM book")
+    sql = text("SELECT username, key, author, title, year, publisher FROM references")
     result = db.session.execute(sql)
     books = result.fetchall()
     return books
 
+def send_master(username, key, author, title, school, year, type, address, month, note, annote):
+    sql = text("INSERT INTO reference (username, key, author, title, school, year, type, address, month, note, annote) VALUES (:username, :key, :author, :title, :school, :year, :address, :month, :note, :annote)")
+    db.session.execute(sql, {"username":username, "key":key, "author":author, "title":title, "school":school, "year":year, "type":type, "address":address, "month":month, "note":note, "annote":annote})
+    db.session.commit()
+    return True
+
+def get_master():
+    sql = text("SELECT username, key, author, title, school, year, type, address, month, note, annote FROM references")
+    result = db.session.execute(sql)
+    master = result.fetchall()
+    return master

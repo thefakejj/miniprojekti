@@ -6,7 +6,7 @@ import methods
 
 @app.route("/postbook")
 def post_book():
-    return render_template("post.html")
+    return render_template("postbook.html")
         
 @app.route("/sendbook", methods=["POST"])
 def send_book():
@@ -21,6 +21,32 @@ def send_book():
         return redirect("/")
 
 @app.route("/")
-def get_books():
+def get_references():
     books = methods.get_books()
-    return render_template("index.html", books=books)
+    master = methods.get_master()
+    return render_template("index.html", books=books, master=master)
+
+@app.route("/postmaster")
+def post_master():
+    return render_template("postmaster")
+
+@app.route("/sendmaster", methods=["POST"])
+def send_master():
+    username = request.form["username"]
+    key = request.form["key"]
+    author = request.form["author"]
+    title = request.form["title"]
+    school = request.form["school"]
+    year = request.form["year"]
+    type = request.form["type"]
+    address = request.form["address"]
+    month = request.form["month"]
+    note = request.form["note"]
+    annote = request.form["annote"]
+
+    if methods.send_master(username, key, author, title, school, year, type, address, month, note, annote):
+        return redirect("/")
+
+
+
+    
