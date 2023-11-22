@@ -9,7 +9,7 @@ def send_book(username, key, author, title, year, publisher):
     return True
 
 def get_books():
-    sql = text("SELECT username, key, author, title, year, publisher FROM references")
+    sql = text("SELECT username, key, author, title, year, publisher FROM reference")
     result = db.session.execute(sql)
     books = result.fetchall()
     return books
@@ -21,7 +21,7 @@ def send_master(username, key, author, title, school, year, type, address, month
     return True
 
 def get_master():
-    sql = text("SELECT username, key, author, title, school, year, type, address, month, note, annote FROM references")
+    sql = text("SELECT username, key, author, title, school, year, type, address, month, note, annote FROM reference")
     result = db.session.execute(sql)
     master = result.fetchall()
     return master
