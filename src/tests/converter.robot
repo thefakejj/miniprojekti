@@ -26,7 +26,7 @@ Book list Should Contain Book
     Set Publisher  Test_Publisher
     Click Button  Lisää
     Home Page Should Be Open
-    Adding Should Succeed  Test_key
+    Adding Should Succeed  @{book_inputs}
 
 *** Keywords ***
 Set Kayttajatunnus
@@ -53,8 +53,7 @@ Set Publisher
     [Arguments]  ${publisher}
     Input Text  publisher  ${publisher}
 
-Set Book
-    @{book_inputs}=  ${key}  ${author}  ${title}  ${year}  ${publisher}
+@{book_inputs}=  ${key}  ${author}  ${title}  ${year}  ${publisher}
 
 Adding Should Succeed
     [Arguments]  @{book_inputs}
