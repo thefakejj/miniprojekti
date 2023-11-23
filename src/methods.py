@@ -21,7 +21,13 @@ def send_master(username, key, author, title, school, year, type, address, month
     return True
 
 def get_master():
-    sql = text("SELECT username, key, author, title, school, year, type, address, month, note, annote FROM references")
+    sql = text("SELECT username, key, author, title, school, year, type, address, month, note, annote FROM reference")
     result = db.session.execute(sql)
     master = result.fetchall()
     return master
+
+def generate_key(author, year):
+    year = str(year)
+    authkey = author[:2]
+    yearkey = year[2:]
+    key = authkey + yearkey
