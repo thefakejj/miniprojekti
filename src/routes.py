@@ -28,7 +28,7 @@ def get_references():
 
 @app.route("/postmaster")
 def post_master():
-    return render_template("postmaster")
+    return render_template("postmaster.html")
 
 @app.route("/sendmaster", methods=["POST"])
 def send_master():
