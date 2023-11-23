@@ -26,12 +26,12 @@ Add Book With Valid Inputs
 
 Book list Should Contain Book
     Click Link  Lisää kirjaviite
-    Set Kayttajatunnus  Test_tunnus
-    Set Key  Test_key
-    Set Author  Test_author
-    Set Title  Test_title
-    Set Year  Test_year
-    Set Publisher  Test_Publisher
+    Set Kayttajatunnus  ${username}
+    Set Key  ${key}
+    Set Author  ${author}
+    Set Title  ${title}
+    Set Year  ${year}
+    Set Publisher  ${publisher}
     Click Button  Lisää
     Home Page Should Be Open
     Adding Should Succeed  ${key}  ${author}  ${title}  ${year}  ${publisher}
