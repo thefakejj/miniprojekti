@@ -18,8 +18,10 @@ def get_books():
     return books
 
 def send_master(username, author, title, school, year, type, address, month, note):
-    sql = text("INSERT INTO reference (username, key, author, title, school, year, type, address, month, note) VALUES (:username, :key, :author, :title, :school, :year, :address, :month, :note)")
-    db.session.execute(sql, {"username":username, "key":generate_key(author,year), "author":author, "title":title, "school":school, "year":year, "type":type, "address":address, "month":month, "note":note})
+    reftype = "master"
+    key = generate_key(author,year)
+    sql = text("INSERT INTO reference (reftype, username, key, author, title, school, year, type, address, month, note) VALUES (:reftype, :username, :key, :author, :title, :school, :year, :address, :month, :note)")
+    db.session.execute(sql, {"reftype":reftype, "username":username, "key":generate_key(author,year), "author":author, "title":title, "school":school, "year":year, "type":type, "address":address, "month":month, "note":note})
     db.session.commit()
     return True
 

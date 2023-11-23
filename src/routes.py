@@ -40,9 +40,8 @@ def send_master():
     address = request.form["address"]
     month = request.form["month"]
     note = request.form["note"]
-    annote = request.form["annote"]
 
-    if methods.send_master(username, author, title, school, year, type, address, month, note, annote):
+    if methods.send_master(username, author, title, school, year, type, address, month, note):
         return redirect("/")
 
 
