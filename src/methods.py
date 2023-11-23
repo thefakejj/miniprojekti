@@ -31,3 +31,4 @@ def generate_key(author, year):
     authkey = author[:2]
     yearkey = year[2:]
     key = authkey + yearkey
+    return key
