@@ -4,7 +4,7 @@ Library  ../AppLibrary.py
 
 *** Variables ***
 ${SERVER}  localhost:5000
-${DELAY}  0 seconds
+${DELAY}  0.1 seconds
 ${HOME_URL}  http://${SERVER}
 ${POSTBOOK_URL}  http://${SERVER}/postbook
 
@@ -12,7 +12,7 @@ ${POSTBOOK_URL}  http://${SERVER}/postbook
 Open And Configure Browser
     ${options}  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys
     Call Method    ${options}    add_argument    --no-sandbox
-    Call Method  ${options}  add_argument  --headless
+    #Call Method  ${options}  add_argument  --headless
     Open Browser  browser=chrome  options=${options}
     Set Selenium Speed  ${DELAY}
 
