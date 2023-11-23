@@ -11,13 +11,12 @@ def post_book():
 @app.route("/sendbook", methods=["POST"])
 def send_book():
     username = request.form["username"]
-    key = request.form["key"]
     author = request.form["author"]
     title = request.form["title"]
     year = request.form["year"]
     publisher = request.form["publisher"]
 
-    if methods.send_book(username,key,author,title,year,publisher):
+    if methods.send_book(username,author,title,year,publisher):
         return redirect("/")
 
 @app.route("/")
@@ -33,7 +32,6 @@ def post_master():
 @app.route("/sendmaster", methods=["POST"])
 def send_master():
     username = request.form["username"]
-    key = request.form["key"]
     author = request.form["author"]
     title = request.form["title"]
     school = request.form["school"]
@@ -44,7 +42,7 @@ def send_master():
     note = request.form["note"]
     annote = request.form["annote"]
 
-    if methods.send_master(username, key, author, title, school, year, type, address, month, note, annote):
+    if methods.send_master(username, author, title, school, year, type, address, month, note, annote):
         return redirect("/")
 
 

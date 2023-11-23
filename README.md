@@ -1,3 +1,4 @@
+![CI_workflow](https://github.com/thefakejj/miniprojekti/workflows/CI/badge.svg)
 # miniprojekti
 This is **Nelosen oppilaat** group's repository for Ohjelmistotuotanto course
 
