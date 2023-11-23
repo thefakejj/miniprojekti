@@ -5,7 +5,6 @@ from db_connection import get_database_connection
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
-print(getenv("DATABASE_URL"))
 db = SQLAlchemy(app)
 
 def read_schema(path):
@@ -14,7 +13,6 @@ def read_schema(path):
         connection = get_database_connection()
         cursor = connection.cursor()
         for command in commands:
-            print(command)
             cursor.execute(command)
         connection.commit()
         cursor.close()
