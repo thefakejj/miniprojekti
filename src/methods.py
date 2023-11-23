@@ -1,6 +1,7 @@
 from flask import make_response
 from sqlalchemy.sql import text
 from app import db
+import random
 
 def send_book(username, author, title, year, publisher):
     reftype = "book"
@@ -35,4 +36,15 @@ def generate_key(author, year):
     authkey = author[:2]
     yearkey = year[2:]
     key = authkey + yearkey
+    return key_is_unique(key)
+
+def key_is_unique(key):
+    sql = text("SELECT COUNT(*) FROM reference WHERE key = :key")
+    result = db.session.execute(sql, {"key": key})
+    count = result.scalar()
+    print(count)
+    if count > 0:
+        key += str(random.randint(1,100))
+        print(key)
+        print("iffis")
     return key
