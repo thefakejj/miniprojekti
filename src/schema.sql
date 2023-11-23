@@ -13,6 +13,6 @@ address TEXT,
 edition TEXT,
 month TEXT,
 note TEXT,
-school TEXT NOT NULL,
+school TEXT,
 type TEXT
 );
