@@ -2,9 +2,9 @@ from flask import make_response
 from sqlalchemy.sql import text
 from app import db
 
-def send_book(username, key, author, title, year, publisher):
+def send_book(username, author, title, year, publisher):
     sql = text("INSERT INTO reference (username, key, author, title, year, publisher) VALUES (:username, :key, :author, :title, :year, :publisher)")
-    db.session.execute(sql, {"username":username, "key":key, "author":author, "title":title, "year":year, "publisher":publisher})
+    db.session.execute(sql, {"username":username, "key":generate_key(author,year), "author":author, "title":title, "year":year, "publisher":publisher})
     db.session.commit()
     return True
 
@@ -14,14 +14,14 @@ def get_books():
     books = result.fetchall()
     return books
 
-def send_master(username, key, author, title, school, year, type, address, month, note, annote):
-    sql = text("INSERT INTO reference (username, key, author, title, school, year, type, address, month, note, annote) VALUES (:username, :key, :author, :title, :school, :year, :address, :month, :note, :annote)")
-    db.session.execute(sql, {"username":username, "key":key, "author":author, "title":title, "school":school, "year":year, "type":type, "address":address, "month":month, "note":note, "annote":annote})
+def send_master(username, author, title, school, year, type, address, month, note):
+    sql = text("INSERT INTO reference (username, key, author, title, school, year, type, address, month, note) VALUES (:username, :key, :author, :title, :school, :year, :address, :month, :note)")
+    db.session.execute(sql, {"username":username, "key":generate_key(author,year), "author":author, "title":title, "school":school, "year":year, "type":type, "address":address, "month":month, "note":note})
     db.session.commit()
     return True
 
 def get_master():
-    sql = text("SELECT username, key, author, title, school, year, type, address, month, note, annote FROM reference")
+    sql = text("SELECT username, key, author, title, school, year, type, address, month, note FROM reference")
     result = db.session.execute(sql)
     master = result.fetchall()
     return master
