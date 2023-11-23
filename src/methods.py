@@ -45,6 +45,4 @@ def key_is_unique(key):
     print(count)
     if count > 0:
         key += str(random.randint(1,100))
-        print(key)
-        print("iffis")
     return key
