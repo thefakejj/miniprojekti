@@ -15,7 +15,7 @@
     <li><a href="/postbook">Lisää kirjaviite</a></li>
     <li><a href="/postmaster">Lisää graduviite</a></li>
     <h2>Book List</h2>
-    <ul>
+    <ul style="list-style-type: none;">
         {% for book in books %}
             <li>@book&#123;{{ book.key }}, 
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;author = &#123;{{ book.author }}&#125;, 
@@ -26,7 +26,7 @@
         {% endfor %}
     </ul>
     <h2>Masters thesis List</h2>
-    <ul>
+    <ul style="list-style-type: none;">
         {% for thesis in master %}
             <li>@mastersthesis&#123;{{ thesis.key }},
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;author = &#123;{{ thesis.author }}&#125;,
