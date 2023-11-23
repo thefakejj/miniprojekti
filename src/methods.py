@@ -42,7 +42,6 @@ def key_is_unique(key):
     sql = text("SELECT COUNT(*) FROM reference WHERE key = :key")
     result = db.session.execute(sql, {"key": key})
     count = result.scalar()
-    print(count)
     if count > 0:
         key += str(random.randint(1,100))
     return key
