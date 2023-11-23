@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from os import getenv
-import sqlite3
+from db_connection import get_database_connection
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
@@ -11,7 +11,7 @@ db = SQLAlchemy(app)
 def read_schema(path):
     with open(path, 'r') as file:
         commands = file.read().split(';')
-        connection = sqlite3.connect('src/instance/site.db')
+        connection = get_database_connection()
         cursor = connection.cursor()
         for command in commands:
             print(command)
