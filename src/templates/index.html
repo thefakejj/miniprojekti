@@ -25,4 +25,15 @@
                 <br>&#125;</li>
         {% endfor %}
     </ul>
+    <h2>Masters thesis List</h2>
+    <ul>
+        {% for thesis in master %}
+            <li>@mastersthesis&#123;{{ thesis.key }},
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;author = &#123;{{ thesis.author }}&#125;,
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;title = &#123;{{ thesis.title}}&#125;,
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;school = &#123;{{ thesis.year }}&#125;,
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;year = &#123;{{ thesis.year }}&#125;,
+                <br>&#125;</li>
+        {% endfor %}
+    </ul>
 </body>
