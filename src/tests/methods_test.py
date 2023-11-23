@@ -35,6 +35,7 @@ class MethodsTest(unittest.TestCase):
                     )
                 """)
             self.connection.commit()
+
     def test_send_and_get_books(self):
         with app.app_context():
             methods.send_book("user1", "Author1", "Title1", 2022, "Publisher1")
@@ -42,3 +43,13 @@ class MethodsTest(unittest.TestCase):
 
             books = methods.get_books()
             self.assertEqual(len(books), 2)
+    
+    def test_key_generation(self):
+        with app.app_context():
+            methods.send_book("user3", "Author3", "Title3", 1987, "Publisher3")
+            methods.send_book("user4", "Author3", "Title4", 1887, "Publisher4")
+
+            books = methods.get_books()
+            key3 = books[0][1]
+            key4 = books[1][1]
+            self.assertNotEqual(key3, key4)
