@@ -21,7 +21,7 @@ def send_master(username, key, author, title, school, year, type, address, month
     return True
 
 def get_master():
-    sql = text("SELECT username, key, author, title, school, year, type, address, month, note, annote FROM reference")
+    sql = text("SELECT username, key, author, title, school, year, type, address, month, note, annote FROM references")
     result = db.session.execute(sql)
     master = result.fetchall()
     return master
