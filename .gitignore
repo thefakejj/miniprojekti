@@ -10,3 +10,4 @@ log.html
 /miniprojekti.code-workspace
 selenium-screenshot*
 **/site.db
+**/test_stub.db
