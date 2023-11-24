@@ -50,6 +50,9 @@ def send_master():
     if methods.send_master(username, author, title, school, year, type, address, month, note):
         return redirect("/")
 
-
+@app.route("/keylist", methods=["GET"])
+def get_keys():
+    keys = methods.get_keys()
+    return render_template("keylist.html", keys=keys)
 
     

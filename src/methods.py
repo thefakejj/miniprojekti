@@ -31,6 +31,12 @@ def get_master():
     master = result.fetchall()
     return master
 
+def get_keys():
+    sql = text("SELECT key FROM reference")
+    result = db.session.execute(sql)
+    master = result.fetchall()
+    return master
+
 def generate_key(author, year):
     year = str(year)
     authkey = author[:2]
