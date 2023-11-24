@@ -33,6 +33,18 @@
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;title = &#123;{{ thesis.title}}&#125;,
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;school = &#123;{{ thesis.school }}&#125;,
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;year = &#123;{{ thesis.year }}&#125;,
+                {% if thesis.type %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;type = &#123;{{ thesis.type }}&#125;,
+                {% endif %}
+                {% if thesis.address %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;address = &#123;{{ thesis.address }}&#125;,
+                {% endif %}
+                {% if thesis.month %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;month = &#123;{{ thesis.month }}&#125;,
+                {% endif %}
+                {% if thesis.note %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;note = &#123;{{ thesis.note }}&#125;,
+                {% endif %}
                 <br>&#125;</li>
         {% endfor %}
     </ul>
