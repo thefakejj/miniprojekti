@@ -21,7 +21,25 @@
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;author = &#123;{{ book.author }}&#125;, 
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;title = &#123;{{ book.title }}&#125;, 
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;year = &#123;{{ book.year }}&#125;, 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;publisher = &#123;{{ book.publisher }}&#125;, 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;publisher = &#123;{{ book.publisher }}&#125;,
+                {% if book.volume %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;volume = &#123;{{ book.volume }}&#125;,
+                {% endif %}
+                {% if book.series %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;series = &#123;{{ book.series }}&#125;,
+                {% endif %}
+                {% if book.address %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;address = &#123;{{ book.address }}&#125;,
+                {% endif %}
+                {% if book.edition %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;edition = &#123;{{ book.edition }}&#125;,
+                {% endif %}
+                {% if book.month %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;month = &#123;{{ book.month }}&#125;,
+                {% endif %}
+                {% if book.note %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;note = &#123;{{ book.note }}&#125;, 
+                {% endif %}
                 <br>&#125;</li>
         {% endfor %}
     </ul>

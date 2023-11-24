@@ -3,16 +3,16 @@ from sqlalchemy.sql import text
 from app import db
 import random
 
-def send_book(username, author, title, year, publisher):
+def send_book(username, author, title, year, publisher, volume, series, address, edition, month, note):
     reftype = "book"
     key = generate_key(author,year)
-    sql = text("INSERT INTO reference (reftype, username, key, author, title, year, publisher) VALUES (:reftype, :username, :key, :author, :title, :year, :publisher)")
-    db.session.execute(sql, {"reftype":reftype, "username":username, "key":key, "author":author, "title":title, "year":year, "publisher":publisher})
+    sql = text("INSERT INTO reference (reftype, username, key, author, title, year, publisher, volume, series, address, edition, month, note) VALUES (:reftype, :username, :key, :author, :title, :year, :publisher, :volume, :series, :address, :edition, :month, :note)")
+    db.session.execute(sql, {"reftype":reftype, "username":username, "key":key, "author":author, "title":title, "year":year, "publisher":publisher, "volume":volume, "series":series, "address":address, "edition":edition, "month":month, "note":note})
     db.session.commit()
     return True
 
 def get_books():
-    sql = text("SELECT username, key, author, title, year, publisher FROM reference WHERE reftype LIKE '%book%'")
+    sql = text("SELECT username, key, author, title, year, publisher, volume, series, address, edition, month, note FROM reference WHERE reftype LIKE '%book%'")
     result = db.session.execute(sql)
     books = result.fetchall()
     return books
