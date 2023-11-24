@@ -15,8 +15,14 @@ def send_book():
     title = request.form["title"]
     year = request.form["year"]
     publisher = request.form["publisher"]
+    volume = request.form["volume"]
+    series = request.form["series"]
+    address = request.form["address"]
+    edition = request.form["edition"]
+    month = request.form["month"]
+    note = request.form["note"]
 
-    if methods.send_book(username,author,title,year,publisher):
+    if methods.send_book(username,author,title,year,publisher, volume, series, address, edition, month, note):
         return redirect("/")
 
 @app.route("/")
@@ -40,9 +46,8 @@ def send_master():
     address = request.form["address"]
     month = request.form["month"]
     note = request.form["note"]
-    annote = request.form["annote"]
 
-    if methods.send_master(username, author, title, school, year, type, address, month, note, annote):
+    if methods.send_master(username, author, title, school, year, type, address, month, note):
         return redirect("/")
 
 
