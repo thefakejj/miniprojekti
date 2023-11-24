@@ -7,6 +7,7 @@ ${SERVER}  localhost:5000
 ${DELAY}  0 seconds
 ${HOME_URL}  http://${SERVER}
 ${POSTBOOK_URL}  http://${SERVER}/postbook
+${POSTMASTER_URL}  http://${SERVER}/postmaster
 
 *** Keywords ***
 Open And Configure Browser
@@ -24,3 +25,6 @@ Go To Home Page
 
 Go To Postbook Page
     Go To  ${POSTBOOK_URL}
+
+Go To Postmaster Page
+    Go To  ${POSTMASTER_URL}
