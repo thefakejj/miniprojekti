@@ -55,4 +55,19 @@ def get_keys():
     keys = methods.get_keys()
     return render_template("keylist.html", keys=keys)
 
-    
+
+@app.route("/keyview/<key>")
+def keyview(key):
+    view = methods.keyview(key)
+    return render_template("keyview.html", view=view)
+
+@app.route("/confirmdelete/<key>", methods=["GET"])
+def confirmdelete(key):
+    view = methods.keyview(key)
+    return render_template("confirmdelete.html", view=view)
+
+@app.route("/deletereference/<key>", methods=["POST"])
+def deletereference(key):
+    if request.form.get("_method") == "DELETE":
+        methods.delete_reference(key)
+    return redirect("/")

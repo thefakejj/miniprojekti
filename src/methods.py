@@ -51,3 +51,15 @@ def key_is_unique(key):
     if count > 0:
         key += str(random.randint(1,100))
     return key
+
+def keyview(key):
+    sql = text("SELECT * FROM reference WHERE key = :key")
+    result = db.session.execute(sql, {"key": key})
+    view = result.fetchone()
+    return view
+
+def delete_reference(key):
+    sql = text("DELETE FROM reference WHERE key = :key")
+    result = db.session.execute(sql, {"key": key})
+    db.session.commit()
+    return True

@@ -1,12 +1,8 @@
 <body>
     <br>
-    <ul style="list-style-type: none;">
         {% for key in keys %}
-        <li>
             <br>
-            &#123;{{ key.key }}
+            <a href="/keyview/{{ key.key }}">{{ key.key }}</a>
             <br>
-        </li>
         {% endfor %}
-    </ul>
 </body>
