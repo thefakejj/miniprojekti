@@ -11,6 +11,12 @@ ${title}  Test_title
 ${year}  Test_year
 ${publisher}  Test_Publisher
 ${school}  Test_School
+${key_to_delete}  AB12
+${deleted_author}  Deleted_Author
+${deleted_title}  Deleted_Title
+${deleted_year}  2025
+${deleted_publisher}  Deleted_Publisher
+${deleted_school}  Deleted_School
 
 *** Test Cases ***
 Add Book With Valid Inputs
@@ -55,11 +61,43 @@ Master list Should Contain Master
     Home Page Should Be Open
     Adding Master Should Succeed  ${author}  ${title}  ${year}  ${publisher}
 
+Add Reference For Deletion
+    Click Link  Lisää kirjaviite
+    Set Key  ${key_to_delete}
+    Set Kayttajatunnus  ${username}
+    Set Author  ${deleted_author}
+    Set Title  ${deleted_title}
+    Set Year  ${deleted_year}
+    Set Publisher  ${deleted_publisher}
+    Click Button  Lisää
+    Home Page Should Be Open
+    Adding Should Succeed  ${deleted_author}  ${deleted_title}  ${deleted_year}  ${deleted_publisher}
+
+Delete Reference
+    Click Link  Keylist
+    Click Link  ${key_to_delete}
+    Page Should Contain Element  xpath://li[contains(., "${deleted_author}")]
+    Page Should Contain Element  xpath://li[contains(., "${deleted_title}")]
+    Page Should Contain Element  xpath://li[contains(., "${deleted_year}")]
+    Page Should Contain Element  xpath://li[contains(., "${deleted_publisher}")]
+    Click Button  Poista!
+
+Keylist Should Not Contain Deleted Reference
+    Click Link  Keylist
+    Page Should Not Contain Element  xpath://li[contains(., "${deleted_author}")]
+    Page Should Not Contain Element  xpath://li[contains(., "${deleted_title}")]
+    Page Should Not Contain Element  xpath://li[contains(., "${deleted_year}")]
+    Page Should Not Contain Element  xpath://li[contains(., "${deleted_publisher}")]
+
 
 *** Keywords ***
 Set Kayttajatunnus
     [Arguments]  ${username}
     Input Text  username  ${username}
+
+Set Key
+    [Arguments]  ${key}
+    Input Text  key  ${key}
 
 Set Author
     [Arguments]  ${author}

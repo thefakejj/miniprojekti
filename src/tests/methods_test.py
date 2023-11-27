@@ -61,3 +61,12 @@ class MethodsTest(unittest.TestCase):
             key3 = books[0][1]
             key4 = books[1][1]
             self.assertNotEqual(key3, key4)
+    
+    def test_delete(self):
+        with app.app_context():
+            methods.send_book("user3", "Author6", "Title6", 1987, "Publisher3", "", "", "", "", "", "")
+
+            methods.delete_reference("r687")
+
+            keys_after = [key[0] for key in methods.get_keys()]
+            self.assertNotIn("r687", keys_after)
