@@ -25,8 +25,18 @@ def send_master(username, author, title, school, year, type, address, month, not
     db.session.commit()
     return True
 
+def get_references():
+    sql = text("SELECT * FROM reference")
+    result = db.session.execute(sql)
+    references = result.fetchall()
+    return references
+
 def get_master():
-    sql = text("SELECT username, key, author, title, year, type, address, month, note, school FROM reference WHERE reftype LIKE '%master%'")
+    sql = text('''
+        SELECT username, key, author, title, year, type, address, month, note, school 
+        FROM reference 
+        WHERE reftype LIKE '%master%' 
+        ''')
     result = db.session.execute(sql)
     master = result.fetchall()
     return master

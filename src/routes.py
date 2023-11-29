@@ -27,9 +27,8 @@ def send_book():
 
 @app.route("/")
 def get_references():
-    books = methods.get_books()
-    master = methods.get_master()
-    return render_template("index.html", books=books, master=master)
+    references = methods.get_references()
+    return render_template("index.html", references=references)
 
 @app.route("/postmaster")
 def post_master():
@@ -54,7 +53,6 @@ def send_master():
 def get_keys():
     keys = methods.get_keys()
     return render_template("keylist.html", keys=keys)
-
 
 @app.route("/keyview/<key>")
 def keyview(key):
