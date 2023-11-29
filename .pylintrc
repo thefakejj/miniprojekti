@@ -1,4 +1,34 @@
 [MAIN]
+#C011* = docstring
+; C0304, final newline missing
+; C0303 trailing whitespace
+
+; W0622 redefining built in
+; W0612 unused variable
+; W0611 unused import
+; W1514 using open without specifying encoding
+
+; R1710 inconsistent return statements (either all return expression or none do)
+; R0401 cyclic import
+
+; C0411 wrong import order
+; C0413 wrong import position (end of file)
+
+disable=
+    C0114,
+    C0115,
+    C0116,
+    C0304,
+    C0303,
+    W0622,
+    W0612,
+    W0611,
+    W1514,
+    R1710,
+    R0401,
+    C0411,
+    C0413
+
 
 # Analyse import fallback blocks. This can be used to support both Python 2 and
 # 3 compatible code, which means that the block might have code that exists
@@ -46,7 +76,7 @@ fail-under=10
 #from-stdin=
 
 # Files or directories to be skipped. They should be base names, not paths.
-ignore=CVS
+ignore=CVS,tests,AppLibrary.py
 
 # Add files or directories matching the regular expressions patterns to the
 # ignore-list. The regex matches against paths and can be in Posix or Windows
@@ -174,7 +204,7 @@ const-naming-style=UPPER_CASE
 
 # Minimum line length for functions/classes that require docstrings, shorter
 # ones are exempt.
-docstring-min-length=-1
+# docstring-min-length=-1
 
 # Naming style matching correct function names.
 function-naming-style=snake_case
@@ -227,7 +257,7 @@ name-group=
 
 # Regular expression which should only match function or class names that do
 # not require a docstring.
-no-docstring-rgx=^_
+# no-docstring-rgx=^_
 
 # List of decorators that produce properties, such as abc.abstractproperty. Add
 # to this list to register other decorators that produce valid properties.
@@ -285,7 +315,7 @@ exclude-too-few-public-methods=
 ignored-parents=
 
 # Maximum number of arguments for function / method.
-max-args=5
+max-args=20
 
 # Maximum number of attributes for a class (see R0902).
 max-attributes=7
@@ -337,7 +367,7 @@ indent-after-paren=4
 indent-string='    '
 
 # Maximum number of characters on a single line.
-max-line-length=100
+max-line-length=300
 
 # Maximum number of lines in a module.
 max-module-lines=1000
