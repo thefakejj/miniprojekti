@@ -16,6 +16,11 @@
     <li><a href="/postbook">Lisää kirjaviite</a></li>
     <li><a href="/postmaster">Lisää graduviite</a></li>
     <br>
+    <style>
+        li {
+          list-style-type: none;
+        }
+      </style>
     {% for reference in references %}
         {% if reference.reftype == 'book' %}
             <li>@book&#123;{{ reference.key }}, 
