@@ -72,4 +72,21 @@ def deletereference(key):
 
 @app.route("/editbook/<key>", methods=["GET","POST"])
 def editbook(key):
-    pass
+    if request.method == "GET":
+        view = methods.keyview(key)
+        return render_template("postbook.html", view=view, edit=True)
+    if request.method == "POST":
+        username = request.form["username"]
+        author = request.form["author"]
+        title = request.form["title"]
+        year = request.form["year"]
+        publisher = request.form["publisher"]
+        volume = request.form["volume"]
+        series = request.form["series"]
+        address = request.form["address"]
+        edition = request.form["edition"]
+        month = request.form["month"]
+        note = request.form["note"]
+
+        if methods.edit_reference(username,key,author,title,year,publisher, volume, series, address, edition, month, note):
+            return redirect("/")

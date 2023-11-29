@@ -74,5 +74,8 @@ def delete_reference(key):
     db.session.commit()
     return True
 
-def edit_reference(key):
-    pass
+def edit_reference(username, key, author, title, year, publisher, volume, series, address, edition, month):
+    sql = text("UPDATE reference SET username = :username, author = :author, title = :title, year = :year, publisher = :publisher, volume = :volume, series = :series, address = :address, edition = :edition, month = :month, note = :note WHERE key = :key")
+    db.session.execute(sql, {"username": username, "key": key, "author": author, "title": title, "year": year, "publisher": publisher, "volume": volume, "series": series, "address": address, "edition": edition, "month": month})
+    db.session.commit()
+    return True
