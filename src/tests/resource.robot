@@ -4,7 +4,7 @@ Library  ../AppLibrary.py
 
 *** Variables ***
 ${SERVER}  localhost:5000
-${DELAY}  0.1 seconds
+${DELAY}  0.2 seconds
 ${HOME_URL}  http://${SERVER}
 ${POSTBOOK_URL}  http://${SERVER}/postbook
 ${POSTMASTER_URL}  http://${SERVER}/postmaster

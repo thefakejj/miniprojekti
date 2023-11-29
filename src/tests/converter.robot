@@ -8,10 +8,10 @@ Test Setup  Go To Home Page
 ${username}  Test_tunnus
 ${author}  Test_author
 ${title}  Test_title
-${year}  Test_year
+${year}  1999
 ${publisher}  Test_Publisher
 ${school}  Test_School
-${key_to_delete}  AB12
+${key_to_delete}  De25
 ${deleted_author}  Deleted_Author
 ${deleted_title}  Deleted_Title
 ${deleted_year}  2025
@@ -29,6 +29,10 @@ Add Book With Valid Inputs
     Click Button  Lisää
     Home Page Should Be Open
 
+Book list Should Contain Book
+    Home Page Should Be Open
+    Adding Should Succeed  ${author}  ${title}  ${year}  ${publisher}
+
 Add Master With Valid Inputs
     Click Link  Lisää graduviite
     Set Kayttajatunnus  ${username}
@@ -39,40 +43,12 @@ Add Master With Valid Inputs
     Click Button  Lisää
     Home Page Should Be Open
 
-Book list Should Contain Book
-    Click Link  Lisää kirjaviite
-<<<<<<< HEAD
-    Set Kayttajatunnus  ${username}
-    Set Key  ${key}
-    Set Author  ${author}
-    Set Title  ${title}
-    Set Year  ${year}
-    Set Publisher  ${publisher}
-=======
-    Set Kayttajatunnus  Test_tunnus
-    Set Author  Test_author
-    Set Title  Test_title
-    Set Year  Test_year
-    Set Publisher  Test_Publisher
->>>>>>> main
-    Click Button  Lisää
-    Home Page Should Be Open
-    Adding Should Succeed  ${author}  ${title}  ${year}  ${publisher}
-
 Master list Should Contain Master
-    Click Link  Lisää graduviite
-    Set Kayttajatunnus  Test_tunnus
-    Set Author  Test_author
-    Set Title  Test_title
-    Set School  Test_School
-    Set Year  Test_year
-    Click Button  Lisää
     Home Page Should Be Open
     Adding Master Should Succeed  ${author}  ${title}  ${year}  ${publisher}
 
 Add Reference For Deletion
     Click Link  Lisää kirjaviite
-    Set Key  ${key_to_delete}
     Set Kayttajatunnus  ${username}
     Set Author  ${deleted_author}
     Set Title  ${deleted_title}
@@ -89,6 +65,7 @@ Delete Reference
     Page Should Contain Element  xpath://li[contains(., "${deleted_title}")]
     Page Should Contain Element  xpath://li[contains(., "${deleted_year}")]
     Page Should Contain Element  xpath://li[contains(., "${deleted_publisher}")]
+    Click Link  Poista
     Click Button  Poista!
 
 Keylist Should Not Contain Deleted Reference
