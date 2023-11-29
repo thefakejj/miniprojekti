@@ -1,1 +1,18 @@
-CREATE TABLE book (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, key TEXT NOT NULL, author TEXT NOT NULL, title TEXT NOT NULL, year INTEGER NOT NULL, publisher TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS reference 
+(id INTEGER PRIMARY KEY AUTOINCREMENT, 
+reftype TEXT NOT NULL,
+username TEXT, 
+key TEXT NOT NULL, 
+author TEXT, 
+title TEXT, 
+year INTEGER, 
+publisher TEXT,
+volume TEXT,
+series TEXT,
+address TEXT,
+edition TEXT,
+month TEXT,
+note TEXT,
+school TEXT,
+type TEXT
+);
