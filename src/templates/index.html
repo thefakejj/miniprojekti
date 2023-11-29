@@ -23,50 +23,56 @@
       </style>
     {% for reference in references %}
         {% if reference.reftype == 'book' %}
-            <li>@book&#123;{{ reference.key }}, 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;author = &#123;{{ reference.author }}&#125;, 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;title = &#123;{{ reference.title }}&#125;, 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;year = &#123;{{ reference.year }}&#125;, 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;publisher = &#123;{{ reference.publisher }}&#125;,
+        <br>
+            <li>key = {{ reference.key }}
+                <br>reftype = book
+                <br>author = {{ reference.author }} 
+                <br>title = {{ reference.title }} 
+                <br>year = {{ reference.year }} 
+                <br>publisher = {{ reference.publisher }}
                 {% if reference.volume %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;volume = &#123;{{ reference.volume }}&#125;,
+                <br>volume = {{ reference.volume }}
                 {% endif %}
                 {% if reference.series %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;series = &#123;{{ reference.series }}&#125;,
+                <br>series = {{ reference.series }}
                 {% endif %}
                 {% if reference.address %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;address = &#123;{{ reference.address }}&#125;,
+                <br>address = {{ reference.address }}
                 {% endif %}
                 {% if reference.edition %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;edition = &#123;{{ reference.edition }}&#125;,
+                <br>edition = {{ reference.edition }}
                 {% endif %}
                 {% if reference.month %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;month = &#123;{{ reference.month }}&#125;,
+                <br>month = {{ reference.month }}
                 {% endif %}
                 {% if reference.note %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;note = &#123;{{ reference.note }}&#125;, 
+                <br>note = {{ reference.note }} 
                 {% endif %}
-                <br>&#125;</li>
+                <br>
+            </li>
 
         {% elif reference.reftype == 'master' %}
-            <li>@master&#123;{{ reference.key }}, 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;author = &#123;{{ reference.author }}&#125;, 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;title = &#123;{{ reference.title }}&#125;, 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;school = &#123;{{ reference.school }}&#125;, 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;year = &#123;{{ reference.year }}&#125;, 
+        <br>
+            <li>key = {{ reference.key }}
+                <br>reftype = master
+                <br>author = {{ reference.author }}
+                <br>title = {{ reference.title }}
+                <br>school = {{ reference.school }}
+                <br>year = {{ reference.year }} 
                 {% if reference.type %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;type = &#123;{{ reference.type }}&#125;,
+                <br>type = {{ reference.type }}
                 {% endif %}
                 {% if reference.address %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;address = &#123;{{ reference.address }}&#125;,
+                <br>address = {{ reference.address }}
                 {% endif %}
                 {% if reference.month %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;month = &#123;{{ reference.month }}&#125;,
+                <br>month = {{ reference.month }}
                 {% endif %}
                 {% if reference.note %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;note = &#123;{{ reference.note }}&#125;, 
+                <br>note = {{ reference.note }} 
                 {% endif %}
-                <br>&#125;</li>
+                <br>
+            </li>
         {% endif %}
     {% endfor %}
 </body>
