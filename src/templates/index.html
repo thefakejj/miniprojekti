@@ -2,8 +2,22 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <head>
     <title>APPI</title>
-</head>
+    <style>
+        li {
+            list-style-type: none;
+        }
 
+        .label {
+            width: 150px; 
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .value {
+            display: inline-block;
+        }
+    </style>
+</head>
 
 <body>
     <br>
@@ -11,68 +25,75 @@
         <h1>
             APPI
         </h1>
-    <div>
+    </div>
     <br>
-    <li><a href="/postbook">Lisää kirjaviite</a></li>
-    <li><a href="/postmaster">Lisää graduviite</a></li>
+    <ul>
+        <li><a href="/postbook">Lisää kirjaviite</a></li>
+        <li><a href="/postmaster">Lisää graduviite</a></li>
+    </ul>
     <br>
-    <style>
-        li {
-          list-style-type: none;
-        }
-      </style>
     {% for reference in references %}
         {% if reference.reftype == 'book' %}
-        <br>
-            <li>key = {{ reference.key }}
-                <br>reftype = book
-                <br>author = {{ reference.author }} 
-                <br>title = {{ reference.title }} 
-                <br>year = {{ reference.year }} 
-                <br>publisher = {{ reference.publisher }}
-                {% if reference.volume %}
-                <br>volume = {{ reference.volume }}
-                {% endif %}
-                {% if reference.series %}
-                <br>series = {{ reference.series }}
-                {% endif %}
-                {% if reference.address %}
-                <br>address = {{ reference.address }}
-                {% endif %}
-                {% if reference.edition %}
-                <br>edition = {{ reference.edition }}
-                {% endif %}
-                {% if reference.month %}
-                <br>month = {{ reference.month }}
-                {% endif %}
-                {% if reference.note %}
-                <br>note = {{ reference.note }} 
-                {% endif %}
-                <br>
-            </li>
+            <ul>
+                <li>
+                    <span class="label">key</span> = <span class="value">{{ reference.key }}</span><br>
+                    <span class="label">reftype</span> = <span class="value">book</span><br>
+                    <span class="label">author</span> = <span class="value">{{ reference.author }}</span><br>
+                    <span class="label">title</span> = <span class="value">{{ reference.title }}</span><br>
+                    <span class="label">year</span> = <span class="value">{{ reference.year }}</span><br>
+                    <span class="label">publisher</span> = <span class="value">{{ reference.publisher }}</span><br>
+                    {% if reference.volume %}
+                        <span class="label">volume</span> = <span class="value">{{ reference.volume }}</span><br>
+                    {% endif %}
+                    {% if reference.series %}
+                        <span class="label">series</span> = <span class="value">{{ reference.series }}</span><br>
+                    {% endif %}
+                    {% if reference.address %}
+                        <span class="label">address</span> = <span class="value">{{ reference.address }}</span><br>
+                    {% endif %}
+                    {% if reference.edition %}
+                        <span class="label">edition</span> = <span class="value">{{ reference.edition }}</span><br>
+                    {% endif %}
+                    {% if reference.month %}
+                        <span class="label">month</span> = <span class="value">{{ reference.month }}</span><br>
+                    {% endif %}
+                    {% if reference.note %}
+                        <span class="label">note</span> = <span class="value">{{ reference.note }}</span><br>
+                    {% endif %}
+                </li>
+            </ul>
 
         {% elif reference.reftype == 'master' %}
-        <br>
-            <li>key = {{ reference.key }}
-                <br>reftype = master
-                <br>author = {{ reference.author }}
-                <br>title = {{ reference.title }}
-                <br>school = {{ reference.school }}
-                <br>year = {{ reference.year }} 
-                {% if reference.type %}
-                <br>type = {{ reference.type }}
-                {% endif %}
-                {% if reference.address %}
-                <br>address = {{ reference.address }}
-                {% endif %}
-                {% if reference.month %}
-                <br>month = {{ reference.month }}
-                {% endif %}
-                {% if reference.note %}
-                <br>note = {{ reference.note }} 
-                {% endif %}
-                <br>
-            </li>
+            <ul>
+                <li>
+                    <span class="label">key</span> = <span class="value">{{ reference.key }}</span><br>
+                    <span class="label">reftype</span> = <span class="value">master</span><br>
+                    <span class="label">author</span> = <span class="value">{{ reference.author }}</span><br>
+                    <span class="label">title</span> = <span class="value">{{ reference.title }}</span><br>
+                    <span class="label">school</span> = <span class="value">{{ reference.school }}</span><br>
+                    <span class="label">year</span> = <span class="value">{{ reference.year }}</span><br>
+                    {% if reference.type %}
+                        <span class="label">type</span> = <span class="value">{{ reference.type }}</span><br>
+                    {% endif %}
+                    {% if reference.address %}
+                        <span class="label">address</span> = <span class="value">{{ reference.address }}</span><br>
+                    {% endif %}
+                    {% if reference.month %}
+                        <span class="label">month</span> = <span class="value">{{ reference.month }}</span><br>
+                    {% endif %}
+                    {% if reference.note %}
+                        <span class="label">note</span> = <span class="value">{{ reference.note }}</span><br>
+                    {% endif %}
+                </li>
+            </ul>
         {% endif %}
+        <a href="/confirmdelete/{{ reference.key }}">Poista</a>
+        {% if reference.reftype == 'book' %}
+            <a href="/editbook/{{ reference.key }}">Muokkaa</a>
+        {% elif reference.reftype == 'master' %}
+            <a href="/editmaster/{{ reference.key }}">Muokkaa</a>
+        {% endif %}
+        <br>
+        <br>
     {% endfor %}
 </body>
