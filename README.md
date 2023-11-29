@@ -1,4 +1,4 @@
-![CI_workflow](https://github.com/thefakejj/miniprojekti/workflows/CI/badge.svg)
+![CI_workflow](https://github.com/thefakejj/miniprojekti/workflows/CI/badge.svg) [![codecov](https://codecov.io/gh/thefakejj/miniprojekti/graph/badge.svg?token=P4OWZDSB9C)](https://codecov.io/gh/thefakejj/miniprojekti)
 # miniprojekti
 This is **Nelosen oppilaat** group's repository for Ohjelmistotuotanto course
 
