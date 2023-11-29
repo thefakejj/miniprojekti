@@ -32,9 +32,10 @@ jobs:
         run: poetry add pytest
       - name: Run pytest
         run: poetry run coverage run --branch -m pytest
-      - name: Run robot tests
-        run: bash run_robot_tests.sh
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Run robot tests
+        run: bash run_robot_tests.sh
+      
