@@ -73,3 +73,6 @@ def delete_reference(key):
     result = db.session.execute(sql, {"key": key})
     db.session.commit()
     return True
+
+def edit_reference(key):
+    pass

@@ -69,3 +69,7 @@ def deletereference(key):
     if request.form.get("_method") == "DELETE":
         methods.delete_reference(key)
     return redirect("/")
+
+@app.route("/editbook/<key>", methods=["GET","POST"])
+def editbook(key):
+    pass
