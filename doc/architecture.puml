@@ -2,12 +2,13 @@
 rectangle "UI" {  
     rectangle "index.html"
     rectangle "postmaster.html"
-    rectangle "post.html"
+    rectangle "postbook.html"
 }
 
 rectangle "Backend" {
     rectangle "app"
     rectangle "routes"
+    rectangle "methods"
 }
 
 database "Database" {
@@ -16,7 +17,7 @@ database "Database" {
 
 interface HTTP
 
-index.html --> post.html
+index.html --> postbook.html
 index.html --> postmaster.html
 
 UI -- HTTP
@@ -24,6 +25,8 @@ HTTP - routes
 
 
 app --> routes
+routes - methods
+methods -- Database
 
 
 @enduml
