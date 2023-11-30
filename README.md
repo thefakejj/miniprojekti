@@ -58,4 +58,12 @@ After starting the application open the following url with a browser: http://127
 
 * _Lisää kirjaviite_ link allows adding book references into database.
   * Input book reference details into corresponding form fields and click _Lisää_
+* _Lisää graduviite_ link allows adding master thesis references into database.
+  * Input master thesis reference details into corresponding form fields and click _Lisää_
 * Existing book references are displayed on the bottom of the page in Bibtex format
+  * _Poista_ link opens a confirmation screen for deleting the reference
+    * Clicking _Takaising_ returns to previous screen.
+    * Clicking _Poista!_ deletes the reference. The operation is undoable.
+  * _Muokkaa_ link opens a screen for editing the reference details
+    * Clicking _Takaising_ returns to previous screen.
+    * Clicking _Tallenna muutokset_ saves the changes.
