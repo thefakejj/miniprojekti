@@ -88,3 +88,65 @@ def edit_master(username, key, author, title, school, year, type, address, month
     db.session.execute(sql, {"reftype": reftype, "username": username, "key": key, "author": author, "title": title, "school": school, "year": year, "type": type, "address": address, "month": month, "note": note})
     db.session.commit()
     return True
+
+def get_all_references_dict():
+    refs_dict = {}
+    refs_dict["books"] = get_books()
+    refs_dict["masters"] = get_master()
+
+    return refs_dict
+
+def create_book_bibtex_format(book):
+    book_ref_text = f'''@book{{{book[1]},
+author = {{{book[2]}}},
+title = {{{book[3]}}},
+year = {{{book[4]}}},
+publisher = {{{book[5]}}},
+volume = {{{book[6]}}},
+series = {{{book[7]}}},
+address = {{{book[8]}}},
+edition = {{{book[9]}}},
+month = {{{book[10]}}},
+note = {{{book[11]}}}             
+}}
+    '''
+    return book_ref_text
+
+def create_master_bibtex_format(master):
+    master_ref_text = f'''@masterthesis{{{master[1]},
+author = {{{master[2]}}},
+title = {{{master[3]}}},
+year = {{{master[4]}}},
+type = {{{master[5]}}},
+address = {{{master[6]}}},
+month = {{{master[7]}}},
+note = {{{master[8]}}},
+school = {{{master[9]}}}          
+}}
+    '''
+    return master_ref_text
+
+def create_bibtex_text():
+    bibtex_string = ""
+    refs_dict = get_all_references_dict()
+    for book in refs_dict["books"]:
+        bibtex_string += create_book_bibtex_format(book)+"\n"
+
+    for master in refs_dict["masters"]:
+        bibtex_string += create_master_bibtex_format(master)+"\n"
+    return bibtex_string
+
+def create_bibtex_file():
+
+    if os.path.exists("src/outputs/references.bib"):
+        os.remove("src/outputs/references.bib")
+    bibtex_string = create_bibtex_text()
+    with open("src/outputs/references.bib", "w", encoding='utf-8') as bibtex_file:
+        bibtex_file.write(bibtex_string)
+
+#varovasti sitte tän kanssa
+def nuke_db():
+    sql = text("DROP TABLE reference")
+    db.session.execute(sql)
+    db.session.commit()
+    return True
