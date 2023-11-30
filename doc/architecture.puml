@@ -1,0 +1,29 @@
+@startuml
+rectangle "UI" {  
+    rectangle "index.html"
+    rectangle "postmaster.html"
+    rectangle "post.html"
+}
+
+rectangle "Backend" {
+    rectangle "app"
+    rectangle "routes"
+}
+
+database "Database" {
+    rectangle "Reference"
+}
+
+interface HTTP
+
+index.html --> post.html
+index.html --> postmaster.html
+
+UI -- HTTP
+HTTP - routes
+
+
+app --> routes
+
+
+@enduml
