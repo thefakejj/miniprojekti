@@ -4,17 +4,20 @@ from config import DATABASE_FILE_PATH
 from app import app
 import sqlite3
 import os
-#from db_connection import get_database_connection
+from db_connection import get_database_connection
+
+
+#self.connection = sqlite3.connect(DATABASE_FILE_PATH)
+# self.engine = create_engine('sqlite:///:memory:')
+# self.connection = self.engine.connect()
 
 class MethodsTest(unittest.TestCase):
     def setUp(self):
         with app.app_context():
-            #self.connection = get_database_connection()
-            self.connection = sqlite3.connect(DATABASE_FILE_PATH)
+            self.connection = get_database_connection()
             self.cursor = self.connection.cursor()
             self.cursor.execute("DROP TABLE reference")
-            # self.engine = create_engine('sqlite:///:memory:')
-            # self.connection = self.engine.connect()
+    
             self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS reference (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -103,7 +106,8 @@ class MethodsTest(unittest.TestCase):
             self.assertIn("2222", after[0])
     
     def test_create_bibtex_file_when_doesnt_exist(self):
-        os.remove("src/outputs/references.bib")
+        if os.path.exists("src/outputs/references.bib"):
+            os.remove("src/outputs/references.bib")
         with app.app_context():
             methods.send_book("user7", "Author7", "Title7", 2012, "Publisher7", "", "", "", "", "", "")
             methods.send_master("user4", "Author4", "Title4", "School4", 2022, "", "", "", "")
