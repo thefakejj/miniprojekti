@@ -102,3 +102,28 @@ class MethodsTest(unittest.TestCase):
             print(after[0][8])
             self.assertNotIn("Tämäpoistetaan_title", after[0])
             self.assertIn("2222", after[0])
+    
+    def test_create_bibtex_file(self):
+        with app.app_context():
+            methods.send_book("user7", "Author7", "Title7", 2012, "Publisher7", "", "", "", "", "", "")
+            methods.send_master("user4", "Author4", "Title4", "School4", 2022, "", "", "", "")
+            methods.create_bibtex_file()
+            self.assertTrue(os.path.exists("src/outputs/references.bib"))
+
+    def test_create_bibtex_file_correct_start(self):
+        with app.app_context():
+            methods.send_book("user7", "Author7", "Title7", 2012, "Publisher7", "", "", "", "", "", "")
+            methods.create_bibtex_file()
+            with open('src/outputs/references.bib', 'r', encoding='utf-8') as file:
+                self.assertIn("@book{Au12,\n", file)
+
+    def test_create_bibtex_file_correct_after_new_file(self):
+        with app.app_context():
+            methods.send_book("user7", "Author7", "Title7", 2012, "Publisher7", "", "", "", "", "", "")
+            methods.create_bibtex_file()
+            with open('src/outputs/references.bib', 'r', encoding='utf-8') as file:
+                self.assertIn("@book{Au12,\n", file)
+            methods.send_master("user4", "Author4", "Title4", "School4", 2022, "", "", "", "")
+            methods.create_bibtex_file()
+            with open('src/outputs/references.bib', 'r', encoding='utf-8') as file:
+                self.assertIn("@masterthesis{Au22,\n", file)
