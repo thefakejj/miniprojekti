@@ -8,7 +8,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
 db = SQLAlchemy(app)
 
 def read_schema(path):
-    with open(path, 'r') as file:
+    with open(path, 'r', encoding='utf-8') as file:
         commands = file.read().split(';')
         connection = get_database_connection()
         cursor = connection.cursor()

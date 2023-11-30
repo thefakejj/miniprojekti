@@ -26,7 +26,7 @@ Add Book With Valid Inputs
     Set Title  ${title}
     Set Year  ${year}
     Set Publisher  ${publisher}
-    Click Button  Lisää
+    Click Link  Lisää
     Home Page Should Be Open
 
 Book list Should Contain Book

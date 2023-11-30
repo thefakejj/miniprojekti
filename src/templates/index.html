@@ -2,8 +2,22 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <head>
     <title>APPI</title>
-</head>
+    <style>
+        li {
+            list-style-type: none;
+        }
 
+        .label {
+            width: 150px; 
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .value {
+            display: inline-block;
+        }
+    </style>
+</head>
 
 <body>
     <br>
@@ -11,61 +25,79 @@
         <h1>
             APPI
         </h1>
-    <div>
-    <a href="/keylist">Keylist</a>
+    </div>
     <br>
-    <li><a href="/postbook">Lisää kirjaviite</a></li>
-    <li><a href="/postmaster">Lisää graduviite</a></li>
-    <h2>Book List</h2>
-    <ul style="list-style-type: none;">
-        {% for book in books %}
-            <li>@book&#123;{{ book.key }}, 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;author = &#123;{{ book.author }}&#125;, 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;title = &#123;{{ book.title }}&#125;, 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;year = &#123;{{ book.year }}&#125;, 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;publisher = &#123;{{ book.publisher }}&#125;,
-                {% if book.volume %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;volume = &#123;{{ book.volume }}&#125;,
-                {% endif %}
-                {% if book.series %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;series = &#123;{{ book.series }}&#125;,
-                {% endif %}
-                {% if book.address %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;address = &#123;{{ book.address }}&#125;,
-                {% endif %}
-                {% if book.edition %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;edition = &#123;{{ book.edition }}&#125;,
-                {% endif %}
-                {% if book.month %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;month = &#123;{{ book.month }}&#125;,
-                {% endif %}
-                {% if book.note %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;note = &#123;{{ book.note }}&#125;, 
-                {% endif %}
-                <br>&#125;</li>
-        {% endfor %}
+    <ul>
+        <li><a href="/postbook">Lisää kirjaviite</a></li>
+        <li><a href="/postmaster">Lisää graduviite</a></li>
     </ul>
-    <h2>Masters thesis List</h2>
-    <ul style="list-style-type: none;">
-        {% for thesis in master %}
-            <li>@mastersthesis&#123;{{ thesis.key }},
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;author = &#123;{{ thesis.author }}&#125;,
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;title = &#123;{{ thesis.title}}&#125;,
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;school = &#123;{{ thesis.school }}&#125;,
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;year = &#123;{{ thesis.year }}&#125;,
-                {% if thesis.type %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;type = &#123;{{ thesis.type }}&#125;,
-                {% endif %}
-                {% if thesis.address %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;address = &#123;{{ thesis.address }}&#125;,
-                {% endif %}
-                {% if thesis.month %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;month = &#123;{{ thesis.month }}&#125;,
-                {% endif %}
-                {% if thesis.note %}
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;note = &#123;{{ thesis.note }}&#125;,
-                {% endif %}
-                <br>&#125;</li>
-        {% endfor %}
-    </ul>
+    <br>
+    <form action="/getbibtex" method="GET">
+        <input type="submit" value="Lataa bibtex-tiedosto">
+    </form>
+    <br>
+    {% for reference in references %}
+        {% if reference.reftype == 'book' %}
+            <ul>
+                <li>
+                    <span class="label">key</span> = <span class="value">{{ reference.key }}</span><br>
+                    <span class="label">reftype</span> = <span class="value">book</span><br>
+                    <span class="label">author</span> = <span class="value">{{ reference.author }}</span><br>
+                    <span class="label">title</span> = <span class="value">{{ reference.title }}</span><br>
+                    <span class="label">year</span> = <span class="value">{{ reference.year }}</span><br>
+                    <span class="label">publisher</span> = <span class="value">{{ reference.publisher }}</span><br>
+                    {% if reference.volume %}
+                        <span class="label">volume</span> = <span class="value">{{ reference.volume }}</span><br>
+                    {% endif %}
+                    {% if reference.series %}
+                        <span class="label">series</span> = <span class="value">{{ reference.series }}</span><br>
+                    {% endif %}
+                    {% if reference.address %}
+                        <span class="label">address</span> = <span class="value">{{ reference.address }}</span><br>
+                    {% endif %}
+                    {% if reference.edition %}
+                        <span class="label">edition</span> = <span class="value">{{ reference.edition }}</span><br>
+                    {% endif %}
+                    {% if reference.month %}
+                        <span class="label">month</span> = <span class="value">{{ reference.month }}</span><br>
+                    {% endif %}
+                    {% if reference.note %}
+                        <span class="label">note</span> = <span class="value">{{ reference.note }}</span><br>
+                    {% endif %}
+                </li>
+            </ul>
+
+        {% elif reference.reftype == 'master' %}
+            <ul>
+                <li>
+                    <span class="label">key</span> = <span class="value">{{ reference.key }}</span><br>
+                    <span class="label">reftype</span> = <span class="value">master</span><br>
+                    <span class="label">author</span> = <span class="value">{{ reference.author }}</span><br>
+                    <span class="label">title</span> = <span class="value">{{ reference.title }}</span><br>
+                    <span class="label">school</span> = <span class="value">{{ reference.school }}</span><br>
+                    <span class="label">year</span> = <span class="value">{{ reference.year }}</span><br>
+                    {% if reference.type %}
+                        <span class="label">type</span> = <span class="value">{{ reference.type }}</span><br>
+                    {% endif %}
+                    {% if reference.address %}
+                        <span class="label">address</span> = <span class="value">{{ reference.address }}</span><br>
+                    {% endif %}
+                    {% if reference.month %}
+                        <span class="label">month</span> = <span class="value">{{ reference.month }}</span><br>
+                    {% endif %}
+                    {% if reference.note %}
+                        <span class="label">note</span> = <span class="value">{{ reference.note }}</span><br>
+                    {% endif %}
+                </li>
+            </ul>
+        {% endif %}
+        <a href="/confirmdelete/{{ reference.key }}">Poista</a>
+        {% if reference.reftype == 'book' %}
+            <a href="/editbook/{{ reference.key }}">Muokkaa</a>
+        {% elif reference.reftype == 'master' %}
+            <a href="/editmaster/{{ reference.key }}">Muokkaa</a>
+        {% endif %}
+        <br>
+        <br>
+    {% endfor %}
 </body>

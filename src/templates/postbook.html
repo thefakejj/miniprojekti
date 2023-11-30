@@ -4,30 +4,39 @@
 
 <body>
     <div>
+    {% if edit %}
+        <h1> Muokkaa</h1>
+        {% else %}
+        <h1>Lisää</h1>
+    {% endif %}
+    <br>
+    <a href="/">Takaisin</a>
+    <br>
+    <br>
         <form action="/sendbook" method="POST">
-        <p>Käyttäjäunnus:<br>
-        <input type="text" name="username"required></p>
+        <p>Käyttäjätunnus:<br>
+        <input type="text" name="username"required {% if edit %} value="{{ view.username }}" {% endif %}></p>
         <p>author:<br>
-        <input type="text" name="author"required></p>
+        <input type="text" name="author"required {% if edit %} value="{{ view.author }}" {% endif %}></p>
         <p>title:<br>
-        <input type="text" name="title"required></p>
+        <input type="text" name="title"required {% if edit %} value="{{ view.title }}" {% endif %}></p>
         <p>year:<br>
-        <input type="text" name="year"required></p>
+        <input type="text" name="year"required {% if edit %} value="{{ view.year }}" {% endif %}></p>
         <p>publisher:<br>
-        <input type="text" name="publisher"required></p>
+        <input type="text" name="publisher"required {% if edit %} value="{{ view.publisher }}" {% endif %}></p>
         <p>volume:<br>
-            <input type="text" name="volume">(valinnainen)</p> 
+            <input type="text" name="volume" {% if edit %} value="{{ view.volume }}" {% endif %}>(valinnainen)</p> 
         <p>series:<br>
-            <input type="text" name="series">(valinnainen)</p>
+            <input type="text" name="series" {% if edit %} value="{{ view.series }}" {% endif %}>(valinnainen)</p>
         <p>address:<br>
-            <input type="text" name="address">(valinnainen)</p>
+            <input type="text" name="address" {% if edit %} value="{{ view.address }}" {% endif %}>(valinnainen)</p>
         <p>edition:<br>
-            <input type="text" name="edition">(valinnainen)</p>
+            <input type="text" name="edition" {% if edit %} value="{{ view.edition }}" {% endif %}>(valinnainen)</p>
         <p>month:<br>
-            <input type="text" name="month">(valinnainen)</p>
+            <input type="text" name="month" {% if edit %} value="{{ view.month }}" {% endif %}>(valinnainen)</p>
         <p>note:<br>
-            <input type="text" name="note">(valinnainen)</p>            
-        <input type="submit" value="Lisää">
+            <input type="text" name="note" {% if edit %} value="{{ view.note }}" {% endif %}>(valinnainen)</p>            
+        <input type="submit" value="{% if edit %} Tallenna muutokset {% else %} Lisää {% endif %}">
         </form>
         <br>
     </div>

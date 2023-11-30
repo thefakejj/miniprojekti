@@ -1,4 +1,4 @@
-![CI_workflow](https://github.com/thefakejj/miniprojekti/workflows/CI/badge.svg)
+![CI_workflow](https://github.com/thefakejj/miniprojekti/workflows/CI/badge.svg) [![codecov](https://codecov.io/gh/thefakejj/miniprojekti/graph/badge.svg?token=P4OWZDSB9C)](https://codecov.io/gh/thefakejj/miniprojekti)
 # miniprojekti
 This is **Nelosen oppilaat** group's repository for Ohjelmistotuotanto course
 
@@ -8,11 +8,17 @@ This is **Nelosen oppilaat** group's repository for Ohjelmistotuotanto course
 
 [**Aiheen kuvaus**](https://ohjelmistotuotanto-hy.github.io/speksi/)
 
+## Use Case Overview
+![UML_UseCase](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/thefakejj/miniprojekti/master/doc/use_case.puml&refresh)
+
+## Architecture Overview
+![UML_Architecture](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/thefakejj/miniprojekti/master/doc/architecture.puml&refresh)
+
 ## Weekly Schedule
 * **Monday**
-  * 15:30 Retrospective G226, Library
+  * 15:30 Retrospective
   * 16:00 Demo A319, Exactum
-  * 16:30 Sprint planning, Exactum
+  * 16:30 Sprint planning
 * **Wednesday**
   * 12-14 Development meeting
 * **Thursday**
@@ -52,4 +58,12 @@ After starting the application open the following url with a browser: http://127
 
 * _Lisää kirjaviite_ link allows adding book references into database.
   * Input book reference details into corresponding form fields and click _Lisää_
+* _Lisää graduviite_ link allows adding master thesis references into database.
+  * Input master thesis reference details into corresponding form fields and click _Lisää_
 * Existing book references are displayed on the bottom of the page in Bibtex format
+  * _Poista_ link opens a confirmation screen for deleting the reference
+    * Clicking _Takaising_ returns to previous screen.
+    * Clicking _Poista!_ deletes the reference. The operation is undoable.
+  * _Muokkaa_ link opens a screen for editing the reference details
+    * Clicking _Takaising_ returns to previous screen.
+    * Clicking _Tallenna muutokset_ saves the changes.
