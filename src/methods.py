@@ -141,5 +141,10 @@ def create_bibtex_file():
     bibtex_string = create_bibtex_text()
     with open("src/outputs/references.bib", "w", encoding='utf-8') as bibtex_file:
         bibtex_file.write(bibtex_string)
-    
+
+#varovasti sitte tän kanssa
+def nuke_db():
+    sql = text("DROP TABLE reference")
+    db.session.execute(sql)
+    db.session.commit()
     return True

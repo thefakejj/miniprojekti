@@ -22,6 +22,33 @@ def send_book():
     month = request.form["month"]
     note = request.form["note"]
 
+    if len(username) > 100:
+        return render_template("error.html",message="Liian pitkä username syöte!")
+    if len(author) > 100:
+        return render_template("error.html",message="Liian pitkä author syöte!")
+    if len(title) > 100:
+        return render_template("error.html",message="Liian pitkä title syöte!")
+    if len(year) > 100:
+        return render_template("error.html",message="Liian pitkä year syöte!")
+    if len(publisher) > 100:
+        return render_template("error.html",message="Liian pitkä publisher syöte!")
+    if len(volume) > 100:
+        return render_template("error.html",message="Liian pitkä volume syöte!")
+    if len(series) > 100:
+        return render_template("error.html",message="Liian pitkä series syöte!")
+    if len(address) > 100:
+        return render_template("error.html",message="Liian pitkä address syöte!")
+    if len(month) > 100:
+        return render_template("error.html",message="Liian pitkä month syöte!")
+    if len(note) > 100:
+        return render_template("error.html",message="Liian pitkä note syöte!")
+    
+    if not year.isnumeric():
+        return render_template("error.html",message="Vuosi-kentän syöte ei ole luku!")
+    
+    if len(month) > 3:
+        return render_template("error.html",message="Syötä kuukausi tyylillä 'jan', 'feb' jne.")
+
     if methods.send_book(username,author,title,year,publisher, volume, series, address, edition, month, note):
         return redirect("/")
 
@@ -45,6 +72,31 @@ def send_master():
     address = request.form["address"]
     month = request.form["month"]
     note = request.form["note"]
+
+    if len(username) > 100:
+        return render_template("error.html",message="Liian pitkä username syöte!")
+    if len(author) > 100:
+        return render_template("error.html",message="Liian pitkä author syöte!")
+    if len(title) > 100:
+        return render_template("error.html",message="Liian pitkä title syöte!")
+    if len(school) > 100:
+        return render_template("error.html",message="Liian pitkä school syöte!")
+    if len(year) > 100:
+        return render_template("error.html",message="Liian pitkä year syöte!")
+    if len(type) > 100:
+        return render_template("error.html",message="Liian pitkä type syöte!")
+    if len(address) > 100:
+        return render_template("error.html",message="Liian pitkä address syöte!")
+    if len(month) > 100:
+        return render_template("error.html",message="Liian pitkä month syöte!")
+    if len(note) > 100:
+        return render_template("error.html",message="Liian pitkä note syöte!")
+    
+    if not year.isnumeric():
+        return render_template("error.html",message="Vuosi-kentän syöte ei ole luku!")
+    
+    if len(month) > 3:
+        return render_template("error.html",message="Syötä kuukausi tyylillä 'jan', 'feb' jne.")
 
     if methods.send_master(username, author, title, school, year, type, address, month, note):
         return redirect("/")
