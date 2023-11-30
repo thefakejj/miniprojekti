@@ -9,10 +9,10 @@ This is **Nelosen oppilaat** group's repository for Ohjelmistotuotanto course
 [**Aiheen kuvaus**](https://ohjelmistotuotanto-hy.github.io/speksi/)
 
 ## Use Case Overview
-![UML_UseCase](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/thefakejj/miniprojekti/master/doc/use_case.puml)
+![UML_UseCase](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/thefakejj/miniprojekti/master/doc/use_case.puml&Refresh)
 
 ## Architecture Overview
-![UML_Architecture](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/thefakejj/miniprojekti/master/doc/architecture.puml)
+![UML_Architecture](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/thefakejj/miniprojekti/master/doc/architecture.puml&Refresh)
 
 ## Weekly Schedule
 * **Monday**
