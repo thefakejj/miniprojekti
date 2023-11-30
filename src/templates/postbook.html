@@ -9,6 +9,10 @@
         {% else %}
         <h1>Lisää</h1>
     {% endif %}
+    <br>
+    <a href="/">Takaisin</a>
+    <br>
+    <br>
         <form action="/sendbook" method="POST">
         <p>Käyttäjätunnus:<br>
         <input type="text" name="username"required {% if edit %} value="{{ view.username }}" {% endif %}></p>
