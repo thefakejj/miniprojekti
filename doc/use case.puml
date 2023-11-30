@@ -1,0 +1,31 @@
+@startuml
+left to right direction
+
+actor "User" as user
+actor "Application" as app
+ 
+usecase "Add reference" as addRef
+usecase "Add book" as addBook
+usecase "Add master thesis" as addMaster
+usecase "Modify reference" as modifyRef
+usecase "Delete reference" as deleteRef
+usecase "Display references" as displayRef
+usecase "Download references" as downloadRef
+
+user -- addRef
+addBook --|> addRef
+addMaster --|> addRef
+addRef -- app
+
+user -- modifyRef
+modifyRef -- app
+
+user -- deleteRef
+deleteRef -- app
+
+user -- displayRef
+displayRef -- app
+
+user -- downloadRef
+downloadRef -- app
+@enduml
