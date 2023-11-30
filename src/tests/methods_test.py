@@ -103,7 +103,8 @@ class MethodsTest(unittest.TestCase):
             self.assertNotIn("Tämäpoistetaan_title", after[0])
             self.assertIn("2222", after[0])
     
-    def test_create_bibtex_file(self):
+    def test_create_bibtex_file_when_doesnt_exist(self):
+        os.remove("src/outputs/references.bib")
         with app.app_context():
             methods.send_book("user7", "Author7", "Title7", 2012, "Publisher7", "", "", "", "", "", "")
             methods.send_master("user4", "Author4", "Title4", "School4", 2022, "", "", "", "")
