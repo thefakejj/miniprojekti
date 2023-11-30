@@ -94,10 +94,21 @@ def get_all_references_dict():
     return refs_dict
 
 def create_book_bibtex_format(book):
-    key = book[1]
-    ref_text = f"""@book{{book[1]}}"""
+    ref_text = f'''@book{{{book[1]},
+            author = {{{book[2]}}}
+            title = {{{book[3]}}}
+            year = {{{book[4]}}}
+            publisher = {{{book[5]}}}
+            volume = {{{book[6]}}}
+            series = {{{book[7]}}}
+            address = {{{book[8]}}}
+            edition = {{{book[9]}}}
+            month = {{{book[10]}}}
+            note = {{{book[11]}}}
+                           
+            }}
+            '''
     print(ref_text)
-
 
 def create_bibtex_file():
     refs_dict = get_all_references_dict()
