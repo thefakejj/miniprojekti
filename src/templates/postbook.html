@@ -11,8 +11,10 @@
         <h1>Lisää</h1>
         <form action="/sendbook" method="POST">
     {% endif %}
-        
-    {% endif %}
+        <br>
+        <a href="/">Takaisin</a>
+        <br>
+        <br>
         <p>Käyttäjätunnus:<br>
         <input type="text" name="username"required {% if edit %} value="{{ view.username }}" {% endif %}></p>
         <p>author:<br>
