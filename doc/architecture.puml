@@ -3,6 +3,8 @@ rectangle "UI" {
     rectangle "index.html"
     rectangle "postmaster.html"
     rectangle "postbook.html"
+    rectangle "confirmdelete.html"
+    rectangle "error.html"
 }
 
 rectangle "Backend" {
@@ -17,8 +19,13 @@ database "Database" {
 
 interface HTTP
 
-index.html --> postbook.html
-index.html --> postmaster.html
+index.html <--> postbook.html
+index.html <--> postmaster.html
+index.html <--> confirmdelete.html
+postbook.html <--> error.html  
+postmaster.html <--> error.html
+confirmdelete.html <--> error.html
+
 
 UI -- HTTP
 HTTP - routes
