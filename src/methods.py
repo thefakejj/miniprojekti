@@ -81,38 +81,52 @@ def edit_reference(username, key, author, title, year, publisher, volume, series
     return True
 
 def get_all_references_dict():
-    # books = get_books()
-    # masters = get_master()
-    # print("books:\n", books)
-    # print("masters:\n", masters)
-
     refs_dict = {}
     refs_dict["books"] = get_books()
     refs_dict["masters"] = get_master()
 
-    print("refs_dict:\n", refs_dict)
     return refs_dict
 
 def create_book_bibtex_format(book):
-    ref_text = f'''@book{{{book[1]},
-            author = {{{book[2]}}}
-            title = {{{book[3]}}}
-            year = {{{book[4]}}}
-            publisher = {{{book[5]}}}
-            volume = {{{book[6]}}}
-            series = {{{book[7]}}}
-            address = {{{book[8]}}}
-            edition = {{{book[9]}}}
-            month = {{{book[10]}}}
-            note = {{{book[11]}}}
-                           
-            }}
-            '''
-    print(ref_text)
+    book_ref_text = f'''@book{{{book[1]},
+author = {{{book[2]}}},
+title = {{{book[3]}}},
+year = {{{book[4]}}},
+publisher = {{{book[5]}}},
+volume = {{{book[6]}}},
+series = {{{book[7]}}},
+address = {{{book[8]}}},
+edition = {{{book[9]}}},
+month = {{{book[10]}}},
+note = {{{book[11]}}}             
+}}
+    '''
+    return book_ref_text
 
-def create_bibtex_file():
+def create_master_bibtex_format(master):
+    master_ref_text = f'''@masterthesis{{{master[1]},
+author = {{{master[2]}}},
+title = {{{master[3]}}},
+year = {{{master[4]}}},
+type = {{{master[5]}}},
+address = {{{master[6]}}},
+month = {{{master[7]}}},
+note = {{{master[8]}}},
+school = {{{master[9]}}}          
+}}
+    '''
+    return master_ref_text
+
+def create_bibtex_text():
+    bibtex_string = ""
     refs_dict = get_all_references_dict()
     for book in refs_dict["books"]:
-        create_book_bibtex_format(book)
+        bibtex_string += create_book_bibtex_format(book)+"\n"
 
+    for master in refs_dict["masters"]:
+        bibtex_string += create_master_bibtex_format(master)+"\n"
 
+def create_bibtex_file():
+    bibtex_string = create_bibtex_text()
+    
+    
