@@ -88,5 +88,24 @@ def editbook(key):
         month = request.form["month"]
         note = request.form["note"]
 
-        if methods.edit_reference(username,key,author,title,year,publisher, volume, series, address, edition, month, note):
+        if methods.edit_book(username,key,author,title,year,publisher, volume, series, address, edition, month, note):
+            return redirect("/")
+        
+@app.route("/editmaster/<key>", methods=["GET","POST"])
+def editmaster(key):
+    if request.method == "GET":
+        view = methods.keyview(key)
+        return render_template("postmaster.html", view=view, edit=True)
+    if request.method == "POST":
+        username = request.form["username"]
+        author = request.form["author"]
+        title = request.form["title"]
+        school = request.form["school"]
+        year = request.form["year"]
+        type = request.form["type"]
+        address = request.form["address"]
+        month = request.form["month"]
+        note = request.form["note"]
+
+        if methods.edit_master(username,key,author,title,school,year,type,address,month,note):
             return redirect("/")
