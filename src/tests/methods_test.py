@@ -99,7 +99,6 @@ class MethodsTest(unittest.TestCase):
             methods.send_book("user5", "Testikirjailija", "Tämäpoistetaan_title", 1921, "Publisher5", "", "", "", "", "","")
             methods.edit_book("user5", "Te21", "Testikirjailija", "Kirjannimi", 1921, "Publisher5", "2222", "", "", "", "", "")
             after = methods.get_references()
-            print(after[0][8])
             self.assertNotIn("Tämäpoistetaan_title", after[0])
             self.assertIn("2222", after[0])
     
