@@ -93,9 +93,10 @@ def editbook(key):
 
 @app.route('/getbibtex') # should maybe call something like "create file" first
 def download_bibtex():
-    return send_file(
-        'outputs/references.bib',
-        mimetype='text/bib',
-        download_name='references.bib',
-        as_attachment=True
-    )
+    methods.create_bibtex_file()
+    # return send_file(
+    #     'outputs/references.bib',
+    #     mimetype='text/bib',
+    #     download_name='references.bib',
+    #     as_attachment=True
+    # )

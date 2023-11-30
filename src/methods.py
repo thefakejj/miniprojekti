@@ -79,3 +79,29 @@ def edit_reference(username, key, author, title, year, publisher, volume, series
     db.session.execute(sql, {"username": username, "key": key, "author": author, "title": title, "year": year, "publisher": publisher, "volume": volume, "series": series, "address": address, "edition": edition, "month": month})
     db.session.commit()
     return True
+
+def get_all_references_dict():
+    # books = get_books()
+    # masters = get_master()
+    # print("books:\n", books)
+    # print("masters:\n", masters)
+
+    refs_dict = {}
+    refs_dict["books"] = get_books()
+    refs_dict["masters"] = get_master()
+
+    print("refs_dict:\n", refs_dict)
+    return refs_dict
+
+def create_book_bibtex_format(book):
+    key = book[1]
+    ref_text = f"""@book{{book[1]}}"""
+    print(ref_text)
+
+
+def create_bibtex_file():
+    refs_dict = get_all_references_dict()
+    for book in refs_dict["books"]:
+        create_book_bibtex_format(book)
+
+
