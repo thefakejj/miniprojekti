@@ -1,0 +1,2 @@
+[run]
+omit = src/**/__init__.py,src/tests/**,src/config.py,src/app.py
