@@ -6,16 +6,15 @@
     <div>
     {% if edit %}
         <h1> Muokkaa</h1>
+        <form action="/editmaster/{{ view.key }}" method="POST">
     {% else %}
         <h1>Lisää</h1>
-    {% endif %}
-    <br>
-    <a href="/">Takaisin</a>
-    <br>
-    <br>
         <form action="/sendmaster" method="POST">
-        <p>Käyttäjäunnus:<br>
+    {% endif %}
+        
+        <p>Käyttäjätunnus:<br>
         <input type="text" name="username" required {% if edit %} value="{{ view.username }}" {% endif %}></p>
+    
         <p>author:<br>
         <input type="text" name="author" required {% if edit %} value="{{ view.author }}" {% endif %}></p>
         <p>title:<br>
