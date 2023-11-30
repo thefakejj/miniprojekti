@@ -38,11 +38,18 @@ class MethodsTest(unittest.TestCase):
 
     def test_send_and_get_books(self):
         with app.app_context():
-            methods.send_book("user1", "Author1", "Title1", 2022, "Publisher1", "", "", "", "", "", "")
+            methods.send_book("user1", "Author1", "Title1", 2022, "Publisher1", "volume7", "series7", "address7", "edition7", "month7", "note")
             methods.send_book("user2", "Author2", "Title2", 2023, "Publisher2", "", "", "", "", "", "")
 
             books = methods.get_books()
             self.assertEqual(len(books), 2)
+    
+    def test_and_send_books_all(self):
+        with app.app_context():
+            methods.send_book("user7", "Author7", "Title7", 2012, "Publisher7", "", "", "", "", "", "")
+
+            books = methods.get_books()
+            self.assertEqual(len(books), 1)
     
     def test_send_and_get_master(self):
         with app.app_context():
@@ -52,6 +59,12 @@ class MethodsTest(unittest.TestCase):
             master = methods.get_master()
             self.assertEqual(len(master), 2)
     
+    def test_send_and_get_master_all(self):
+        with app.app_context():
+            methods.send_master("user8", "Author8", "Title8", "School8", 2018, "type", "address8", "month8", "note8")
+            master = methods.get_master()
+            self.assertEqual(len(master), 1)
+
     def test_key_generation(self):
         with app.app_context():
             methods.send_book("user3", "Author3", "Title3", 1987, "Publisher3", "", "", "", "", "", "")
@@ -62,11 +75,28 @@ class MethodsTest(unittest.TestCase):
             key4 = books[1][1]
             self.assertNotEqual(key3, key4)
     
-    def test_delete(self):
+    def test_delete_book(self):
         with app.app_context():
             methods.send_book("user3", "Author6", "Title6", 1987, "Publisher3", "", "", "", "", "", "")
 
-            methods.delete_reference("r687")
+            methods.delete_reference("Au87")
 
             keys_after = [key[0] for key in methods.get_keys()]
-            self.assertNotIn("r687", keys_after)
+            self.assertNotIn("Au87", keys_after)
+    
+    def test_delete_master(self):
+        with app.app_context():
+            methods.send_master("user9", "Author9", "Title9", "School9", 1999, "", "", "", "")
+
+            methods.delete_reference("Au99")
+
+            keys_after = [key[0] for key in methods.get_keys()]
+            self.assertNotIn("Au99", keys_after)
+    
+    def test_edit_book(self):
+        with app.app_context():
+            methods.send_book("user5", "Testikirjailija", "Tämäpoistetaan_title", 1921, "Publisher5", "", "", "", "", "","")
+            methods.edit_reference("user5", "Au21", "Testikirjailija", "Kirjannimi", 1921, "Publisher5", "2222", "", "", "", "", "")
+            after = methods.get_references()
+            self.assertNotIn("Tämäpoistetaan_title", after)
+            self.assertIn("2222", after)
