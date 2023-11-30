@@ -32,7 +32,9 @@
         <li><a href="/postmaster">Lisää graduviite</a></li>
     </ul>
     <br>
-    <a href="/getbibtex">Lataa bibtex-tiedosto</a>
+    <form action="/getbibtex" method="GET">
+        <input type="submit" value="Lataa bibtex-tiedosto">
+    </form>
     <br>
     {% for reference in references %}
         {% if reference.reftype == 'book' %}
