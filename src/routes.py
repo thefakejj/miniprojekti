@@ -109,3 +109,13 @@ def editmaster(key):
 
         if methods.edit_master(username,key,author,title,school,year,type,address,month,note):
             return redirect("/")
+
+@app.route('/getbibtex') # should maybe call something like "create file" first
+def download_bibtex():
+    methods.create_bibtex_file()
+    return send_file(
+        'outputs/references.bib',
+        mimetype='text/bib',
+        download_name='references.bib',
+        as_attachment=True
+    )
