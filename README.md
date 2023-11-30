@@ -10,9 +10,9 @@ This is **Nelosen oppilaat** group's repository for Ohjelmistotuotanto course
 
 ## Weekly Schedule
 * **Monday**
-  * 15:30 Retrospective G226, Library
+  * 15:30 Retrospective
   * 16:00 Demo A319, Exactum
-  * 16:30 Sprint planning, Exactum
+  * 16:30 Sprint planning
 * **Wednesday**
   * 12-14 Development meeting
 * **Thursday**
