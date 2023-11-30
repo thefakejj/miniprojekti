@@ -7,14 +7,14 @@ import os
 from db_connection import get_database_connection
 
 
-#self.connection = sqlite3.connect(DATABASE_FILE_PATH)
+# self.connection = get_database_connection()
 # self.engine = create_engine('sqlite:///:memory:')
 # self.connection = self.engine.connect()
 
 class MethodsTest(unittest.TestCase):
     def setUp(self):
         with app.app_context():
-            self.connection = get_database_connection()
+            self.connection = sqlite3.connect(DATABASE_FILE_PATH)
             self.cursor = self.connection.cursor()
             self.cursor.execute("DROP TABLE reference")
     
