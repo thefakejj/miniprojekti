@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, send_file
 import methods
 
 
@@ -90,3 +90,12 @@ def editbook(key):
 
         if methods.edit_reference(username,key,author,title,year,publisher, volume, series, address, edition, month, note):
             return redirect("/")
+
+@app.route('/getbibtex') # should maybe call something like "create file" first
+def download_bibtex():
+    return send_file(
+        'outputs/references.bib',
+        mimetype='text/bib',
+        download_name='references.bib',
+        as_attachment=True
+    )
