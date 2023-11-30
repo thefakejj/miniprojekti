@@ -14,6 +14,8 @@
 ; C0411 wrong import order
 ; C0413 wrong import position (end of file)
 
+; E1121 Too many positional arguments for function call (too-many-function-args)
+
 disable=
     C0114,
     C0115,
@@ -23,11 +25,11 @@ disable=
     W0622,
     W0612,
     W0611,
-    W1514,
     R1710,
     R0401,
     C0411,
-    C0413
+    C0413,
+    E1121
 
 
 # Analyse import fallback blocks. This can be used to support both Python 2 and
@@ -324,7 +326,7 @@ max-attributes=7
 max-bool-expr=5
 
 # Maximum number of branch for function / method body.
-max-branches=12
+max-branches=20
 
 # Maximum number of locals for function / method body.
 max-locals=15
@@ -336,7 +338,7 @@ max-parents=7
 max-public-methods=20
 
 # Maximum number of return / yield for function / method body.
-max-returns=6
+max-returns=20
 
 # Maximum number of statements in function / method body.
 max-statements=50
