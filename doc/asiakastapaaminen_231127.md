@@ -7,7 +7,7 @@ Demo
 - Luokaa dokumentaatio hakemisto
  + Ei muistioita juureen
 - Kiva, että on asennusohje
-- Typo!!! käyttäjäunnus (README.MD)
+- Typo!!! käyttäjäunnus (Lisää viite -sivut)
 - Pitäkää backlog ajantasalla
 - Formien syötteiden validointi
 - Lisää yksikkö testejä
