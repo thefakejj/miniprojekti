@@ -3,6 +3,7 @@ import methods
 from config import DATABASE_FILE_PATH
 from app import app
 import sqlite3
+import os
 #from db_connection import get_database_connection
 
 class MethodsTest(unittest.TestCase):
@@ -96,7 +97,7 @@ class MethodsTest(unittest.TestCase):
     def test_edit_book(self):
         with app.app_context():
             methods.send_book("user5", "Testikirjailija", "Tämäpoistetaan_title", 1921, "Publisher5", "", "", "", "", "","")
-            methods.edit_reference("user5", "Au21", "Testikirjailija", "Kirjannimi", 1921, "Publisher5", "2222", "", "", "", "", "")
+            methods.edit_book("user5", "Au21", "Testikirjailija", "Kirjannimi", 1921, "Publisher5", "2222", "", "", "", "", "")
             after = methods.get_references()
             self.assertNotIn("Tämäpoistetaan_title", after)
             self.assertIn("2222", after)
