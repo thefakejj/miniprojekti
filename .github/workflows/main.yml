@@ -38,6 +38,9 @@ jobs:
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Run pylint
+        run: poetry run pylint
       - name: Run robot tests
         run: bash run_robot_tests.sh
+      
       
