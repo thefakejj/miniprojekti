@@ -2,6 +2,7 @@ from flask import make_response
 from sqlalchemy.sql import text
 from app import db
 import random
+import os
 
 def send_book(username, author, title, year, publisher, volume, series, address, edition, month, note):
     reftype = "book"
@@ -125,8 +126,14 @@ def create_bibtex_text():
 
     for master in refs_dict["masters"]:
         bibtex_string += create_master_bibtex_format(master)+"\n"
+    return bibtex_string
 
 def create_bibtex_file():
+
+    if os.path.exists("src/outputs/references.bib"):
+        os.remove("src/outputs/references.bib")
     bibtex_string = create_bibtex_text()
+    with open("src/outputs/references.bib", "w", encoding='utf-8') as bibtex_file:
+        bibtex_file.write(bibtex_string)
     
-    
+    return True
