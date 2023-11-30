@@ -9,8 +9,9 @@
         <form action="/editbook/{{ view.key }}" method="POST">
     {% else %}
         <h1>Lisää</h1>
-    {% endif %}
         <form action="/sendbook" method="POST">
+    {% endif %}
+        
     {% endif %}
         <p>Käyttäjätunnus:<br>
         <input type="text" name="username"required {% if edit %} value="{{ view.username }}" {% endif %}></p>
