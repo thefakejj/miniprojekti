@@ -112,6 +112,50 @@ Edit Master Reference Should Succeed
     Page Should Contain  ${edited_title}
     Page Should Contain  ${school}
     Page Should Contain  ${edited_year}
+
+Book List Should Show
+    Click Link  Lisää kirjaviite
+    Set Kayttajatunnus  ${username}
+    Set Author  ${author}
+    Set Title  ${title}
+    Set Year  ${year}
+    Set Publisher  ${publisher}
+    Submit Form
+    Page Should Contain  key
+    Page Should Contain  reftype
+    Page Should Contain  book
+    Page Should Contain  ${author}
+    Page Should Contain  author
+    Page Should Contain  ${title}
+    Page Should Contain  title
+    Page Should Contain  ${year}
+    Page Should Contain  year
+    Page Should Contain  ${publisher}
+    Page Should Contain  publisher
+    Page Should Contain  Muokkaa
+    Page Should Contain  Poista
+
+Master List Should Show
+    Click Link  Lisää graduviite
+    Set Kayttajatunnus  ${username}
+    Set Author  ${author}
+    Set Title  ${title}
+    Set School  ${school}
+    Set Year  ${year}
+    Submit Form
+    Page Should Contain  key
+    Page Should Contain  reftype
+    Page Should Contain  master
+    Page Should Contain  ${author}
+    Page Should Contain  author
+    Page Should Contain  ${title}
+    Page Should Contain  title
+    Page Should Contain  ${school}
+    Page Should Contain  school
+    Page Should Contain  ${year}
+    Page Should Contain  year
+    Page Should Contain  Muokkaa
+    Page Should Contain  Poista
     
     
 
