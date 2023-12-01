@@ -17,8 +17,6 @@ def send_book(username, author, title, year, publisher, volume, series, address,
         raise InvalidInputError("Liian pitkä author syöte!")
     if len(title) > 100:
         raise InvalidInputError("Liian pitkä title syöte!")
-    if len(year) > 100:
-        raise InvalidInputError("Liian pitkä year syöte!")
     if len(publisher) > 100:
         raise InvalidInputError("Liian pitkä publisher syöte!")
     if len(volume) > 100:
@@ -34,7 +32,7 @@ def send_book(username, author, title, year, publisher, volume, series, address,
     if len(note) > 100:
         raise InvalidInputError("Liian pitkä note syöte!")
     
-    if not year.isnumeric():
+    if not isinstance(year, int) or year < 0 or year > 3000:
         raise InvalidInputError("Vuosi-kentän syöte ei ole luku!")
     
     if len(month) > 3:
@@ -63,8 +61,6 @@ def send_master(username, author, title, school, year, type, address, month, not
         raise InvalidInputError("Liian pitkä title syöte!")
     if len(school) > 100:
         raise InvalidInputError("Liian pitkä school syöte!")
-    if len(year) > 100:
-        raise InvalidInputError("Liian pitkä year syöte!")
     if len(type) > 100:
         raise InvalidInputError("Liian pitkä type syöte!")
     if len(address) > 100:
@@ -74,7 +70,7 @@ def send_master(username, author, title, school, year, type, address, month, not
     if len(note) > 100:
         raise InvalidInputError("Liian pitkä note syöte!")
     
-    if not year.isnumeric():
+    if not isinstance(year, int) or year < 0 or year > 3000:
         raise InvalidInputError("Vuosi-kentän syöte ei ole luku!")
     
     if len(month) > 3:

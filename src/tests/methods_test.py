@@ -46,7 +46,7 @@ class MethodsTest(unittest.TestCase):
             methods.send_book("user2", "Author2", "Title2", 2023, "Publisher2", "", "", "", "", "", "")
 
             books = methods.get_books()
-            self.assertEqual(books, 2)
+            self.assertEqual(len(books), 2)
     
     def test_and_send_books_all(self):
         with app.app_context():
@@ -65,7 +65,7 @@ class MethodsTest(unittest.TestCase):
     
     def test_send_and_get_master_all(self):
         with app.app_context():
-            methods.send_master("user8", "Author8", "Title8", "School8", 2018, "type", "address8", "month8", "note8")
+            methods.send_master("user8", "Author8", "Title8", "School8", 2018, "type", "address8", "feb", "note8")
             master = methods.get_master()
             self.assertEqual(len(master), 1)
 
