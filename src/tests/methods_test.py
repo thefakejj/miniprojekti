@@ -42,11 +42,11 @@ class MethodsTest(unittest.TestCase):
 
     def test_send_and_get_books(self):
         with app.app_context():
-            methods.send_book("user1", "Author1", "Title1", 2022, "Publisher1", "volume7", "series7", "address7", "edition7", "month7", "note")
+            methods.send_book("user1", "Author1", "Title1", 2022, "Publisher1", "volume7", "series7", "address7", "edition7", "aug", "note")
             methods.send_book("user2", "Author2", "Title2", 2023, "Publisher2", "", "", "", "", "", "")
 
             books = methods.get_books()
-            self.assertEqual(len(books), 2)
+            self.assertEqual(books, 2)
     
     def test_and_send_books_all(self):
         with app.app_context():
