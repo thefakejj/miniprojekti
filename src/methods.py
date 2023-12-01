@@ -53,7 +53,7 @@ def get_books():
 
 def send_master(username, author, title, school, p_year, type, address, month, note):
     reftype = "master"
-    
+
     if p_year.isalpha():
         raise InvalidInputError("Vuosi väärin!")
     else:
@@ -123,11 +123,11 @@ def key_is_unique(key):
         key += str(random.randint(1,100))
     return key
 
-def keyview(key):
+"""def keyview(key):
     sql = text("SELECT * FROM reference WHERE key = :key")
     result = db.session.execute(sql, {"key": key})
     view = result.fetchone()
-    return view
+    return view"""
 
 def delete_reference(key):
     sql = text("DELETE FROM reference WHERE key = :key")

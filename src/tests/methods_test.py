@@ -236,16 +236,14 @@ class MethodsTest(unittest.TestCase):
             after = methods.get_references()
             self.assertNotIn("Tämäpoistetaan_title", after[0])
             self.assertIn("2222", after[0])
-            
-    #tää ei toimi
-    '''def test_edit_master(self):
+
+    def test_edit_master(self):
         with app.app_context():
             methods.send_master("user4", "Author4", "Tämäpoistetaan_title", "School4", "2022", "", "", "", "")
-            methods.edit_master("user4", "Author4", "Title_after", "School4", "2022", "2222", "", "", "", "")
+            methods.edit_master("user4", "Au22", "Author4", "Title_after", "School4", "2022", "2222", "", "", "")
             after = methods.get_references()
             self.assertNotIn("Tämäpoistetaan_title", after[0])
-            self.assertIn("2222", after[0])'''
-    
+            self.assertIn("2222", after[0])
     
     def test_create_bibtex_file_when_doesnt_exist(self):
         if os.path.exists("src/outputs/references.bib"):
