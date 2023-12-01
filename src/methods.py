@@ -4,9 +4,42 @@ from app import db
 import random
 import os
 
+class InvalidInputError(Exception):
+    pass
+
 def send_book(username, author, title, year, publisher, volume, series, address, edition, month, note):
     reftype = "book"
     key = generate_key(author,year)
+
+    if len(username) > 100:
+        raise InvalidInputError("Liian pitkä username syöte!")
+    if len(author) > 100:
+        raise InvalidInputError("Liian pitkä author syöte!")
+    if len(title) > 100:
+        raise InvalidInputError("Liian pitkä title syöte!")
+    if len(year) > 100:
+        raise InvalidInputError("Liian pitkä year syöte!")
+    if len(publisher) > 100:
+        raise InvalidInputError("Liian pitkä publisher syöte!")
+    if len(volume) > 100:
+        raise InvalidInputError("Liian pitkä volume syöte!")
+    if len(series) > 100:
+        raise InvalidInputError("Liian pitkä series syöte!")
+    if len(address) > 100:
+        raise InvalidInputError("Liian pitkä address syöte!")
+    if len(edition) > 100:
+        raise InvalidInputError("Liian pitkä edition syöte!")
+    if len(month) > 100:
+        raise InvalidInputError("Liian pitkä month syöte!")
+    if len(note) > 100:
+        raise InvalidInputError("Liian pitkä note syöte!")
+    
+    if not year.isnumeric():
+        raise InvalidInputError("Vuosi-kentän syöte ei ole luku!")
+    
+    if len(month) > 3:
+        raise InvalidInputError("Syötä kuukausi tyylillä 'jan', 'feb' jne.")
+    
     sql = text("INSERT INTO reference (reftype, username, key, author, title, year, publisher, volume, series, address, edition, month, note) VALUES (:reftype, :username, :key, :author, :title, :year, :publisher, :volume, :series, :address, :edition, :month, :note)")
     db.session.execute(sql, {"reftype":reftype, "username":username, "key":key, "author":author, "title":title, "year":year, "publisher":publisher, "volume":volume, "series":series, "address":address, "edition":edition, "month":month, "note":note})
     db.session.commit()
@@ -21,6 +54,32 @@ def get_books():
 def send_master(username, author, title, school, year, type, address, month, note):
     reftype = "master"
     key = generate_key(author,year)
+
+    if len(username) > 100:
+        raise InvalidInputError("Liian pitkä username syöte!")
+    if len(author) > 100:
+        raise InvalidInputError("Liian pitkä author syöte!")
+    if len(title) > 100:
+        raise InvalidInputError("Liian pitkä title syöte!")
+    if len(school) > 100:
+        raise InvalidInputError("Liian pitkä school syöte!")
+    if len(year) > 100:
+        raise InvalidInputError("Liian pitkä year syöte!")
+    if len(type) > 100:
+        raise InvalidInputError("Liian pitkä type syöte!")
+    if len(address) > 100:
+        raise InvalidInputError("Liian pitkä address syöte!")
+    if len(month) > 100:
+        raise InvalidInputError("Liian pitkä month syöte!")
+    if len(note) > 100:
+        raise InvalidInputError("Liian pitkä note syöte!")
+    
+    if not year.isnumeric():
+        raise InvalidInputError("Vuosi-kentän syöte ei ole luku!")
+    
+    if len(month) > 3:
+        raise InvalidInputError("Syötä kuukausi tyylillä 'jan', 'feb' jne.")
+    
     sql = text("INSERT INTO reference (reftype, username, key, author, title, school, year, type, address, month, note) VALUES (:reftype, :username, :key, :author, :title, :school, :year, :type, :address, :month, :note)")
     db.session.execute(sql, {"reftype":reftype, "username":username, "key":key, "author":author, "title":title, "school":school, "year":year, "type":type, "address":address, "month":month, "note":note})
     db.session.commit()
