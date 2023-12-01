@@ -9,7 +9,13 @@ class InvalidInputError(Exception):
 
 def send_book(username, author, title, p_year, publisher, volume, series, address, edition, month, note):
     reftype = "book"
-    year = int(p_year)
+    if p_year.isalpha():
+        raise InvalidInputError("Vuosi väärin!")
+    else:
+        year = int(p_year)
+        if year < 0 or year > 3000:
+            raise InvalidInputError("Vuosi väärin!")
+
     key = generate_key(author,year)
 
     if len(username) > 100:
@@ -28,14 +34,8 @@ def send_book(username, author, title, p_year, publisher, volume, series, addres
         raise InvalidInputError("Liian pitkä address syöte!")
     if len(edition) > 100:
         raise InvalidInputError("Liian pitkä edition syöte!")
-    if len(month) > 100:
-        raise InvalidInputError("Liian pitkä month syöte!")
     if len(note) > 100:
         raise InvalidInputError("Liian pitkä note syöte!")
-    
-    
-    if not isinstance(year, int) or year < 0 or year > 3000:
-        raise InvalidInputError("Vuosi-kentän syöte ei ole luku!")
     
     if len(month) > 3:
         raise InvalidInputError("Syötä kuukausi tyylillä 'jan', 'feb' jne.")
@@ -53,7 +53,14 @@ def get_books():
 
 def send_master(username, author, title, school, p_year, type, address, month, note):
     reftype = "master"
-    year = int(p_year)
+    
+    if p_year.isalpha():
+        raise InvalidInputError("Vuosi väärin!")
+    else:
+        year = int(p_year)
+        if year < 0 or year > 3000:
+            raise InvalidInputError("Vuosi väärin!")
+        
     key = generate_key(author,year)
 
     if len(username) > 100:
@@ -68,13 +75,8 @@ def send_master(username, author, title, school, p_year, type, address, month, n
         raise InvalidInputError("Liian pitkä type syöte!")
     if len(address) > 100:
         raise InvalidInputError("Liian pitkä address syöte!")
-    if len(month) > 100:
-        raise InvalidInputError("Liian pitkä month syöte!")
     if len(note) > 100:
         raise InvalidInputError("Liian pitkä note syöte!")
-    
-    if not isinstance(year, int) or year < 0 or year > 3000:
-        raise InvalidInputError("Vuosi-kentän syöte ei ole luku!")
     
     if len(month) > 3:
         raise InvalidInputError("Syötä kuukausi tyylillä 'jan', 'feb' jne.")
