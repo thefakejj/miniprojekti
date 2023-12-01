@@ -10,7 +10,7 @@ ${edited_title}  Edited_Title
 ${edited_year}  2000
 
 *** Test Cases ***
-Edit Book Reference Should Succeed
+Edit Book Reference With Valid Inputs
     Click Link  Lisää kirjaviite
     Fill Book Form  ${username}  ${author}  ${title}  ${year}  ${publisher}
     Submit Form
@@ -20,7 +20,7 @@ Edit Book Reference Should Succeed
     Editing Master Should succeed  ${edited_author}  ${edited_title}  ${edited_year}  ${publisher} 
 
 
-Edit Master Reference Should Succeed
+Edit Master Reference With Valid Inputs
     Click Link  Lisää graduviite
     Fill Master Form  ${username}  ${author}  ${title}  ${school}  ${year}
     Submit Form
