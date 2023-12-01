@@ -17,6 +17,9 @@ ${deleted_title}  Deleted_Title
 ${deleted_year}  2025
 ${deleted_publisher}  Deleted_Publisher
 ${deleted_school}  Deleted_School
+${edited_author}  Edited_Author
+${edited_title}  Edited_Title
+${edited_year}  2000
 
 *** Test Cases ***
 Add Book With Valid Inputs
@@ -74,6 +77,43 @@ Keylist Should Not Contain Deleted Reference
     #Page Should Not Contain Element  xpath://li[contains(., "${deleted_publisher}")]
     Page Should Not Contain Element  xpath://li[contains(., "${key_to_delete}")]
 
+Edit Book Reference Should Succeed
+    Click Link  Lisää kirjaviite
+    Set Kayttajatunnus  ${username}
+    Set Author  ${author}
+    Set Title  ${title}
+    Set Year  ${year}
+    Set Publisher  ${publisher}
+    Submit Form
+    Click Link  Muokkaa
+    Set Author  ${edited_author}
+    Set Title  ${edited_title}
+    Set Year  ${edited_year}
+    Submit Form
+    Page Should Contain  ${edited_author}
+    Page Should Contain  ${edited_title}
+    Page Should Contain  ${edited_year}
+    Page Should Contain  ${publisher} 
+
+Edit Master Reference Should Succeed
+    Click Link  Lisää graduviite
+    Set Kayttajatunnus  ${username}
+    Set Author  ${author}
+    Set Title  ${title}
+    Set School  ${school}
+    Set Year  ${year}
+    Submit Form
+    Click Link  Muokkaa
+    Set Author  ${edited_author}
+    Set Title  ${edited_title}
+    Set Year  ${edited_year}
+    Submit Form
+    Page Should Contain  ${edited_author}
+    Page Should Contain  ${edited_title}
+    Page Should Contain  ${school}
+    Page Should Contain  ${edited_year}
+    
+    
 
 *** Keywords ***
 Set Kayttajatunnus
