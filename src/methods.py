@@ -7,8 +7,9 @@ import os
 class InvalidInputError(Exception):
     pass
 
-def send_book(username, author, title, year, publisher, volume, series, address, edition, month, note):
+def send_book(username, author, title, p_year, publisher, volume, series, address, edition, month, note):
     reftype = "book"
+    year = int(p_year)
     key = generate_key(author,year)
 
     if len(username) > 100:
@@ -32,6 +33,7 @@ def send_book(username, author, title, year, publisher, volume, series, address,
     if len(note) > 100:
         raise InvalidInputError("Liian pitkä note syöte!")
     
+    
     if not isinstance(year, int) or year < 0 or year > 3000:
         raise InvalidInputError("Vuosi-kentän syöte ei ole luku!")
     
@@ -49,8 +51,9 @@ def get_books():
     books = result.fetchall()
     return books
 
-def send_master(username, author, title, school, year, type, address, month, note):
+def send_master(username, author, title, school, p_year, type, address, month, note):
     reftype = "master"
+    year = int(p_year)
     key = generate_key(author,year)
 
     if len(username) > 100:
