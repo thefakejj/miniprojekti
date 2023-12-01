@@ -5,7 +5,7 @@ Suite Teardown  Close Browser
 Test Setup  Go To Home Page
 
 *** Variables ***
-${edited_author}  Edited_Author
+${edited_author}  Edited_Author<
 ${edited_title}  Edited_Title
 ${edited_year}  2000
 

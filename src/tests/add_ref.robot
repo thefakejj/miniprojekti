@@ -22,7 +22,7 @@ Add Book With Invalid Inputs
     Click Link  Lisää kirjaviite
     Fill Book Form  ${username}  ${author}  ${title}  4444  ${publisher}
     Submit Form
-    Adding Should Fail With Message  Virhe: Vuosi-kentän syöte ei ole luku!
+    Adding Should Fail With Message  Virhe: Vuosi väärin!
 
 Add Master With Valid Inputs
     Click Link  Lisää graduviite
@@ -40,7 +40,7 @@ Add Master With Invalid Inputs
     Click Link  Lisää graduviite
     Fill Master Form  ${username}  ${author}  ${title}  ${school}  4444
     Submit Form
-    Adding Should Fail With Message  Virhe: Vuosi-kentän syöte ei ole luku!
+    Adding Should Fail With Message  Virhe: Vuosi väärin!
 
 
 
