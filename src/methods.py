@@ -11,10 +11,9 @@ def send_book(username, author, title, p_year, publisher, volume, series, addres
     reftype = "book"
     if p_year.isalpha():
         raise InvalidInputError("Vuosi väärin!")
-    else:
-        year = int(p_year)
-        if year < 0 or year > 3000:
-            raise InvalidInputError("Vuosi väärin!")
+    year = int(p_year)
+    if year < 0 or year > 3000:
+        raise InvalidInputError("Vuosi väärin!")
 
     key = generate_key(author,year)
 
@@ -56,10 +55,9 @@ def send_master(username, author, title, school, p_year, type, address, month, n
 
     if p_year.isalpha():
         raise InvalidInputError("Vuosi väärin!")
-    else:
-        year = int(p_year)
-        if year < 0 or year > 3000:
-            raise InvalidInputError("Vuosi väärin!")
+    year = int(p_year)
+    if year < 0 or year > 3000:
+        raise InvalidInputError("Vuosi väärin!")
         
     key = generate_key(author,year)
 
