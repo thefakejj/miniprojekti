@@ -208,3 +208,16 @@ def nuke_db():
     db.session.execute(sql)
     db.session.commit()
     return True
+
+def get_references_by_author():
+    sql = text("SELECT * FROM reference ORDER BY author")
+    result = db.session.execute(sql)
+    references = result.fetchall()
+    return references
+
+def get_references_by_year():
+    sql = text("SELECT * FROM reference ORDER BY year")
+    result = db.session.execute(sql)
+    references = result.fetchall()
+    return references
+

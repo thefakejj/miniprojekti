@@ -30,8 +30,14 @@ def send_book():
 
 @app.route("/")
 def get_references():
-    references = methods.get_references()
-    return render_template("index.html", references=references)
+    sort_by = request.args.get("sort_by", "author")
+    if sort_by == "author":
+        references = methods.get_references_by_author()
+    elif sort_by == "year":
+        references = methods.get_references_by_year()
+    else:
+        references = methods.get_references()
+    return render_template("index.html", references=references, sort_by=sort_by)
 
 @app.route("/postmaster")
 def post_master():
