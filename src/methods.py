@@ -220,4 +220,3 @@ def get_references_by_year():
     result = db.session.execute(sql)
     references = result.fetchall()
     return references
-
