@@ -5,9 +5,6 @@ from validators import Validate
 import random
 import os
 
-class InvalidInputError(Exception):
-    pass
-
 def send_book(username, author, title, p_year, publisher, volume, series, address, edition, month, note):
     reftype = "book"
 
@@ -39,33 +36,21 @@ def get_books():
     return books
 
 def send_master(username, author, title, school, p_year, type, address, month, note):
-    reftype = "master"
+    reftype = "master"        
 
-    if p_year.isalpha():
-        raise InvalidInputError("Vuosi väärin!")
+    # validate user input
+    Validate.year(p_year)
+    Validate.username(username)
+    Validate.author(author)
+    Validate.title(title)
+    Validate.school(school)
+    Validate.type(type)
+    Validate.address(address)
+    Validate.note(note)
+    Validate.month(month)
+
     year = int(p_year)
-    if year < 0 or year > 3000:
-        raise InvalidInputError("Vuosi väärin!")
-        
     key = generate_key(author,year)
-
-    if len(username) > 100:
-        raise InvalidInputError("Liian pitkä username syöte!")
-    if len(author) > 100:
-        raise InvalidInputError("Liian pitkä author syöte!")
-    if len(title) > 100:
-        raise InvalidInputError("Liian pitkä title syöte!")
-    if len(school) > 100:
-        raise InvalidInputError("Liian pitkä school syöte!")
-    if len(type) > 100:
-        raise InvalidInputError("Liian pitkä type syöte!")
-    if len(address) > 100:
-        raise InvalidInputError("Liian pitkä address syöte!")
-    if len(note) > 100:
-        raise InvalidInputError("Liian pitkä note syöte!")
-    
-    if len(month) > 3:
-        raise InvalidInputError("Syötä kuukausi tyylillä 'jan', 'feb' jne.")
     
     sql = text("INSERT INTO reference (reftype, username, key, author, title, school, year, type, address, month, note) VALUES (:reftype, :username, :key, :author, :title, :school, :year, :type, :address, :month, :note)")
     db.session.execute(sql, {"reftype":reftype, "username":username, "key":key, "author":author, "title":title, "school":school, "year":year, "type":type, "address":address, "month":month, "note":note})
