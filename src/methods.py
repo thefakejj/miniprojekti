@@ -1,6 +1,7 @@
 from flask import make_response
 from sqlalchemy.sql import text
 from app import db
+from validators import Validate
 import random
 import os
 
@@ -9,35 +10,22 @@ class InvalidInputError(Exception):
 
 def send_book(username, author, title, p_year, publisher, volume, series, address, edition, month, note):
     reftype = "book"
-    if p_year.isalpha():
-        raise InvalidInputError("Vuosi väärin!")
+
+    # validate user input
+    Validate.year(p_year)
+    Validate.username(username)
+    Validate.author(author)
+    Validate.title(title)
+    Validate.publisher(publisher)
+    Validate.volume(volume)
+    Validate.series(series)
+    Validate.address(address)
+    Validate.edition(edition)
+    Validate.note(note)
+    Validate.month(month)
+
     year = int(p_year)
-    if year < 0 or year > 3000:
-        raise InvalidInputError("Vuosi väärin!")
-
     key = generate_key(author,year)
-
-    if len(username) > 100:
-        raise InvalidInputError("Liian pitkä username syöte!")
-    if len(author) > 100:
-        raise InvalidInputError("Liian pitkä author syöte!")
-    if len(title) > 100:
-        raise InvalidInputError("Liian pitkä title syöte!")
-    if len(publisher) > 100:
-        raise InvalidInputError("Liian pitkä publisher syöte!")
-    if len(volume) > 100:
-        raise InvalidInputError("Liian pitkä volume syöte!")
-    if len(series) > 100:
-        raise InvalidInputError("Liian pitkä series syöte!")
-    if len(address) > 100:
-        raise InvalidInputError("Liian pitkä address syöte!")
-    if len(edition) > 100:
-        raise InvalidInputError("Liian pitkä edition syöte!")
-    if len(note) > 100:
-        raise InvalidInputError("Liian pitkä note syöte!")
-    
-    if len(month) > 3:
-        raise InvalidInputError("Syötä kuukausi tyylillä 'jan', 'feb' jne.")
     
     sql = text("INSERT INTO reference (reftype, username, key, author, title, year, publisher, volume, series, address, edition, month, note) VALUES (:reftype, :username, :key, :author, :title, :year, :publisher, :volume, :series, :address, :edition, :month, :note)")
     db.session.execute(sql, {"reftype":reftype, "username":username, "key":key, "author":author, "title":title, "year":year, "publisher":publisher, "volume":volume, "series":series, "address":address, "edition":edition, "month":month, "note":note})
