@@ -15,6 +15,7 @@ This is **Nelosen oppilaat** group's repository for Ohjelmistotuotanto course
 ![UML_Architecture](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/thefakejj/miniprojekti/master/doc/architecture.puml&refresh)
 
 ## Weekly Schedule
+
 * **Monday**
   * 15:30 Retrospective
   * 16:00 Demo A319, Exactum

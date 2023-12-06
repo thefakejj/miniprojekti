@@ -5,7 +5,7 @@ from app import app
 import sqlite3
 import os
 from db_connection import get_database_connection
-from methods import InvalidInputError
+from validators import InvalidInputError
 
 
 # self.connection = get_database_connection()

@@ -1,5 +1,6 @@
 from app import app
 from flask import render_template, request, redirect, send_file
+from validators import InvalidInputError
 import methods
 
 
@@ -25,7 +26,7 @@ def send_book():
     try:
         methods.send_book(username,author,title,year,publisher, volume, series, address, edition, month, note)
         return redirect("/")
-    except methods.InvalidInputError as e:
+    except InvalidInputError as e:
         return render_template("error.html", message=str(e))
 
 @app.route("/")
@@ -58,7 +59,7 @@ def send_master():
     try:
         methods.send_master(username, author, title, school, year, type, address, month, note)
         return redirect("/")
-    except methods.InvalidInputError as e:
+    except InvalidInputError as e:
         return render_template("error.html", message=str(e))
 
 @app.route("/keylist", methods=["GET"])
