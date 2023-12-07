@@ -31,6 +31,7 @@
         <li><a href="/postbook">Lisää kirjaviite</a></li>
         <li><a href="/postmaster">Lisää graduviite</a></li>
         <li><a href="/postarticle">Lisää artikkeliviite</a></li>
+        <li><a href="/postphdthesis">Lisää väitöskirjaviite</a></li>
     </ul>
     <br>
     <form action="/getbibtex" method="GET">
@@ -156,6 +157,8 @@
             <a href="/editbook/{{ reference.key }}">Muokkaa</a>
         {% elif reference.reftype == 'master' %}
             <a href="/editmaster/{{ reference.key }}">Muokkaa</a>
+            {% elif reference.reftype == 'phdthesis' %}
+            <a href="/editphdthesis/{{ reference.key }}">Muokkaa</a>   
         {% elif reference.reftype == 'article' %}
             <a href="/editarticle/{{ reference.key }}">Muokkaa</a>        
         {% endif %}

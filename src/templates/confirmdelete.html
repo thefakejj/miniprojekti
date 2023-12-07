@@ -50,6 +50,23 @@
             <br>&nbsp;&nbsp;&nbsp;&nbsp;note = &#123;{{ view.note }}&#125;, 
             {% endif %}
             <br>&#125;</li>
+    {% elif view.reftype == 'phdthesis' %}
+        <li>@phdthesis&#123;{{ view.key }}, 
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;author = &#123;{{ view.author }}&#125;, 
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;title = &#123;{{ view.title }}&#125;, 
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;school = &#123;{{ view.school }}&#125;, 
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;year = &#123;{{ view.year }}&#125;, 
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;type = &#123;{{ view.type }}&#125;,
+            {% if view.address %}
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;address = &#123;{{ view.address }}&#125;,
+            {% endif %}
+            {% if view.month %}
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;month = &#123;{{ view.month }}&#125;,
+            {% endif %}
+            {% if view.note %}
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;note = &#123;{{ view.note }}&#125;, 
+            {% endif %}
+            <br>&#125;</li>
             
     {% elif view.reftype == 'article' %}
         <li>@article&#123;{{ view.key }}, 
