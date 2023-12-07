@@ -11,4 +11,4 @@ log.html
 selenium-screenshot*
 **/site.db
 **/test_stub.db
-src/outputs
+**/references.bib
