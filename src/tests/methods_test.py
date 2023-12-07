@@ -504,4 +504,127 @@ class MethodsTest(unittest.TestCase):
             references = methods.get_reference_search("2021")
             self.assertIn(str(references[0][6]), "2021")
             self.assertNotIn(str(references[0][6]), "2022")
-            
+
+#------------------------------------------------------------
+
+    def test_and_edit_books_too_long_user(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_book(self.too_long, "key7", "Author7", "Title7", "2012", "Publisher7", "", "", "", "", "", "")
+
+    def test_and_edit_books_too_long_author(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_book("user7", "key7", self.too_long, "Title7", "2012", "Publisher7", "", "", "", "", "", "")
+    
+    def test_and_edit_books_too_long_title(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_book("user7", "key7","Author7", self.too_long, "2012", "Publisher7", "", "", "", "", "", "")
+    
+    def test_and_edit_books_year_invalid_string(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_book("user7", "key7","Author7", "Title7", "väärä", "Publisher7", "", "", "", "", "", "")
+    
+    def test_and_edit_books_year_invalid_negative(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_book("user7", "key7","Author7", "Title7", "-1", "Publisher7", "", "", "", "", "", "")
+        
+    def test_and_edit_books_year_invalid_big(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_book("user7", "key7","Author7", "Title7", "4444", "Publisher7", "", "", "", "", "", "")
+
+    def test_and_edit_books_too_long_publisher(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_book("user7", "key7","Author7", "Title7", "2012", self.too_long, "", "", "", "", "", "")
+
+    def test_and_edit_books_too_long_volume(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_book("user7", "key7","Author7", "Title7", "2012", "Publisher7", self.too_long, "", "", "", "", "")
+    
+    def test_and_edit_books_too_long_series(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_book("user7", "key7","Author7", "Title7", "2012", "Publisher7", "", self.too_long, "", "", "", "")
+
+    def test_and_edit_books_too_long_address(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_book("user7", "key7", "Author7", "Title7", "2012", "Publisher7", "", "", self.too_long, "", "", "")
+
+    def test_and_edit_books_too_long_edition(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_book("user7", "key7", "Author7", "Title7", "2012", "Publisher7", "", "", "", self.too_long, "", "")
+
+    def test_and_edit_books_too_long_note(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_book("user7", "key7", "Author7", "Title7", "2012", "Publisher7", "", "", "", "", "", self.too_long)
+
+    def test_and_edit_books_too_long_month(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_book("user7", "key7", "Author7", "Title7", "2012", "Publisher7", "", "", "", "", "väärä", "")  
+
+#------------------------------------------------------------
+    
+    def test_and_edit_master_too_long_user(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_master(self.too_long, "key8", "Author4", "Title4", "School4", "2022", "", "", "", "")
+    
+    def test_and_edit_master_too_long_author(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_master("user8", "key8", self.too_long, "Title4", "School4", "2022", "", "", "", "")
+    
+    def test_and_edit_master_too_long_title(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_master("user8", "key8", "Author4", self.too_long, "School4", "2022", "", "", "", "")
+    
+    def test_and_edit_master_too_long_school(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_master("user8", "key8", "Author4", "Title4", "School4", "2022", "", self.too_long, "", "")
+    
+    def test_and_edit_master_too_long_type(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_master("user8", "key8", "Author4", "Title4", "School4", "2022", self.too_long, "", "", "")
+
+    def test_and_edit_master_too_long_address(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_master("user8", "key8", "Author4", "Title4", "School4", "2022", "", self.too_long, "", "")
+
+    def test_and_edit_master_too_long_note(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_master("user8", "key8", "Author4", "Title4", "School4", "2022", "", "", "", self.too_long)
+
+    def test_and_edit_master_too_long_month(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_master("user8", "key8", "Author4", "Title4", "School4", "2022", "", "", "väärä", "")
+    
+    def test_and_edit_master_year_invalid_string(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_master("user8", "key8", "Author4", "Title4", "School4", "väärä", "", "", "", "")
+    
+    def test_and_edit_master_year_invalid_negative(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_master("user8", "key8", "Author4", "Title4", "School4", "-1", "", "", "", "")
+    
+    def test_and_edit_master_year_invalid_big(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_master("user8", "key8", "Author4", "Title4", "School4", "4444", "", "", "", "")              
