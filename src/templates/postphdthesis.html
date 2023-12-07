@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+
+<body>
+    <div>
+    {% if edit %}
+        <h1> Muokkaa</h1>
+        <form action="/editphdthesis/{{ view.key }}" method="POST">
+    {% else %}
+        <h1>Lisää</h1>
+        <form action="/sendphdthesis" method="POST">
+    {% endif %}
+        <br>
+        <a href="/">Takaisin</a>
+        <br>
+        <br>
+        <p>Käyttäjätunnus:<br>
+        <input type="text" name="username" required {% if edit %} value="{{ view.username }}" {% endif %}></p>
+    
+        <p>author:<br>
+        <input type="text" name="author" required {% if edit %} value="{{ view.author }}" {% endif %}></p>
+        <p>title:<br>
+        <input type="text" name="title" required {% if edit %} value="{{ view.title }}" {% endif %}></p>
+        <p>school:<br>
+        <input type="text" name="school" required {% if edit %} value="{{ view.school }}" {% endif %}></p>
+        <p>year:<br>
+        <input type="text" name="year" required {% if edit %} value="{{ view.year }}" {% endif %}></p>
+        <p>type:<br>
+        <input type="text" name="type" {% if edit %} value="{{ view.type }}" {% endif %}>(valinnainen)</p>
+        <p>address:<br>
+        <input type="text" name="address" {% if edit %} value="{{ view.address }}" {% endif %}>(valinnainen)</p>
+        <p>month:<br>
+        <input type="text" name="month" {% if edit %} value="{{ view.month }}" {% endif %}>(valinnainen)</p>
+        <p>note:<br>
+        <input type="text" name="note" {% if edit %} value="{{ view.note }}" {% endif %}>(valinnainen)</p>
+        <input type="submit" value="{% if edit %} Tallenna muutokset {% else %} Lisää {% endif %}">
+        </form>
+        <br>
+    </div>
+</body>
