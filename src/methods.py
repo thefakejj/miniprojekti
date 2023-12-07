@@ -220,3 +220,26 @@ def get_references_by_year():
     result = db.session.execute(sql)
     references = result.fetchall()
     return references
+
+def get_reference_search(query):
+    sql = text("SELECT * FROM reference WHERE "
+               "lower(reftype) LIKE lower(:query) OR "
+               "lower(username) LIKE lower(:query) OR "
+               "lower(key) LIKE lower(:query) OR "
+               "lower(author) LIKE lower(:query) OR "
+               "lower(title) LIKE lower(:query) OR "
+               "lower(year) LIKE lower(:query) OR "
+               "lower(publisher) LIKE lower(:query) OR "
+               "lower(volume) LIKE lower(:query) OR "
+               "lower(series) LIKE lower(:query) OR "
+               "lower(address) LIKE lower(:query) OR "
+               "lower(edition) LIKE lower(:query) OR "
+               "lower(month) LIKE lower(:query) OR "
+               "lower(note) LIKE lower(:query) OR "
+               "lower(school) LIKE lower(:query) OR "
+               "lower(type) LIKE lower(:query)"
+               )
+    
+    result = db.session.execute(sql,{"query": f"%{query}%"})
+    references = result.fetchall()
+    return references

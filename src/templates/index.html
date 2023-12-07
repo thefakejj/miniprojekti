@@ -42,6 +42,9 @@
             <option value="author" {% if sort_by == 'author' %} selected {% endif %}>Author</option>
             <option value="year" {% if sort_by == 'year' %} selected {% endif %}>Year</option>
         </select>
+        <label for="query">Search:</label>
+        <input type="text" name="query" id="query" value="{{ query }}">
+        <input type="submit" value="Search">
     </form>
     {% for reference in references %}
         {% if reference.reftype == 'book' %}
