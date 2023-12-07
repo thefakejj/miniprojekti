@@ -1,59 +1,73 @@
+<!DOCTYPE html>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        li {
+            list-style-type: none;
+        }
+    </style>
+</head>
+
 <body>
-    <div class="header">
-        <h1>
-            Haluatko ihan varmasti poistaa seuraavan viitteen?
-        </h1>
+    <div class="container m-5">
+        <div class="header">
+            <h1>
+                Haluatko ihan varmasti poistaa seuraavan viitteen?
+            </h1>
+        </div>
+        <br>
+        <a class="btn btn-primary" href="/">Takaisin</a>
+        <br>
+        <br>
+        {% if view.reftype == 'book' %}
+            <li>@book&#123;{{ view.key }}, 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;author = &#123;{{ view.author }}&#125;, 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;title = &#123;{{ view.title }}&#125;, 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;year = &#123;{{ view.year }}&#125;, 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;publisher = &#123;{{ view.publisher }}&#125;,
+                {% if view.volume %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;volume = &#123;{{ view.volume }}&#125;,
+                {% endif %}
+                {% if view.series %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;series = &#123;{{ view.series }}&#125;,
+                {% endif %}
+                {% if view.address %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;address = &#123;{{ view.address }}&#125;,
+                {% endif %}
+                {% if view.edition %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;edition = &#123;{{ view.edition }}&#125;,
+                {% endif %}
+                {% if view.month %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;month = &#123;{{ view.month }}&#125;,
+                {% endif %}
+                {% if view.note %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;note = &#123;{{ view.note }}&#125;, 
+                {% endif %}
+                <br>&#125;</li>
+        {% elif view.reftype == 'master' %}
+            <li>@master&#123;{{ view.key }}, 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;author = &#123;{{ view.author }}&#125;, 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;title = &#123;{{ view.title }}&#125;, 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;school = &#123;{{ view.school }}&#125;, 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;year = &#123;{{ view.year }}&#125;, 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;type = &#123;{{ view.type }}&#125;,
+                {% if view.address %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;address = &#123;{{ view.address }}&#125;,
+                {% endif %}
+                {% if view.month %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;month = &#123;{{ view.month }}&#125;,
+                {% endif %}
+                {% if view.note %}
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;note = &#123;{{ view.note }}&#125;, 
+                {% endif %}
+                <br>&#125;</li>
+        {% endif %}
+        <br>
+        <form action="/deletereference/{{ view.key }}" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <input class="btn btn-danger" type="submit" value="Poista!">
+        </form>
     </div>
-    <br>
-    <a href="/">Takaisin</a>
-    <br>
-    <br>
-    {% if view.reftype == 'book' %}
-        <li>@book&#123;{{ view.key }}, 
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;author = &#123;{{ view.author }}&#125;, 
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;title = &#123;{{ view.title }}&#125;, 
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;year = &#123;{{ view.year }}&#125;, 
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;publisher = &#123;{{ view.publisher }}&#125;,
-            {% if view.volume %}
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;volume = &#123;{{ view.volume }}&#125;,
-            {% endif %}
-            {% if view.series %}
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;series = &#123;{{ view.series }}&#125;,
-            {% endif %}
-            {% if view.address %}
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;address = &#123;{{ view.address }}&#125;,
-            {% endif %}
-            {% if view.edition %}
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;edition = &#123;{{ view.edition }}&#125;,
-            {% endif %}
-            {% if view.month %}
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;month = &#123;{{ view.month }}&#125;,
-            {% endif %}
-            {% if view.note %}
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;note = &#123;{{ view.note }}&#125;, 
-            {% endif %}
-            <br>&#125;</li>
-    {% elif view.reftype == 'master' %}
-        <li>@master&#123;{{ view.key }}, 
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;author = &#123;{{ view.author }}&#125;, 
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;title = &#123;{{ view.title }}&#125;, 
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;school = &#123;{{ view.school }}&#125;, 
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;year = &#123;{{ view.year }}&#125;, 
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;type = &#123;{{ view.type }}&#125;,
-            {% if view.address %}
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;address = &#123;{{ view.address }}&#125;,
-            {% endif %}
-            {% if view.month %}
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;month = &#123;{{ view.month }}&#125;,
-            {% endif %}
-            {% if view.note %}
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;note = &#123;{{ view.note }}&#125;, 
-            {% endif %}
-            <br>&#125;</li>
-    {% endif %}
-    <br>
-    <form action="/deletereference/{{ view.key }}" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" value="Poista!">
-    </form>
 </body>
