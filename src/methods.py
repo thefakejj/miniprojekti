@@ -179,6 +179,16 @@ def send_phdthesis(username, author, title, school, p_year, type, address, month
     db.session.commit()
     return True
 
+def get_phdthesis():
+    sql = text('''
+        SELECT username, key, author, title, year, type, address, month, note, school 
+        FROM reference 
+        WHERE reftype LIKE '%phdthesis%' 
+        ''')
+    result = db.session.execute(sql)
+    phdthesis = result.fetchall()
+    return phdthesis
+
 def get_keys():
     sql = text("SELECT key FROM reference")
     result = db.session.execute(sql)
