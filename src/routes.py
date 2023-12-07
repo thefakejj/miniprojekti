@@ -68,16 +68,6 @@ def send_master():
     except methods.InvalidInputError as e:
         return render_template("error.html", message=str(e))
 
-@app.route("/keylist", methods=["GET"])
-def get_keys():
-    keys = methods.get_keys()
-    return render_template("keylist.html", keys=keys)
-
-@app.route("/keyview/<key>")
-def keyview(key):
-    view = methods.keyview(key)
-    return render_template("keyview.html", view=view)
-
 @app.route("/confirmdelete/<key>", methods=["GET"])
 def confirmdelete(key):
     view = methods.keyview(key)
