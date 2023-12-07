@@ -14,5 +14,8 @@ edition TEXT,
 month TEXT,
 note TEXT,
 school TEXT,
-type TEXT
+type TEXT,
+journal TEXT,
+number TEXT,
+pages TEXT
 );

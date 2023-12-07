@@ -42,7 +42,41 @@ Add Master With Invalid Inputs
     Submit Form
     Adding Should Fail With Message  Virhe: Vuosi väärin!
 
+Add Phdthesis With Valid Inputs
+    Click Link  Lisää väitöskirjaviite
+    Fill Phdthesis Form  ${username}  ${author}  ${title}  ${school}  ${year}
+    Submit Form
+    Home Page Should Be Open
 
+Phdthesis List Should Show
+    Click Link  Lisää väitöskirjaviite
+    Fill Phdthesis Form  ${username}  ${author}  ${title}  ${school}  ${year}
+    Submit Form
+    Adding Phdthesis Should Succeed  ${author}  ${title}  ${school}  ${year}
+
+Add Phdthesis With Invalid Inputs
+    Click Link  Lisää väitöskirjaviite
+    Fill Phdthesis Form  ${username}  ${author}  ${title}  ${school}  4444
+    Submit Form
+    Adding Should Fail With Message  Virhe: Vuosi väärin!
+
+Add Article With Valid Inputs
+    Click Link  Lisää artikkeliviite
+    Fill Article Form  ${username}  ${author}  ${title}  ${journal}  ${year}
+    Submit Form
+    Home Page Should Be Open
+
+Article List Should Show
+    Click Link  Lisää artikkeliviite
+    Fill Article Form  ${username}  ${author}  ${title}  ${journal}  ${year}
+    Submit Form
+    Adding Article Should Succeed  ${author}  ${title}  ${school}  ${year}
+
+Add Article With Invalid Inputs
+    Click Link  Lisää artikkeliviite
+    Fill Article Form  ${username}  ${author}  ${title}  ${journal}  4444
+    Submit Form
+    Adding Should Fail With Message  Virhe: Vuosi väärin!
 
 *** Keywords ***
 Adding Book Should Succeed
@@ -72,6 +106,38 @@ Adding Master Should Succeed
     Page Should Contain  title
     Page Should Contain  ${school}
     Page Should Contain  school
+    Page Should Contain  ${year}
+    Page Should Contain  year
+    Page Should Contain  Muokkaa
+    Page Should Contain  Poista
+
+Adding Phdthesis Should Succeed
+    [Arguments]  ${author}  ${title}  ${school}  ${year}
+    Page Should Contain  key
+    Page Should Contain  reftype
+    Page Should Contain  phdthesis
+    Page Should Contain  ${author}
+    Page Should Contain  author
+    Page Should Contain  ${title}
+    Page Should Contain  title
+    Page Should Contain  ${school}
+    Page Should Contain  school
+    Page Should Contain  ${year}
+    Page Should Contain  year
+    Page Should Contain  Muokkaa
+    Page Should Contain  Poista
+
+Adding Article Should Succeed
+    [Arguments]  ${author}  ${title}  ${journal}  ${year}
+    Page Should Contain  key
+    Page Should Contain  reftype
+    Page Should Contain  article
+    Page Should Contain  ${author}
+    Page Should Contain  author
+    Page Should Contain  ${title}
+    Page Should Contain  title
+    Page Should Contain  ${journal}
+    Page Should Contain  journal
     Page Should Contain  ${year}
     Page Should Contain  year
     Page Should Contain  Muokkaa

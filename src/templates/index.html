@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <div class="container-fluid m-5">
+    <div class="container-fluid m-5"></div>
         <br>
         <div class="header">
             <h1>
@@ -32,12 +32,14 @@
         </div>
         <br>
         <ul>
-            <li><a class="btn btn-primary mb-1" href="/postbook">Lisää kirjaviite</a></li>
-            <li><a class="btn btn-primary mb-1" href="/postmaster">Lisää graduviite</a></li>
+            <li><a href="/postbook">Lisää kirjaviite</a></li>
+            <li><a href="/postmaster">Lisää graduviite</a></li>
+            <li><a href="/postarticle">Lisää artikkeliviite</a></li>
+            <li><a href="/postphdthesis">Lisää väitöskirjaviite</a></li>        
         </ul>
         <br>
         <form action="/getbibtex" method="GET">
-            <input class="btn btn-success" type="submit" value="Lataa bibtex-tiedosto">
+            <input type="submit" value="Lataa bibtex-tiedosto">
         </form>
         <br>
         <form style="margin-top: 1em; margin-bottom: 3em;" action="/" method="GET">
@@ -52,6 +54,9 @@
                 </select>
                 </div>
             </div>
+            <label for="query">Search:</label>
+            <input type="text" name="query" id="query" value="{{ query }}">
+            <input type="submit" value="Search">
         </form>
         {% for reference in references %}
             {% if reference.reftype == 'book' %}
@@ -107,13 +112,66 @@
                         {% endif %}
                     </li>
                 </ul>
-            {% endif %}
+            {% elif reference.reftype == 'phdthesis' %}
+            <ul>
+                <li>
+                    <span class="label">key</span> = <span class="value">{{ reference.key }}</span><br>
+                    <span class="label">reftype</span> = <span class="value">phdthesis</span><br>
+                    <span class="label">author</span> = <span class="value">{{ reference.author }}</span><br>
+                    <span class="label">title</span> = <span class="value">{{ reference.title }}</span><br>
+                    <span class="label">school</span> = <span class="value">{{ reference.school }}</span><br>
+                    <span class="label">year</span> = <span class="value">{{ reference.year }}</span><br>
+                    {% if reference.type %}
+                        <span class="label">type</span> = <span class="value">{{ reference.type }}</span><br>
+                    {% endif %}
+                    {% if reference.address %}
+                        <span class="label">address</span> = <span class="value">{{ reference.address }}</span><br>
+                    {% endif %}
+                    {% if reference.month %}
+                        <span class="label">month</span> = <span class="value">{{ reference.month }}</span><br>
+                    {% endif %}
+                    {% if reference.note %}
+                        <span class="label">note</span> = <span class="value">{{ reference.note }}</span><br>
+                    {% endif %}
+                </li>
+            </ul>
+        {% elif reference.reftype == 'article' %}
+            <ul>
+                <li>
+                    <span class="label">key</span> = <span class="value">{{ reference.key }}</span><br>
+                    <span class="label">reftype</span> = <span class="value">article</span><br>
+                    <span class="label">author</span> = <span class="value">{{ reference.author }}</span><br>
+                    <span class="label">title</span> = <span class="value">{{ reference.title }}</span><br>
+                    <span class="label">journal</span> = <span class="value">{{ reference.journal }}</span><br>
+                    <span class="label">year</span> = <span class="value">{{ reference.year }}</span><br>
+                    {% if reference.volume %}
+                        <span class="label">type</span> = <span class="value">{{ reference.volume }}</span><br>
+                    {% endif %}
+                    {% if reference.number %}
+                        <span class="label">address</span> = <span class="value">{{ reference.number }}</span><br>
+                    {% endif %}
+                    {% if reference.pages %}
+                    <span class="label">address</span> = <span class="value">{{ reference.pages }}</span><br>
+                    {% endif %}
+                    {% if reference.month %}
+                        <span class="label">month</span> = <span class="value">{{ reference.month }}</span><br>
+                    {% endif %}
+                    {% if reference.note %}
+                        <span class="label">note</span> = <span class="value">{{ reference.note }}</span><br>
+                    {% endif %}
+                </li>
+            </ul>
+        {% endif %}
             <a class="btn btn-primary" href="/confirmdelete/{{ reference.key }}">Poista</a>
             {% if reference.reftype == 'book' %}
                 <a class="btn btn-primary" href="/editbook/{{ reference.key }}">Muokkaa</a>
             {% elif reference.reftype == 'master' %}
                 <a class="btn btn-primary" href="/editmaster/{{ reference.key }}">Muokkaa</a>
-            {% endif %}
+                {% elif reference.reftype == 'phdthesis' %}
+            <a href="/editphdthesis/{{ reference.key }}">Muokkaa</a>   
+        {% elif reference.reftype == 'article' %}
+            <a href="/editarticle/{{ reference.key }}">Muokkaa</a>        
+        {% endif %}
             <br>
             <br>
         {% endfor %}

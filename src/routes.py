@@ -30,14 +30,21 @@ def send_book():
 
 @app.route("/")
 def get_references():
+    filter = request.args.get("filter", "author")
+    query = request.args.get("query","")
     sort_by = request.args.get("sort_by", "author")
-    if sort_by == "author":
-        references = methods.get_references_by_author()
-    elif sort_by == "year":
-        references = methods.get_references_by_year()
+
+    if query:
+        references = methods.get_reference_search(query)
     else:
-        references = methods.get_references()
-    return render_template("index.html", references=references, sort_by=sort_by)
+        if sort_by == "author":
+            references = methods.get_references_by_author()
+        elif sort_by == "year":
+            references = methods.get_references_by_year()
+        else:
+            references = methods.get_references()
+
+    return render_template("index.html", references=references, sort_by=sort_by, filter=filter)
 
 @app.route("/postmaster")
 def post_master():
@@ -61,15 +68,27 @@ def send_master():
     except methods.InvalidInputError as e:
         return render_template("error.html", message=str(e))
 
-@app.route("/keylist", methods=["GET"])
-def get_keys():
-    keys = methods.get_keys()
-    return render_template("keylist.html", keys=keys)
+@app.route("/postphdthesis")
+def post_phdthesis():
+    return render_template("postphdthesis.html")
 
-@app.route("/keyview/<key>")
-def keyview(key):
-    view = methods.keyview(key)
-    return render_template("keyview.html", view=view)
+@app.route("/sendphdthesis", methods=["POST"])
+def send_phdthesis():
+    username = request.form["username"]
+    author = request.form["author"]
+    title = request.form["title"]
+    school = request.form["school"]
+    year = request.form["year"]
+    type = request.form["type"]
+    address = request.form["address"]
+    month = request.form["month"]
+    note = request.form["note"]
+
+    try:
+        methods.send_phdthesis(username, author, title, school, year, type, address, month, note)
+        return redirect("/")
+    except methods.InvalidInputError as e:
+        return render_template("error.html", message=str(e))
 
 @app.route("/confirmdelete/<key>", methods=["GET"])
 def confirmdelete(key):
@@ -99,9 +118,12 @@ def editbook(key):
         edition = request.form["edition"]
         month = request.form["month"]
         note = request.form["note"]
-
-        if methods.edit_book(username,key,author,title,year,publisher, volume, series, address, edition, month, note):
-            return redirect("/")
+        
+        try:
+            if methods.edit_book(username,key,author,title,year,publisher, volume, series, address, edition, month, note):
+                return redirect("/")
+        except methods.InvalidInputError as e:
+            return render_template("error.html", message=str(e))
         
 @app.route("/editmaster/<key>", methods=["GET","POST"])
 def editmaster(key):
@@ -119,8 +141,33 @@ def editmaster(key):
         month = request.form["month"]
         note = request.form["note"]
 
-        if methods.edit_master(username,key,author,title,school,year,type,address,month,note):
-            return redirect("/")
+        try:
+            if methods.edit_master(username,key,author,title,school,year,type,address,month,note):
+                return redirect("/")
+        except methods.InvalidInputError as e:
+            return render_template("error.html", message=str(e))
+
+@app.route("/editphdthesis/<key>", methods=["GET","POST"])
+def editphdthesis(key):
+    if request.method == "GET":
+        view = methods.keyview(key)
+        return render_template("postphdthesis.html", view=view, edit=True)
+    if request.method == "POST":
+        username = request.form["username"]
+        author = request.form["author"]
+        title = request.form["title"]
+        school = request.form["school"]
+        year = request.form["year"]
+        type = request.form["type"]
+        address = request.form["address"]
+        month = request.form["month"]
+        note = request.form["note"]
+
+        try:
+            if methods.edit_phdthesis(username,key,author,title,school,year,type,address,month,note):
+                return redirect("/")
+        except methods.InvalidInputError as e:
+            return render_template("error.html", message=str(e))
 
 @app.route('/getbibtex') # should maybe call something like "create file" first
 def download_bibtex():
@@ -131,3 +178,49 @@ def download_bibtex():
         download_name='references.bib',
         as_attachment=True
     )
+
+@app.route("/postarticle")
+def post_article():
+    return render_template("postarticle.html")
+
+@app.route("/sendarticle", methods=["POST"])
+def send_article():
+    username = request.form["username"]
+    author = request.form["author"]
+    title = request.form["title"]
+    journal = request.form["journal"]
+    year = request.form["year"]
+    volume = request.form["volume"]
+    number = request.form["number"]
+    pages = request.form["pages"]
+    month = request.form["month"]
+    note = request.form["note"]
+
+    try:
+        methods.send_article(username, author, title, journal, year, volume, number, pages, month, note)
+        return redirect("/")
+    except methods.InvalidInputError as e:
+        return render_template("error.html", message=str(e))
+    
+@app.route("/editarticle/<key>", methods=["GET","POST"])
+def editarticle(key):
+    if request.method == "GET":
+        view = methods.keyview(key)
+        return render_template("postarticle.html", view=view, edit=True)
+    if request.method == "POST":
+        username = request.form["username"]
+        author = request.form["author"]
+        title = request.form["title"]
+        journal = request.form["journal"]
+        year = request.form["year"]
+        volume = request.form["volume"]
+        number = request.form["number"]
+        pages = request.form["pages"]
+        month = request.form["month"]
+        note = request.form["note"]
+
+        try:
+            if methods.edit_article(username, key, author, title, journal, year, volume, number, pages, month, note):
+                return redirect("/")
+        except methods.InvalidInputError as e:
+            return render_template("error.html", message=str(e))

@@ -11,9 +11,4 @@ log.html
 selenium-screenshot*
 **/site.db
 **/test_stub.db
-<<<<<<< HEAD
-src/outputs/references.bib
-=======
 **/references.bib
-**/coverage.html
->>>>>>> main
