@@ -145,6 +145,40 @@ def get_article():
     article = result.fetchall()
     return article
 
+def send_phdthesis(username, author, title, school, p_year, type, address, month, note):
+    reftype = "phdthesis"
+
+    if p_year.isalpha():
+        raise InvalidInputError("Vuosi väärin!")
+    year = int(p_year)
+    if year < 0 or year > 3000:
+        raise InvalidInputError("Vuosi väärin!")
+        
+    key = generate_key(author,year)
+
+    if len(username) > 100:
+        raise InvalidInputError("Liian pitkä username syöte!")
+    if len(author) > 100:
+        raise InvalidInputError("Liian pitkä author syöte!")
+    if len(title) > 100:
+        raise InvalidInputError("Liian pitkä title syöte!")
+    if len(school) > 100:
+        raise InvalidInputError("Liian pitkä school syöte!")
+    if len(type) > 100:
+        raise InvalidInputError("Liian pitkä type syöte!")
+    if len(address) > 100:
+        raise InvalidInputError("Liian pitkä address syöte!")
+    if len(note) > 100:
+        raise InvalidInputError("Liian pitkä note syöte!")
+    
+    if len(month) > 3:
+        raise InvalidInputError("Syötä kuukausi tyylillä 'jan', 'feb' jne.")
+    
+    sql = text("INSERT INTO reference (reftype, username, key, author, title, school, year, type, address, month, note) VALUES (:reftype, :username, :key, :author, :title, :school, :year, :type, :address, :month, :note)")
+    db.session.execute(sql, {"reftype":reftype, "username":username, "key":key, "author":author, "title":title, "school":school, "year":year, "type":type, "address":address, "month":month, "note":note})
+    db.session.commit()
+    return True
+
 def get_keys():
     sql = text("SELECT key FROM reference")
     result = db.session.execute(sql)
