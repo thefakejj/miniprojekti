@@ -271,3 +271,23 @@ class MethodsTest(unittest.TestCase):
             methods.create_bibtex_file()
             with open('src/outputs/references.bib', 'r', encoding='utf-8') as file:
                 self.assertIn("@masterthesis{Au22,\n", file)
+
+    def test_get_references_by_author(self):
+        with app.app_context():
+            methods.send_book("user7", "Author7", "Title7", "2012", "Publisher7", "", "", "", "", "", "")
+            methods.send_book("user4", "Author4", "Title4", "2022", "Publisher6", "", "", "", "", "", "")
+            methods.get_references_by_author()
+            references = methods.get_references()
+            self.assertEqual(references[1][4], "Author4")
+            self.assertEqual(references[0][4], "Author7")
+
+    def test_get_references_by_year(self):
+        with app.app_context():
+            methods.send_book("user4", "Author4", "Title4", "2022", "Publisher6", "", "", "", "", "", "")
+            methods.send_book("user7", "Author7", "Title7", "2012", "Publisher7", "", "", "", "", "", "")
+            methods.get_references_by_year()
+            references = methods.get_references()
+            self.assertEqual(references[1][4], "Author7")
+            self.assertEqual(references[0][4], "Author4")
+            
+
