@@ -273,7 +273,6 @@ def get_references_by_year():
     result = db.session.execute(sql)
     references = result.fetchall()
     return references
-<<<<<<< HEAD
 
 def get_reference_search(query):
     sql = text("SELECT * FROM reference WHERE "
@@ -297,5 +296,3 @@ def get_reference_search(query):
     result = db.session.execute(sql,{"query": f"%{query}%"})
     references = result.fetchall()
     return references
-=======
->>>>>>> cbcde42 (added article reference type)
