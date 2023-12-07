@@ -200,6 +200,77 @@ class MethodsTest(unittest.TestCase):
 
 #------------------------------------------------------------
 
+    def test_send_and_get_phdthesis(self):
+        with app.app_context():
+            methods.send_phdthesis("user4", "Author4", "Title4", "School4", "2022", "", "", "", "")
+            methods.send_phdthesis("user5", "Author5", "Title5", "School5", "2023", "", "", "", "")
+
+            phdthesis = methods.get_phdthesis()
+            self.assertEqual(len(phdthesis), 2)
+    
+    def test_send_and_get_phdthesis_all(self):
+        with app.app_context():
+            methods.send_phdthesis("user8", "Author8", "Title8", "School8", "2018", "type", "address8", "feb", "note8")
+            phdthesis = methods.get_phdthesis()
+            self.assertEqual(len(phdthesis), 1)
+    
+    def test_and_send_phdthesis_too_long_user(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_phdthesis(self.too_long, "Author4", "Title4", "School4", "2022", "", "", "", "")
+    
+    def test_and_send_phdthesis_too_long_author(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_phdthesis("user8", self.too_long, "Title4", "School4", "2022", "", "", "", "")
+    
+    def test_and_send_phdthesis_too_long_title(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_phdthesis("user8", "Author4", self.too_long, "School4", "2022", "", "", "", "")
+    
+    def test_and_send_phdthesis_too_long_school(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_phdthesis("user8", "Author4", "Title4", "School4", "2022", "", self.too_long, "", "")
+    
+    def test_and_send_phdthesis_too_long_type(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_phdthesis("user8", "Author4", "Title4", "School4", "2022", self.too_long, "", "", "")
+
+    def test_and_send_phdthesis_too_long_address(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_phdthesis("user8", "Author4", "Title4", "School4", "2022", "", self.too_long, "", "")
+
+    def test_and_send_phdthesis_too_long_note(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_phdthesis("user8", "Author4", "Title4", "School4", "2022", "", "", "", self.too_long)
+
+    def test_and_send_phdthesis_too_long_month(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_phdthesis("user8", "Author4", "Title4", "School4", "2022", "", "", "väärä", "")
+    
+    def test_and_send_phdthesis_year_invalid_string(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_phdthesis("user8", "Author4", "Title4", "School4", "väärä", "", "", "", "")
+    
+    def test_and_send_phdthesis_year_invalid_negative(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_phdthesis("user8", "Author4", "Title4", "School4", "-1", "", "", "", "")
+    
+    def test_and_send_phdthesis_year_invalid_big(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_phdthesis("user8", "Author4", "Title4", "School4", "4444", "", "", "", "")
+
+#------------------------------------------------------------
+
     def test_send_and_get_article(self):
         with app.app_context():
             methods.send_article("user1", "Author1", "Title1", "Journal1", "1999", "volume1", "number1", "pages1", "aug", "note")
