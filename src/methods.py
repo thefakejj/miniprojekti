@@ -243,6 +243,13 @@ def edit_article(username, key, author, title, journal, year, volume, number, pa
     db.session.commit()
     return True
 
+def edit_phdthesis(username, key, author, title, school, year, type, address, month, note):
+    reftype = "phdthesis"
+    sql = text("UPDATE reference SET reftype = :reftype, username = :username, author = :author, title = :title, school = :school, year = :year, type = :type, address = :address, month = :month, note = :note WHERE key = :key")
+    db.session.execute(sql, {"reftype": reftype, "username": username, "key": key, "author": author, "title": title, "school": school, "year": year, "type": type, "address": address, "month": month, "note": note})
+    db.session.commit()
+    return True
+
 def get_all_references_dict():
     refs_dict = {}
     refs_dict["books"] = get_books()
