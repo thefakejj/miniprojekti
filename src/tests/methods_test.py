@@ -6,7 +6,7 @@ import sqlite3
 import os
 from db_connection import get_database_connection
 from methods import InvalidInputError
-
+from pathlib import Path
 
 # self.connection = get_database_connection()
 # self.engine = create_engine('sqlite:///:memory:')
@@ -417,22 +417,22 @@ class MethodsTest(unittest.TestCase):
         with app.app_context():
             methods.send_book("user7", "Author7", "Title7", "2012", "Publisher7", "", "", "", "", "", "")
             methods.create_bibtex_file()
-            with open('src/outputs/references.bib', 'r', encoding='utf-8') as file:
+            with open("src/outputs/references.bib", 'r', encoding='utf-8') as file:
                 self.assertIn("@book{Au12,\n", file)
 
     def test_create_bibtex_file_correct_after_new_file(self):
         with app.app_context():
             methods.send_book("user7", "Author7", "Title7", "2012", "Publisher7", "", "", "", "", "", "")
             methods.create_bibtex_file()
-            with open('src/outputs/references.bib', 'r', encoding='utf-8') as file:
+            with open("src/outputs/references.bib", 'r', encoding='utf-8') as file:
                 self.assertIn("@book{Au12,\n", file)
             methods.send_master("user4", "Author4", "Title4", "School4", "2022", "", "", "", "")
             methods.create_bibtex_file()
-            with open('src/outputs/references.bib', 'r', encoding='utf-8') as file:
+            with open("src/outputs/references.bib", 'r', encoding='utf-8') as file:
                 self.assertIn("@masterthesis{Au22,\n", file)
             methods.send_article("user2", "Author2", "Title2", "Journal2", "2002", "", "", "", "", "")
             methods.create_bibtex_file()
-            with open('src/outputs/references.bib', 'r', encoding='utf-8') as file:
+            with open("src/outputs/references.bib", 'r', encoding='utf-8') as file:
                 self.assertIn("@article{Au02,\n", file)
 
 #------------------------------------------------------------
