@@ -237,6 +237,22 @@ school = {{{master[9]}}}
     '''
     return master_ref_text
 
+def create_article_bibtex_format(article):
+    master_ref_text = f'''@article{{{article[1]},
+author = {{{article[2]}}},
+title = {{{article[3]}}},
+journal = {{{article[4]}}},
+year = {{{article[5]}}},
+volume = {{{article[6]}}},
+number = {{{article[7]}}},
+pages = {{{article[8]}}},
+month = {{{article[9]}}},
+note = {{{article[10]}}}         
+}}
+    '''
+    return master_ref_text
+
+
 def create_bibtex_text():
     bibtex_string = ""
     refs_dict = get_all_references_dict()
@@ -245,6 +261,9 @@ def create_bibtex_text():
 
     for master in refs_dict["masters"]:
         bibtex_string += create_master_bibtex_format(master)+"\n"
+
+    for article in refs_dict["articles"]:
+        bibtex_string += create_article_bibtex_format(article)+"\n"
     return bibtex_string
 
 def create_bibtex_file():

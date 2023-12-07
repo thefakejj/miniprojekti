@@ -37,7 +37,10 @@ class MethodsTest(unittest.TestCase):
                 month TEXT,
                 note TEXT,
                 school TEXT,
-                type TEXT
+                type TEXT,
+                journal TEXT,
+                number TEXT,
+                pages TEXT
                     )
                 """)
             self.connection.commit()
@@ -253,6 +256,7 @@ class MethodsTest(unittest.TestCase):
         with app.app_context():
             methods.send_book("user7", "Author7", "Title7", "2012", "Publisher7", "", "", "", "", "", "")
             methods.send_master("user4", "Author4", "Title4", "School4", "2022", "", "", "", "")
+            methods.send_article("user3", "Author2", "Title3", "Journal2", "2002", "","","","","")
             methods.create_bibtex_file()
             self.assertTrue(os.path.exists("src/outputs/references.bib"))
 
