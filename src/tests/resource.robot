@@ -14,6 +14,7 @@ ${title}  Test_title
 ${year}  1999
 ${publisher}  Test_Publisher
 ${school}  Test_School
+${journal}  Test_Journal
 
 *** Keywords ***
 Open And Configure Browser
@@ -63,6 +64,10 @@ Set School
     [Arguments]  ${school}
     Input Text  school  ${school}
 
+Set Journal
+    [Arguments]  ${journal}
+    Input Text  journal  ${journal}
+
 Fill Book Form
     [Arguments]  ${username}  ${author}  ${title}  ${year}  ${publisher}
     Set Kayttajatunnus  ${username}
@@ -77,4 +82,12 @@ Fill Master Form
     Set Author  ${author}
     Set Title  ${title}
     Set School  ${school}
+    Set Year  ${year}
+
+Fill Article Form
+    [Arguments]  ${username}  ${author}  ${title}  ${journal}  ${year}
+    Set Kayttajatunnus  ${username}
+    Set Author  ${author}
+    Set Title  ${title}
+    Set Journal  ${journal}
     Set Year  ${year}

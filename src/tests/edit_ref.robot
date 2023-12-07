@@ -29,6 +29,15 @@ Edit Master Reference With Valid Inputs
     Submit Form
     Editing Master Should Succeed  ${edited_author}  ${edited_title}  ${school}  ${edited_year}
 
+Edit Article Reference With Valid Inputs
+    Click Link  Lisää artikkeliviite
+    Fill Article Form  ${username}  ${author}  ${title}  ${journal}  ${year}
+    Submit Form
+    Click Link  Muokkaa
+    Edit Filled Values  ${edited_author}  ${edited_title}  ${edited_year}
+    Submit Form
+    Editing Master Should Succeed  ${edited_author}  ${edited_title}  ${journal}  ${edited_year}
+
 
 *** Keywords ***
 Edit Filled Values

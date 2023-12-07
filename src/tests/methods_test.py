@@ -197,7 +197,89 @@ class MethodsTest(unittest.TestCase):
         with app.app_context():
             with self.assertRaises(InvalidInputError):
                 methods.send_master("user8", "Author4", "Title4", "School4", "4444", "", "", "", "")
+
+#------------------------------------------------------------
+
+    def test_send_and_get_article(self):
+        with app.app_context():
+            methods.send_article("user1", "Author1", "Title1", "Journal1", "1999", "volume1", "number1", "pages1", "aug", "note")
+            methods.send_article("user2", "Author2", "Title2", "Journal2", "1999", "", "", "", "", "")
+
+            articles = methods.get_article()
+            self.assertEqual(len(articles), 2)
     
+    def test_and_send_article_all(self):
+        with app.app_context():
+            methods.send_article("user1", "Author1", "Title1", "Journal1", "1999", "", "", "", "", "")
+
+            articles = methods.get_article()
+            self.assertEqual(len(articles), 1)
+
+    def test_and_send_article_too_long_user(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_article(self.too_long, "Author7", "Title7", "Journal1", "1999", "", "", "", "", "")
+
+    def test_and_send_article_too_long_author(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_article("user7", self.too_long, "Title7", "Journal1", "1999", "", "", "", "", "")
+    
+    def test_and_send_article_too_long_title(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_article("user7", "Author7", self.too_long, "Journal1", "1999", "", "", "", "", "")
+    
+    def test_and_send_article_year_invalid_string(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_article("user7", "Author7", "Title7", "Journal1", "väärä", "", "", "", "", "")
+    
+    def test_and_send_article_year_invalid_negative(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_article("user7", "Author7", "Title7", "Journal1", "-1", "", "", "", "", "")
+        
+    def test_and_send_article_year_invalid_big(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_article("user7", "Author7", "Title7", "Journal1", "4444", "", "", "", "", "")
+
+    def test_and_send_article_too_long_publisher(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_article("user7", "Author7", "Title7", "1999", self.too_long, "", "", "", "", "")
+
+    def test_and_send_article_too_long_volume(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_article("user7", "Author7", "Title7", "Journal1", "1999", self.too_long, "", "", "", "")
+    
+    def test_and_send_article_too_long_series(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_article("user7", "Author7", "Title7", "Journal1", "1999", "", self.too_long, "", "", "")
+
+    def test_and_send_article_too_long_address(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_article("user7", "Author7", "Title7", "Journal1", "1999", "", self.too_long, "", "", "")
+
+    def test_and_send_article_too_long_edition(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_article("user7", "Author7", "Title7", "Journal1", "1999", "", "", self.too_long, "", "")
+
+    def test_and_send_article_too_long_note(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_article("user7", "Author7", "Title7", "Journal1", "1999", "", "", "", "", self.too_long)
+
+    def test_and_send_article_wrong_input_month(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_article("user7", "Author7", "Title7", "Journal1", "1999", "", "", "", "väärä", "")
+
 #------------------------------------------------------------
 
     def test_key_generation(self):
@@ -277,6 +359,10 @@ class MethodsTest(unittest.TestCase):
             methods.create_bibtex_file()
             with open('src/outputs/references.bib', 'r', encoding='utf-8') as file:
                 self.assertIn("@masterthesis{Au22,\n", file)
+            methods.send_article("user2", "Author2", "Title2", "Journal2", "2002", "", "", "", "", "")
+            methods.create_bibtex_file()
+            with open('src/outputs/references.bib', 'r', encoding='utf-8') as file:
+                self.assertIn("@article{Au02,\n", file)
 
 #------------------------------------------------------------
 
