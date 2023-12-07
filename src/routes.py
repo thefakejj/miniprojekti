@@ -68,6 +68,28 @@ def send_master():
     except methods.InvalidInputError as e:
         return render_template("error.html", message=str(e))
 
+@app.route("/postphdthesis")
+def post_phdthesis():
+    return render_template("postphdthesis.html")
+
+@app.route("/sendphdthesis", methods=["POST"])
+def send_phdthesis():
+    username = request.form["username"]
+    author = request.form["author"]
+    title = request.form["title"]
+    school = request.form["school"]
+    year = request.form["year"]
+    type = request.form["type"]
+    address = request.form["address"]
+    month = request.form["month"]
+    note = request.form["note"]
+
+    try:
+        methods.send_phdthesis(username, author, title, school, year, type, address, month, note)
+        return redirect("/")
+    except methods.InvalidInputError as e:
+        return render_template("error.html", message=str(e))
+
 @app.route("/confirmdelete/<key>", methods=["GET"])
 def confirmdelete(key):
     view = methods.keyview(key)
@@ -117,6 +139,25 @@ def editmaster(key):
         note = request.form["note"]
 
         if methods.edit_master(username,key,author,title,school,year,type,address,month,note):
+            return redirect("/")
+
+@app.route("/editphdthesis/<key>", methods=["GET","POST"])
+def editphdthesis(key):
+    if request.method == "GET":
+        view = methods.keyview(key)
+        return render_template("postphdthesis.html", view=view, edit=True)
+    if request.method == "POST":
+        username = request.form["username"]
+        author = request.form["author"]
+        title = request.form["title"]
+        school = request.form["school"]
+        year = request.form["year"]
+        type = request.form["type"]
+        address = request.form["address"]
+        month = request.form["month"]
+        note = request.form["note"]
+
+        if methods.edit_phdthesis(username,key,author,title,school,year,type,address,month,note):
             return redirect("/")
 
 @app.route('/getbibtex') # should maybe call something like "create file" first

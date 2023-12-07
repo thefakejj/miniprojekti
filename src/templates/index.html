@@ -101,6 +101,29 @@
                     {% endif %}
                 </li>
             </ul>
+        {% elif reference.reftype == 'phdthesis' %}
+            <ul>
+                <li>
+                    <span class="label">key</span> = <span class="value">{{ reference.key }}</span><br>
+                    <span class="label">reftype</span> = <span class="value">phdthesis</span><br>
+                    <span class="label">author</span> = <span class="value">{{ reference.author }}</span><br>
+                    <span class="label">title</span> = <span class="value">{{ reference.title }}</span><br>
+                    <span class="label">school</span> = <span class="value">{{ reference.school }}</span><br>
+                    <span class="label">year</span> = <span class="value">{{ reference.year }}</span><br>
+                    {% if reference.type %}
+                        <span class="label">type</span> = <span class="value">{{ reference.type }}</span><br>
+                    {% endif %}
+                    {% if reference.address %}
+                        <span class="label">address</span> = <span class="value">{{ reference.address }}</span><br>
+                    {% endif %}
+                    {% if reference.month %}
+                        <span class="label">month</span> = <span class="value">{{ reference.month }}</span><br>
+                    {% endif %}
+                    {% if reference.note %}
+                        <span class="label">note</span> = <span class="value">{{ reference.note }}</span><br>
+                    {% endif %}
+                </li>
+            </ul>
         {% elif reference.reftype == 'article' %}
             <ul>
                 <li>
