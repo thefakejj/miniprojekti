@@ -84,6 +84,14 @@ Fill Master Form
     Set School  ${school}
     Set Year  ${year}
 
+Fill Phdthesis Form
+    [Arguments]  ${username}  ${author}  ${title}  ${school}  ${year}
+    Set Kayttajatunnus  ${username}
+    Set Author  ${author}
+    Set Title  ${title}
+    Set School  ${school}
+    Set Year  ${year}
+
 Fill Article Form
     [Arguments]  ${username}  ${author}  ${title}  ${journal}  ${year}
     Set Kayttajatunnus  ${username}
