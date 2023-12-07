@@ -12,3 +12,4 @@ selenium-screenshot*
 **/site.db
 **/test_stub.db
 **/references.bib
+./poetry.lock
