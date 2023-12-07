@@ -118,9 +118,12 @@ def editbook(key):
         edition = request.form["edition"]
         month = request.form["month"]
         note = request.form["note"]
-
-        if methods.edit_book(username,key,author,title,year,publisher, volume, series, address, edition, month, note):
-            return redirect("/")
+        
+        try:
+            if methods.edit_book(username,key,author,title,year,publisher, volume, series, address, edition, month, note):
+                return redirect("/")
+        except methods.InvalidInputError as e:
+            return render_template("error.html", message=str(e))
         
 @app.route("/editmaster/<key>", methods=["GET","POST"])
 def editmaster(key):
@@ -138,8 +141,11 @@ def editmaster(key):
         month = request.form["month"]
         note = request.form["note"]
 
-        if methods.edit_master(username,key,author,title,school,year,type,address,month,note):
-            return redirect("/")
+        try:
+            if methods.edit_master(username,key,author,title,school,year,type,address,month,note):
+                return redirect("/")
+        except methods.InvalidInputError as e:
+            return render_template("error.html", message=str(e))
 
 @app.route("/editphdthesis/<key>", methods=["GET","POST"])
 def editphdthesis(key):
@@ -157,8 +163,11 @@ def editphdthesis(key):
         month = request.form["month"]
         note = request.form["note"]
 
-        if methods.edit_phdthesis(username,key,author,title,school,year,type,address,month,note):
-            return redirect("/")
+        try:
+            if methods.edit_phdthesis(username,key,author,title,school,year,type,address,month,note):
+                return redirect("/")
+        except methods.InvalidInputError as e:
+            return render_template("error.html", message=str(e))
 
 @app.route('/getbibtex') # should maybe call something like "create file" first
 def download_bibtex():
@@ -210,5 +219,8 @@ def editarticle(key):
         month = request.form["month"]
         note = request.form["note"]
 
-        if methods.edit_article(username, key, author, title, journal, year, volume, number, pages, month, note):
-            return redirect("/")
+        try:
+            if methods.edit_article(username, key, author, title, journal, year, volume, number, pages, month, note):
+                return redirect("/")
+        except methods.InvalidInputError as e:
+            return render_template("error.html", message=str(e))
