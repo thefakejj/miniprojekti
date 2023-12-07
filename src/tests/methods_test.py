@@ -42,6 +42,8 @@ class MethodsTest(unittest.TestCase):
                 """)
             self.connection.commit()
 
+#------------------------------------------------------------
+
     def test_send_and_get_books(self):
         with app.app_context():
             methods.send_book("user1", "Author1", "Title1", "2022", "Publisher1", "volume7", "series7", "address7", "edition7", "aug", "note")
@@ -56,8 +58,6 @@ class MethodsTest(unittest.TestCase):
 
             books = methods.get_books()
             self.assertEqual(len(books), 1)
-    
-
 
     def test_and_send_books_too_long_user(self):
         with app.app_context():
@@ -94,8 +94,6 @@ class MethodsTest(unittest.TestCase):
             with self.assertRaises(InvalidInputError):
                 methods.send_book("user7", "Author7", "Title7", "2012", self.too_long, "", "", "", "", "", "")
 
-
-
     def test_and_send_books_too_long_volume(self):
         with app.app_context():
             with self.assertRaises(InvalidInputError):
@@ -126,8 +124,7 @@ class MethodsTest(unittest.TestCase):
             with self.assertRaises(InvalidInputError):
                 methods.send_book("user7", "Author7", "Title7", "2012", "Publisher7", "", "", "", "", "väärä", "")
 
-
-
+#------------------------------------------------------------
 
     def test_send_and_get_master(self):
         with app.app_context():
@@ -198,8 +195,7 @@ class MethodsTest(unittest.TestCase):
             with self.assertRaises(InvalidInputError):
                 methods.send_master("user8", "Author4", "Title4", "School4", "4444", "", "", "", "")
     
-    
-
+#------------------------------------------------------------
 
     def test_key_generation(self):
         with app.app_context():
@@ -210,6 +206,8 @@ class MethodsTest(unittest.TestCase):
             key3 = books[0][1]
             key4 = books[1][1]
             self.assertNotEqual(key3, key4)
+
+#------------------------------------------------------------
     
     def test_delete_book(self):
         with app.app_context():
@@ -228,7 +226,9 @@ class MethodsTest(unittest.TestCase):
 
             keys_after = [key[0] for key in methods.get_keys()]
             self.assertNotIn("Au99", keys_after)
-    
+
+#------------------------------------------------------------
+
     def test_edit_book(self):
         with app.app_context():
             methods.send_book("user5", "Testikirjailija", "Tämäpoistetaan_title", "1921", "Publisher5", "", "", "", "", "","")
@@ -244,6 +244,8 @@ class MethodsTest(unittest.TestCase):
             after = methods.get_references()
             self.assertNotIn("Tämäpoistetaan_title", after[0])
             self.assertIn("2222", after[0])
+
+#------------------------------------------------------------
     
     def test_create_bibtex_file_when_doesnt_exist(self):
         if os.path.exists("src/outputs/references.bib"):
@@ -272,6 +274,8 @@ class MethodsTest(unittest.TestCase):
             with open('src/outputs/references.bib', 'r', encoding='utf-8') as file:
                 self.assertIn("@masterthesis{Au22,\n", file)
 
+#------------------------------------------------------------
+
     def test_get_references_by_author(self):
         with app.app_context():
             methods.send_book("user7", "Author7", "Title7", "2012", "Publisher7", "", "", "", "", "", "")
@@ -289,5 +293,54 @@ class MethodsTest(unittest.TestCase):
             references = methods.get_references()
             self.assertEqual(references[1][4], "Author7")
             self.assertEqual(references[0][4], "Author4")
-            
 
+#------------------------------------------------------------
+
+    def test_get_references_search_reftype(self):
+        with app.app_context():
+            methods.send_book("user4", "Author4", "Title4", "2022", "Publisher6", "", "", "", "", "", "")
+            methods.send_master("user3", "Author3", "title3", "School3", "2022", "", "", "", "")
+            references = methods.get_reference_search("book")
+            self.assertIn(references[0][1], "book")
+            self.assertNotIn(references[0][1], "master")
+    
+    def test_get_references_search_username(self):
+        with app.app_context():
+            methods.send_book("user4", "Author4", "Title4", "2022", "Publisher6", "", "", "", "", "", "")
+            methods.send_master("user3", "Author3", "title3", "School3", "2022", "", "", "", "")
+            references = methods.get_reference_search("user4")
+            self.assertIn(references[0][2], "user4")
+            self.assertNotIn(references[0][2], "user3")
+    
+    def test_get_references_search_key(self):
+        with app.app_context():
+            methods.send_book("user4", "Author4", "Title4", "2022", "Publisher6", "", "", "", "", "", "")
+            methods.send_master("user3", "Author3", "title3", "School3", "2021", "", "", "", "")
+            references = methods.get_reference_search("Au22")
+            self.assertIn(references[0][3], "Au22")
+            self.assertNotIn(references[0][3], "Au21")
+    
+    def test_get_references_search_author(self):
+        with app.app_context():
+            methods.send_book("user4", "Author4", "Title4", "2022", "Publisher6", "", "", "", "", "", "")
+            methods.send_master("user3", "Author3", "title3", "School3", "2021", "", "", "", "")
+            references = methods.get_reference_search("Au22")
+            self.assertIn(references[0][4], "Author4")
+            self.assertNotIn(references[0][4], "Author3")
+    
+    def test_get_references_search_title(self):
+        with app.app_context():
+            methods.send_book("user4", "Author4", "Title4", "2022", "Publisher6", "", "", "", "", "", "")
+            methods.send_master("user3", "Author3", "title3", "School3", "2021", "", "", "", "")
+            references = methods.get_reference_search("Title4")
+            self.assertIn(references[0][5], "Title4")
+            self.assertNotIn(references[0][5], "Title3")
+    
+    def test_get_references_search_year(self):
+        with app.app_context():
+            methods.send_book("user4", "Author4", "Title4", "2022", "Publisher6", "", "", "", "", "", "")
+            methods.send_master("user3", "Author3", "title3", "School3", "2021", "", "", "", "")
+            references = methods.get_reference_search("2021")
+            self.assertIn(str(references[0][6]), "2021")
+            self.assertNotIn(str(references[0][6]), "2022")
+            
