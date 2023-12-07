@@ -50,6 +50,27 @@
             <br>&nbsp;&nbsp;&nbsp;&nbsp;note = &#123;{{ view.note }}&#125;, 
             {% endif %}
             <br>&#125;</li>
+            
+    {% elif view.reftype == 'article' %}
+        <li>@article&#123;{{ view.key }}, 
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;author = &#123;{{ view.author }}&#125;, 
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;title = &#123;{{ view.title }}&#125;, 
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;journal = &#123;{{ view.journal }}&#125;, 
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;year = &#123;{{ view.year }}&#125;, 
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;volume = &#123;{{ view.volume }}&#125;,
+            {% if view.number %}
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;number = &#123;{{ view.number }}&#125;,
+            {% endif %}
+            {% if view.page %}
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;page = &#123;{{ view.page }}&#125;,
+            {% endif %}
+            {% if view.month %}
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;month = &#123;{{ view.month }}&#125;,
+            {% endif %}
+            {% if view.note %}
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;note = &#123;{{ view.note }}&#125;, 
+            {% endif %}
+            <br>&#125;</li>
     {% endif %}
     <br>
     <form action="/deletereference/{{ view.key }}" method="POST">
