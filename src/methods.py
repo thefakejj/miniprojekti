@@ -100,6 +100,51 @@ def get_master():
     master = result.fetchall()
     return master
 
+def send_article(username, author, title, journal, p_year, volume, number, pages, month, note):
+    reftype = "article"
+
+    if p_year.isalpha():
+        raise InvalidInputError("Vuosi väärin!")
+    year = int(p_year)
+    if year < 0 or year > 3000:
+        raise InvalidInputError("Vuosi väärin!")
+        
+    key = generate_key(author,year)
+
+    if len(username) > 100:
+        raise InvalidInputError("Liian pitkä username syöte!")
+    if len(author) > 100:
+        raise InvalidInputError("Liian pitkä author syöte!")
+    if len(title) > 100:
+        raise InvalidInputError("Liian pitkä title syöte!")
+    if len(journal) > 100:
+        raise InvalidInputError("Liian pitkä journal syöte!")
+    if len(volume) > 100:
+        raise InvalidInputError("Liian pitkä volume syöte!")
+    if len(number) > 100:
+        raise InvalidInputError("Liian pitkä number syöte!")
+    if len(pages) > 100:
+        raise InvalidInputError("Liian pitkä pages syöte!")
+    if len(month) > 3:
+        raise InvalidInputError("Syötä kuukausi tyylillä 'jan', 'feb' jne.")
+    if len(note) > 100:
+        raise InvalidInputError("Liian pitkä note syöte!")
+    
+    sql = text("INSERT INTO reference (reftype, username, key, author, title, journal, year, volume, number, pages, month, note) VALUES (:reftype, :username, :key, :author, :title, :journal, :year, :volume, :number, :pages, :month, :note)")
+    db.session.execute(sql, {"reftype":reftype, "username":username, "key":key, "author":author, "title":title, "journal":journal, "year":year, "volume":volume, "number":number, "pages":pages, "month":month, "note":note})
+    db.session.commit()
+    return True
+
+def get_article():
+    sql = text('''
+        SELECT username, key, author, title, journal, year, volume, number, pages, month, note 
+        FROM reference 
+        WHERE reftype LIKE '%article%' 
+        ''')
+    result = db.session.execute(sql)
+    article = result.fetchall()
+    return article
+
 def get_keys():
     sql = text("SELECT key FROM reference")
     result = db.session.execute(sql)
@@ -147,10 +192,18 @@ def edit_master(username, key, author, title, school, year, type, address, month
     db.session.commit()
     return True
 
+def edit_article(username, key, author, title, journal, year, volume, number, pages, month, note):
+    reftype = "article"
+    sql = text("UPDATE reference SET reftype = :reftype, username = :username, author = :author, title = :title, journal = :journal, year = :year, volume = :volume, number = :number, pages = :pages, month = :month, note = :note WHERE key = :key")
+    db.session.execute(sql, {"reftype": reftype, "username": username, "key": key, "author": author, "title": title, "journal": journal, "year": year, "volume": volume, "number": number, "pages": pages, "month": month, "note": note})
+    db.session.commit()
+    return True
+
 def get_all_references_dict():
     refs_dict = {}
     refs_dict["books"] = get_books()
     refs_dict["masters"] = get_master()
+    refs_dict["articles"] = get_article()
 
     return refs_dict
 
@@ -220,6 +273,7 @@ def get_references_by_year():
     result = db.session.execute(sql)
     references = result.fetchall()
     return references
+<<<<<<< HEAD
 
 def get_reference_search(query):
     sql = text("SELECT * FROM reference WHERE "
@@ -243,3 +297,5 @@ def get_reference_search(query):
     result = db.session.execute(sql,{"query": f"%{query}%"})
     references = result.fetchall()
     return references
+=======
+>>>>>>> cbcde42 (added article reference type)

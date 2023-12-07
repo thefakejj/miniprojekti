@@ -128,3 +128,46 @@ def download_bibtex():
         download_name='references.bib',
         as_attachment=True
     )
+
+@app.route("/postarticle")
+def post_article():
+    return render_template("postarticle.html")
+
+@app.route("/sendarticle", methods=["POST"])
+def send_article():
+    username = request.form["username"]
+    author = request.form["author"]
+    title = request.form["title"]
+    journal = request.form["journal"]
+    year = request.form["year"]
+    volume = request.form["volume"]
+    number = request.form["number"]
+    pages = request.form["pages"]
+    month = request.form["month"]
+    note = request.form["note"]
+
+    try:
+        methods.send_article(username, author, title, journal, year, volume, number, pages, month, note)
+        return redirect("/")
+    except methods.InvalidInputError as e:
+        return render_template("error.html", message=str(e))
+    
+@app.route("/editarticle/<key>", methods=["GET","POST"])
+def editarticle(key):
+    if request.method == "GET":
+        view = methods.keyview(key)
+        return render_template("postarticle.html", view=view, edit=True)
+    if request.method == "POST":
+        username = request.form["username"]
+        author = request.form["author"]
+        title = request.form["title"]
+        journal = request.form["journal"]
+        year = request.form["year"]
+        volume = request.form["volume"]
+        number = request.form["number"]
+        pages = request.form["pages"]
+        month = request.form["month"]
+        note = request.form["note"]
+
+        if methods.edit_article(username, key, author, title, journal, year, volume, number, pages, month, note):
+            return redirect("/")
