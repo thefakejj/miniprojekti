@@ -2,7 +2,10 @@
 # miniprojekti
 This is **Nelosen oppilaat** group's repository for Ohjelmistotuotanto course
 
-[**Project backlog**](https://docs.google.com/spreadsheets/d/1rMa7GUguUNTL2GxiPYZAxfzeGfuaFnNYY5xCVqZGXGg/edit?usp=sharing)
+[**Project backlog**](https://docs.google.com/spreadsheets/d/1rMa7GUguUNTL2GxiPYZAxfzeGfuaFnNYY5xCVqZGXGg/edit#gid=0)
+ * [**Sprint2 backlog**](https://docs.google.com/spreadsheets/d/1rMa7GUguUNTL2GxiPYZAxfzeGfuaFnNYY5xCVqZGXGg/edit#gid=1419434582)
+ * [**Sprint3 backlog**](https://docs.google.com/spreadsheets/d/1rMa7GUguUNTL2GxiPYZAxfzeGfuaFnNYY5xCVqZGXGg/edit#gid=1197813610)
+ * [**Sprint4 backlog**](https://docs.google.com/spreadsheets/d/1rMa7GUguUNTL2GxiPYZAxfzeGfuaFnNYY5xCVqZGXGg/edit#gid=1226917448)
 
 [**Arvosteluperusteet**](https://ohjelmistotuotanto-hy.github.io/miniprojektin_arvosteluperusteet/)
 
