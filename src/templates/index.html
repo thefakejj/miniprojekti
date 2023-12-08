@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <div class="container-fluid m-5"></div>
+    <div class="container-fluid m-5">
         <br>
         <div class="header">
             <h1>
@@ -32,31 +32,38 @@
         </div>
         <br>
         <ul>
-            <li><a href="/postbook">Lisää kirjaviite</a></li>
-            <li><a href="/postmaster">Lisää graduviite</a></li>
-            <li><a href="/postarticle">Lisää artikkeliviite</a></li>
-            <li><a href="/postphdthesis">Lisää väitöskirjaviite</a></li>        
+            <li><a class="btn btn-primary" style="margin-bottom: 0.2em;" href="/postbook">Lisää kirjaviite</a></li>
+            <li><a class="btn btn-primary" style="margin-bottom: 0.2em;" href="/postmaster">Lisää graduviite</a></li>
+            <li><a class="btn btn-primary" style="margin-bottom: 0.2em;" href="/postarticle">Lisää artikkeliviite</a></li>
+            <li><a class="btn btn-primary" style="margin-bottom: 0.2em;" href="/postphdthesis">Lisää väitöskirjaviite</a></li>        
         </ul>
         <br>
         <form action="/getbibtex" method="GET">
-            <input type="submit" value="Lataa bibtex-tiedosto">
+            <input class="btn btn-success" type="submit" value="Lataa bibtex-tiedosto">
         </form>
         <br>
-        <form style="margin-top: 1em; margin-bottom: 3em;" action="/" method="GET">
-            <div class="row g-0 align-items-left">
-                <div class="col-auto">
-                <label class="label"  for="sort_by">Sort By:</label>
+        <!-- <form style="margin-top: 1em; margin-bottom: 3em;" action="/" method="GET"> -->
+        <form class="form-inline mt-2" action="/" method="GET">
+            <div class="input-group flex-nowrap">
+                <div class="col-auto me-2">
+                    <div class="form-floating">
+                        <select class="form-select mw-10" id="sort_by" onchange="this.form.submit()">
+                            <option value="author" {% if sort_by == 'author' %} selected {% endif %}>Author</option>
+                            <option value="year" {% if sort_by == 'year' %} selected {% endif %}>Year</option>
+                        </select>                    
+                        <label for="sort_by">Sort By:</label>
+                    </div>
                 </div>
                 <div class="col-auto">
-                <select class="form-select" style="background-color: aqua; border: none; padding-top: 0" sort_by" id="sort_by" onchange="this.form.submit()">
-                    <option value="author" {% if sort_by == 'author' %} selected {% endif %}>Author</option>
-                    <option value="year" {% if sort_by == 'year' %} selected {% endif %}>Year</option>
-                </select>
-                </div>
+                    <div class="form-floating">
+                        <input class="form-control mw-10" type="text" name="query" id="query" value="{{ query }}">
+                        <label for="query">Search:</label>                    
+                    </div>
+                </div>                
+                <!-- <div class="col-auto">                     -->
+                    <input class="btn btn-secondary" type="submit" value="Search">
+                <!-- </div> -->
             </div>
-            <label for="query">Search:</label>
-            <input type="text" name="query" id="query" value="{{ query }}">
-            <input type="submit" value="Search">
         </form>
         {% for reference in references %}
             {% if reference.reftype == 'book' %}
