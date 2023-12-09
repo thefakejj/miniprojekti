@@ -142,7 +142,7 @@
                     {% endif %}
                 </li>
             </ul>
-        {% elif reference.reftype == 'article' %}
+            {% elif reference.reftype == 'article' %}
             <ul>
                 <li>
                     <span class="label">key</span> = <span class="value">{{ reference.key }}</span><br>
@@ -168,17 +168,17 @@
                     {% endif %}
                 </li>
             </ul>
-        {% endif %}
+            {% endif %}
             <a class="btn btn-primary" href="/confirmdelete/{{ reference.key }}">Poista</a>
             {% if reference.reftype == 'book' %}
                 <a class="btn btn-primary" href="/editbook/{{ reference.key }}">Muokkaa</a>
             {% elif reference.reftype == 'master' %}
                 <a class="btn btn-primary" href="/editmaster/{{ reference.key }}">Muokkaa</a>
-                {% elif reference.reftype == 'phdthesis' %}
-            <a href="/editphdthesis/{{ reference.key }}">Muokkaa</a>   
-        {% elif reference.reftype == 'article' %}
-            <a href="/editarticle/{{ reference.key }}">Muokkaa</a>        
-        {% endif %}
+            {% elif reference.reftype == 'phdthesis' %}
+                <a class="btn btn-primary" href="/editphdthesis/{{ reference.key }}">Muokkaa</a>   
+            {% elif reference.reftype == 'article' %}
+                <a class="btn btn-primary" href="/editarticle/{{ reference.key }}">Muokkaa</a>        
+            {% endif %}
             <br>
             <br>
         {% endfor %}

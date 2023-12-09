@@ -22,16 +22,22 @@ Add Reference For Deletion
     Set Year  ${deleted_year}
     Set Publisher  ${deleted_publisher}
     Submit Form
+    Wait Until Page Contains  APPI
     Home Page Should Be Open
     Adding Book Should Succeed  ${deleted_author}  ${deleted_title}  ${deleted_year}  ${deleted_publisher}
 
 Delete Reference
-    Click Link  /confirmdelete/${key_to_delete}
+    Set Focus To Element  xpath://a[@href='/confirmdelete/${key_to_delete}'] 
+    Press Keys  None  ENTER
+    Wait Until Page Contains Element  xpath://input[@value='Poista!']
     Page Should Contain Element  xpath://li[contains(., "${deleted_author}")]
     Page Should Contain Element  xpath://li[contains(., "${deleted_title}")]
     Page Should Contain Element  xpath://li[contains(., "${deleted_year}")]
     Page Should Contain Element  xpath://li[contains(., "${deleted_publisher}")]
+    #Click Element  xpath://input[@value='Poista!']
+    #Scroll Element Into View  xpath://input[@value='Poista!']
     Submit Form
+    #Click Button  xpath://input[@value='Poista!']
 
 Keylist Should Not Contain Deleted Reference
     Page Should Not Contain Element  xpath://li[contains(., "${key_to_delete}")]

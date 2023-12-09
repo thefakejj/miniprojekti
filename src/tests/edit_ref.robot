@@ -14,41 +14,58 @@ Edit Book Reference With Valid Inputs
     Click Link  Lisää kirjaviite
     Fill Book Form  ${username}  ${author}  ${title}  ${year}  ${publisher}
     Submit Form
-    Click Link  Muokkaa
+    Click Muokkaa
     Edit Filled Values  ${edited_author}  ${edited_title}  ${edited_year}
     Submit Form
     Editing Master Should succeed  ${edited_author}  ${edited_title}  ${edited_year}  ${publisher} 
+    Delete Edited Reference
 
 
 Edit Master Reference With Valid Inputs
     Click Link  Lisää graduviite
     Fill Master Form  ${username}  ${author}  ${title}  ${school}  ${year}
     Submit Form
-    Click Link  Muokkaa
+    Click Muokkaa
     Edit Filled Values  ${edited_author}  ${edited_title}  ${edited_year}
     Submit Form
     Editing Master Should Succeed  ${edited_author}  ${edited_title}  ${school}  ${edited_year}
+    Delete Edited Reference
 
 Edit Phdthesis Reference With Valid Inputs
     Click Link  Lisää väitöskirjaviite
     Fill Phdthesis Form  ${username}  ${author}  ${title}  ${school}  ${year}
     Submit Form
-    Click Link  Muokkaa
+    Click Muokkaa
     Edit Filled Values  ${edited_author}  ${edited_title}  ${edited_year}
     Submit Form
     Editing Phdthesis Should Succeed  ${edited_author}  ${edited_title}  ${school}  ${edited_year}
+    Delete Edited Reference
 
 Edit Article Reference With Valid Inputs
     Click Link  Lisää artikkeliviite
     Fill Article Form  ${username}  ${author}  ${title}  ${journal}  ${year}
     Submit Form
-    Click Link  Muokkaa
+    Click Muokkaa
     Edit Filled Values  ${edited_author}  ${edited_title}  ${edited_year}
     Submit Form
     Editing Article Should Succeed  ${edited_author}  ${edited_title}  ${journal}  ${edited_year}
+    Delete Edited Reference
 
 
 *** Keywords ***
+Click Muokkaa
+    Set Focus to Element  xpath://a[text()='Muokkaa']
+    Press Keys  None  ENTER
+
+Click Poista    
+    Set Focus to Element  xpath://a[text()='Poista']
+    Press Keys  None  ENTER
+
+Delete Edited Reference
+    Click Poista
+    Submit Form
+
+
 Edit Filled Values
     [Arguments]  ${edited_author}  ${edited_title}  ${edited_year}
     Set Author  ${edited_author}
