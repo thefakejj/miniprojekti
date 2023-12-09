@@ -47,7 +47,7 @@
             <div class="input-group flex-nowrap">
                 <div class="col-auto me-2">
                     <div class="form-floating">
-                        <select class="form-select mw-10" id="sort_by" onchange="this.form.submit()">
+                        <select class="form-select mw-10" name="sort_by" id="sort_by" onchange="this.form.submit()">
                             <option value="author" {% if sort_by == 'author' %} selected {% endif %}>Author</option>
                             <option value="year" {% if sort_by == 'year' %} selected {% endif %}>Year</option>
                         </select>                    
