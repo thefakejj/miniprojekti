@@ -15,7 +15,7 @@ def send_book(username, author, title, p_year, publisher, volume, series, addres
     if year < 0 or year > 3000:
         raise InvalidInputError("Vuosi väärin!")
 
-    key = generate_key(author,year)
+    key = keygen(author,year)
 
     if len(username) > 100:
         raise InvalidInputError("Liian pitkä username syöte!")
@@ -59,7 +59,7 @@ def send_master(username, author, title, school, p_year, type, address, month, n
     if year < 0 or year > 3000:
         raise InvalidInputError("Vuosi väärin!")
         
-    key = generate_key(author,year)
+    key = keygen(author,year)
 
     if len(username) > 100:
         raise InvalidInputError("Liian pitkä username syöte!")
@@ -109,7 +109,7 @@ def send_article(username, author, title, journal, p_year, volume, number, pages
     if year < 0 or year > 3000:
         raise InvalidInputError("Vuosi väärin!")
         
-    key = generate_key(author,year)
+    key = keygen(author,year)
 
     if len(username) > 100:
         raise InvalidInputError("Liian pitkä username syöte!")
@@ -154,7 +154,7 @@ def send_phdthesis(username, author, title, school, p_year, type, address, month
     if year < 0 or year > 3000:
         raise InvalidInputError("Vuosi väärin!")
         
-    key = generate_key(author,year)
+    key = keygen(author,year)
 
     if len(username) > 100:
         raise InvalidInputError("Liian pitkä username syöte!")
@@ -195,7 +195,7 @@ def get_keys():
     master = result.fetchall()
     return master
 
-def generate_key(author, year):
+def keygen(author, year):
     year = str(year)
     authkey = author[:2]
     yearkey = year[2:]
