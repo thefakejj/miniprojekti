@@ -5,16 +5,21 @@ actor "User" as user
 actor "Application" as app
  
 usecase "Add reference" as addRef
+usecase "Add article" as addArticle
 usecase "Add book" as addBook
-usecase "Add master thesis" as addMaster
+usecase "Add phd thesis" as addPhd
+usecase "Add master thesis" as addMaster 
 usecase "Modify reference" as modifyRef
 usecase "Delete reference" as deleteRef
 usecase "Display references" as displayRef
 usecase "Download references" as downloadRef
+usecase "Download as Bibtex" as downloadBibtex
 
 user -- addRef
+addArticle --|> addRef
 addBook --|> addRef
-addMaster --|> addRef
+addRef <|-- addPhd
+addRef <|-- addMaster
 addRef -- app
 
 user -- modifyRef
@@ -27,5 +32,6 @@ user -- displayRef
 displayRef -- app
 
 user -- downloadRef
+downloadBibtex --|> downloadRef
 downloadRef -- app
 @enduml
