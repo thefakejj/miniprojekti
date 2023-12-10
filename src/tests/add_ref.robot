@@ -22,7 +22,7 @@ Add Book With Invalid Inputs
     Click Link  Lisää kirjaviite
     Fill Book Form  ${username}  ${author}  ${title}  4444  ${publisher}
     Submit Form
-    Adding Should Fail With Message  Virhe: Vuosi väärin!
+    Adding Should Fail With Message  Vuosi väärin!
 
 Add Master With Valid Inputs
     Click Link  Lisää graduviite
@@ -40,7 +40,7 @@ Add Master With Invalid Inputs
     Click Link  Lisää graduviite
     Fill Master Form  ${username}  ${author}  ${title}  ${school}  4444
     Submit Form
-    Adding Should Fail With Message  Virhe: Vuosi väärin!
+    Adding Should Fail With Message  Vuosi väärin!
 
 Add Phdthesis With Valid Inputs
     Click Link  Lisää väitöskirjaviite
@@ -58,7 +58,7 @@ Add Phdthesis With Invalid Inputs
     Click Link  Lisää väitöskirjaviite
     Fill Phdthesis Form  ${username}  ${author}  ${title}  ${school}  4444
     Submit Form
-    Adding Should Fail With Message  Virhe: Vuosi väärin!
+    Adding Should Fail With Message  Vuosi väärin!
 
 Add Article With Valid Inputs
     Click Link  Lisää artikkeliviite
@@ -76,7 +76,7 @@ Add Article With Invalid Inputs
     Click Link  Lisää artikkeliviite
     Fill Article Form  ${username}  ${author}  ${title}  ${journal}  4444
     Submit Form
-    Adding Should Fail With Message  Virhe: Vuosi väärin!
+    Adding Should Fail With Message  Vuosi väärin!
 
 *** Keywords ***
 Adding Book Should Succeed

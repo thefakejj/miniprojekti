@@ -17,6 +17,12 @@
         <br>
         <a class="btn btn-primary" href="/">Takaisin</a>
         <br>
+        {% if error %}
+        <br>
+            <div class="alert alert-danger font-weight-bold" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
         <br>
         <p>Käyttäjätunnus:<br>
         <input type="text" name="username" required {% if edit %} value="{{ view.username }}" {% endif %}></p>
