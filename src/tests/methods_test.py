@@ -161,7 +161,7 @@ class MethodsTest(unittest.TestCase):
     def test_and_send_master_too_long_school(self):
         with app.app_context():
             with self.assertRaises(InvalidInputError):
-                methods.send_master("user8", "Author4", "Title4", "School4", "2022", "", self.too_long, "", "")
+                methods.send_master("user8", "Author4", "Title4", self.too_long, "2022", "", "", "", "")
     
     def test_and_send_master_too_long_type(self):
         with app.app_context():
@@ -232,7 +232,7 @@ class MethodsTest(unittest.TestCase):
     def test_and_send_phdthesis_too_long_school(self):
         with app.app_context():
             with self.assertRaises(InvalidInputError):
-                methods.send_phdthesis("user8", "Author4", "Title4", "School4", "2022", "", self.too_long, "", "")
+                methods.send_phdthesis("user8", "Author4", "Title4", self.too_long, "2022", "", "", "", "")
     
     def test_and_send_phdthesis_too_long_type(self):
         with app.app_context():
@@ -300,6 +300,11 @@ class MethodsTest(unittest.TestCase):
         with app.app_context():
             with self.assertRaises(InvalidInputError):
                 methods.send_article("user7", "Author7", self.too_long, "Journal1", "1999", "", "", "", "", "")
+
+    def test_and_send_article_too_long_journal(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.send_article("user7", "Author7", "Title7", self.too_long, "1999", "", "", "", "", "")
     
     def test_and_send_article_year_invalid_string(self):
         with app.app_context():
@@ -397,6 +402,22 @@ class MethodsTest(unittest.TestCase):
         with app.app_context():
             methods.send_master("user4", "Author4", "Tämäpoistetaan_title", "School4", "2022", "", "", "", "")
             methods.edit_master("user4", "Au22", "Author4", "Title_after", "School4", "2022", "2222", "", "", "")
+            after = methods.get_references()
+            self.assertNotIn("Tämäpoistetaan_title", after[0])
+            self.assertIn("2222", after[0])
+
+    def test_edit_article(self):
+        with app.app_context():
+            methods.send_article("user4", "Author4", "Tämäpoistetaan_title", "Journal1", "2022", "", "", "", "", "")
+            methods.edit_article("user4", "Au22", "Author4", "Title_after", "School4", "2022", "2222", "", "", "", "")
+            after = methods.get_references()
+            self.assertNotIn("Tämäpoistetaan_title", after[0])
+            self.assertIn("2222", after[0])
+
+    def test_edit_phdthesis(self):
+        with app.app_context():
+            methods.send_phdthesis("user4", "Author4", "Tämäpoistetaan_title", "School4", "2022", "", "", "", "")
+            methods.edit_phdthesis("user4", "Au22", "Author4", "Title_after", "School4", "2022", "2222", "", "", "")
             after = methods.get_references()
             self.assertNotIn("Tämäpoistetaan_title", after[0])
             self.assertIn("2222", after[0])
@@ -592,7 +613,7 @@ class MethodsTest(unittest.TestCase):
     def test_and_edit_master_too_long_school(self):
         with app.app_context():
             with self.assertRaises(InvalidInputError):
-                methods.edit_master("user8", "key8", "Author4", "Title4", "School4", "2022", "", self.too_long, "", "")
+                methods.edit_master("user8", "key8", "Author4", "Title4", self.too_long, "2022", "", "", "", "")
     
     def test_and_edit_master_too_long_type(self):
         with app.app_context():
@@ -627,4 +648,123 @@ class MethodsTest(unittest.TestCase):
     def test_and_edit_master_year_invalid_big(self):
         with app.app_context():
             with self.assertRaises(InvalidInputError):
-                methods.edit_master("user8", "key8", "Author4", "Title4", "School4", "4444", "", "", "", "")              
+                methods.edit_master("user8", "key8", "Author4", "Title4", "School4", "4444", "", "", "", "")
+
+#------------------------------------------------------------
+    
+    def test_and_edit_phdthesis_too_long_user(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_phdthesis(self.too_long, "key8", "Author4", "Title4", "School4", "2022", "", "", "", "")
+    
+    def test_and_edit_phdthesis_too_long_author(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_phdthesis("user8", "key8", self.too_long, "Title4", "School4", "2022", "", "", "", "")
+    
+    def test_and_edit_phdthesis_too_long_title(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_phdthesis("user8", "key8", "Author4", self.too_long, "School4", "2022", "", "", "", "")
+    
+    def test_and_edit_phdthesis_too_long_school(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_phdthesis("user8", "key8", "Author4", "Title4", self.too_long, "2022", "", "", "", "")
+    
+    def test_and_edit_phdthesis_too_long_type(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_phdthesis("user8", "key8", "Author4", "Title4", "School4", "2022", self.too_long, "", "", "")
+
+    def test_and_edit_phdthesis_too_long_address(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_phdthesis("user8", "key8", "Author4", "Title4", "School4", "2022", "", self.too_long, "", "")
+
+    def test_and_edit_phdthesis_too_long_note(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_phdthesis("user8", "key8", "Author4", "Title4", "School4", "2022", "", "", "", self.too_long)
+
+    def test_and_edit_phdthesis_too_long_month(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_phdthesis("user8", "key8", "Author4", "Title4", "School4", "2022", "", "", "väärä", "")
+    
+    def test_and_edit_phdthesis_year_invalid_string(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_phdthesis("user8", "key8", "Author4", "Title4", "School4", "väärä", "", "", "", "")
+    
+    def test_and_edit_phdthesis_year_invalid_negative(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_phdthesis("user8", "key8", "Author4", "Title4", "School4", "-1", "", "", "", "")
+    
+    def test_and_edit_phdthesis_year_invalid_big(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_phdthesis("user8", "key8", "Author4", "Title4", "School4", "4444", "", "", "", "")
+
+#------------------------------------------------------------
+
+    def test_and_edit_article_too_long_user(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_article(self.too_long, "key8", "Author4", "Title4", "Journal1", "2022", "", "", "", "", "")
+
+    def test_and_edit_article_too_long_author(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_article("user8", "key8", self.too_long, "Title4", "Journal1", "2022", "", "", "", "", "")
+    
+    def test_and_edit_article_too_long_title(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_article("user8", "key8", "Author4", self.too_long, "Journal1", "2022", "", "", "", "", "")
+
+    def test_and_edit_article_too_long_journal(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_article("user8", "key8", "Author4", "Title4", self.too_long, "2022", "", "", "", "", "")
+
+    def test_and_edit_article_too_long_volume(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_article("user8", "key8", "Author4", "Title4", "Journal1", "2022", self.too_long, "", "", "", "")
+
+    def test_and_edit_article_too_long_number(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_article("user8", "key8", "Author4", "Title4", "Journal1", "2022", "", self.too_long, "", "", "")
+
+    def test_and_edit_article_too_long_pages(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_article("user8", "key8", "Author4", "Title4", "Journal1", "2022", "", "", self.too_long, "", "")
+
+    def test_and_edit_article_too_long_month(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_article("user8", "key8", "Author4", "Title4", "Journal1", "2022", "", "", "", "väärä", "")
+
+    def test_and_edit_article_too_long_note(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_article("user8", "key8", "Author4", "Title4", "Journal1", "2022", "", "", "", "", self.too_long)
+    
+    def test_and_edit_article_year_invalid_string(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_article("user8", "key8", "Author4", "Title4", "Journal1", "väärä", "", "", "", "", "")
+    
+    def test_and_edit_article_year_invalid_negative(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_article("user8", "key8", "Author4", "Title4", "Journal1", "-1", "", "", "", "", "")
+    
+    def test_and_edit_article_year_invalid_big(self):
+        with app.app_context():
+            with self.assertRaises(InvalidInputError):
+                methods.edit_article("user8", "key8", "Author4", "Title4", "Journal1", "4444", "", "", "", "", "")
