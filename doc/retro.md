@@ -1,3 +1,27 @@
+# Sprintti 3 - Retrospektiivi
+* **Actions**
+   * Keskitytään testien toteuttamiseen
+   * Osallistutaan aktiivisesti telegram-kommunikointiin
+
+|_Glad_                                                          |_Sad_                                                           |_Mad_                                                           |
+|----------------------------------------------------------------|----------------------------------------------------------------|----------------------------------------------------------------|
+|Hyvä että jätettiin se yks story heti pois                      |Pitäisi osallistua enemmän testien tekoon                       |Testeihin pitäisi osallistua enemmän                            |
+|testikattavuus näyttää hyvältä                                  |Jäin liian pitkäksi jumiin toiminnon tekoon.                    |mä nukuin tosi huonosti                                         |
+|Kommunikaatio pelasi paremmin, oli selkeät taskit sprintille    |pitäis useammin pistää ehkä telegramiin viestiä siitä mitä on tehnyt kotona projektin eteen (pysytään kärryillä)|en saanut unta päikkäreissä|
+|Saatiin kaikki alotetut storyt valmiiksi                        |Me ollaan sankareita kaikki                                     |Pipeline ei pysty lataamaan tiedostoja| meni hermo selvittää asia :(.|
+|Sprintti meni hyvin                                             |.. Pitää varmaan ottaa vähän vähemmän storyja jotta definition of done täyttyy|                                                  |
+|Parityöskentely toimi hyvin                                     |                                                                |                                                                |
+|Kommunikoitiin paremmin ryhmänä                                 |                                                                |                                                                |
+|Ei otettu liikaa taskeja sprinttiin                             |                                                                |                                                                |
+|saatiin hommia tehtyä, mun mielestä varmaan overall vaativin sprintti|                                                           |                                                                |
+|projekti näyttää tosi hyvältä                                   |                                                                |                                                                |
+|edelleen hyvä ryhmävibe                                         |                                                                |                                                                |
+|kiitti seppo ku oot tehny dokumentaatioo sun muuta project backlogausta ..(olet useasti ollut oikeassa: esim poetry.lock pitäisi pistää gigignoreen :P)||                                         |
+|otetaan vähemmän storyja sprinttiin!!! (ja rajoitetaan työaikaa)|                                                                |                                                                |
+|Jasperin pitää nukkua paremmin                                  |                                                                |                                                                |
+|kotona tehdyt muutokset kannatta ilmaista telegramissa          |                                                                |                                                                |
+|tehdään tiukemmin tuntikirjanpitoa                              |                                                                |                                                                |
+
 # Sprintti 2 - Retrospektiivi
 * **Actions**
    * Arvosteluperusteista nousevat asiat kirjataan sprint backlogiin
