@@ -60,12 +60,12 @@ def get_references():
 
     return render_template("index.html", references=references, sort_by=sort_by, filter=filter)
 
-@app.route("/postmaster")
-def post_master():
-    return render_template("postmaster.html")
+@app.route("/postmasterthesis")
+def post_masterthesis():
+    return render_template("postmasterthesis.html")
 
-@app.route("/sendmaster", methods=["POST"])
-def send_master():
+@app.route("/sendmasterthesis", methods=["POST"])
+def send_masterthesis():
     username = request.form["username"]
     author = request.form["author"]
     title = request.form["title"]
@@ -77,11 +77,11 @@ def send_master():
     note = request.form["note"]
 
     try:
-        methods.send_master(username, author, title, school, year, type, address, month, note)
+        methods.send_masterthesis(username, author, title, school, year, type, address, month, note)
         return redirect("/")
     except methods.InvalidInputError as e:
         return render_template(
-            "postmaster.html",
+            "postmasterthesis.html",
             error=str(e),
             username=username,
             author=author,
@@ -166,11 +166,11 @@ def editbook(key):
         except methods.InvalidInputError as e:
             return render_template("postbook.html", view=view, edit=True, error=str(e))
         
-@app.route("/editmaster/<key>", methods=["GET","POST"])
-def editmaster(key):
+@app.route("/editmasterthesis/<key>", methods=["GET","POST"])
+def editmasterthesis(key):
     view = methods.keyview(key)
     if request.method == "GET":
-        return render_template("postmaster.html", view=view, edit=True)
+        return render_template("postmasterthesis.html", view=view, edit=True)
     if request.method == "POST":
         username = request.form["username"]
         author = request.form["author"]
@@ -183,10 +183,10 @@ def editmaster(key):
         note = request.form["note"]
 
         try:
-            if methods.edit_master(username,key,author,title,school,year,type,address,month,note):
+            if methods.edit_masterthesis(username,key,author,title,school,year,type,address,month,note):
                 return redirect("/")
         except methods.InvalidInputError as e:
-            return render_template("postmaster.html",view=view, edit=True, error=str(e))
+            return render_template("postmasterthesis.html",view=view, edit=True, error=str(e))
 
 @app.route("/editphdthesis/<key>", methods=["GET","POST"])
 def editphdthesis(key):

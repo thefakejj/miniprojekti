@@ -33,7 +33,7 @@
         <br>
         <ul>
             <li><a class="btn btn-primary" style="margin-bottom: 0.2em;" href="/postbook">Lisää kirjaviite</a></li>
-            <li><a class="btn btn-primary" style="margin-bottom: 0.2em;" href="/postmaster">Lisää graduviite</a></li>
+            <li><a class="btn btn-primary" style="margin-bottom: 0.2em;" href="/postmasterthesis">Lisää graduviite</a></li>
             <li><a class="btn btn-primary" style="margin-bottom: 0.2em;" href="/postarticle">Lisää artikkeliviite</a></li>
             <li><a class="btn btn-primary" style="margin-bottom: 0.2em;" href="/postphdthesis">Lisää väitöskirjaviite</a></li>        
         </ul>
@@ -98,11 +98,11 @@
                     </li>
                 </ul>
 
-            {% elif reference.reftype == 'master' %}
+            {% elif reference.reftype == 'masterthesis' %}
                 <ul>
                     <li>
                         <span class="label">key</span> = <span class="value">{{ reference.key }}</span><br>
-                        <span class="label">reftype</span> = <span class="value">master</span><br>
+                        <span class="label">reftype</span> = <span class="value">masterthesis</span><br>
                         <span class="label">author</span> = <span class="value">{{ reference.author }}</span><br>
                         <span class="label">title</span> = <span class="value">{{ reference.title }}</span><br>
                         <span class="label">school</span> = <span class="value">{{ reference.school }}</span><br>
@@ -174,8 +174,8 @@
             <a class="btn btn-primary" href="/confirmdelete/{{ reference.key }}">Poista</a>
             {% if reference.reftype == 'book' %}
                 <a class="btn btn-primary" href="/editbook/{{ reference.key }}">Muokkaa</a>
-            {% elif reference.reftype == 'master' %}
-                <a class="btn btn-primary" href="/editmaster/{{ reference.key }}">Muokkaa</a>
+            {% elif reference.reftype == 'masterthesis' %}
+                <a class="btn btn-primary" href="/editmasterthesis/{{ reference.key }}">Muokkaa</a>
             {% elif reference.reftype == 'phdthesis' %}
                 <a class="btn btn-primary" href="/editphdthesis/{{ reference.key }}">Muokkaa</a>   
             {% elif reference.reftype == 'article' %}

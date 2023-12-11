@@ -7,7 +7,7 @@ ${SERVER}  localhost:5000
 ${DELAY}  0 seconds
 ${HOME_URL}  http://${SERVER}
 ${POSTBOOK_URL}  http://${SERVER}/postbook
-${POSTMASTER_URL}  http://${SERVER}/postmaster
+${POSTMASTERTHESIS_URL}  http://${SERVER}/postmasterthesis
 ${username}  Test_tunnus
 ${author}  Test_author
 ${title}  Test_title
@@ -33,8 +33,8 @@ Go To Home Page
 Go To Postbook Page
     Go To  ${POSTBOOK_URL}
 
-Go To Postmaster Page
-    Go To  ${POSTMASTER_URL}
+Go To Postmasterthesis Page
+    Go To  ${POSTMASTERTHESIS_URL}
 
 Set Kayttajatunnus
     [Arguments]  ${username}
@@ -76,7 +76,7 @@ Fill Book Form
     Set Year  ${year}
     Set Publisher  ${publisher}
 
-Fill Master Form
+Fill Masterthesis Form
     [Arguments]  ${username}  ${author}  ${title}  ${school}  ${year}
     Set Kayttajatunnus  ${username}
     Set Author  ${author}

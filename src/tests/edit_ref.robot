@@ -17,18 +17,18 @@ Edit Book Reference With Valid Inputs
     Click Muokkaa
     Edit Filled Values  ${edited_author}  ${edited_title}  ${edited_year}
     Submit Form
-    Editing Master Should succeed  ${edited_author}  ${edited_title}  ${edited_year}  ${publisher} 
+    Editing Masterthesis Should succeed  ${edited_author}  ${edited_title}  ${edited_year}  ${publisher} 
     Delete Edited Reference
 
 
-Edit Master Reference With Valid Inputs
+Edit Masterthesis Reference With Valid Inputs
     Click Link  Lisää graduviite
-    Fill Master Form  ${username}  ${author}  ${title}  ${school}  ${year}
+    Fill Masterthesis Form  ${username}  ${author}  ${title}  ${school}  ${year}
     Submit Form
     Click Muokkaa
     Edit Filled Values  ${edited_author}  ${edited_title}  ${edited_year}
     Submit Form
-    Editing Master Should Succeed  ${edited_author}  ${edited_title}  ${school}  ${edited_year}
+    Editing Masterthesis Should Succeed  ${edited_author}  ${edited_title}  ${school}  ${edited_year}
     Delete Edited Reference
 
 Edit Phdthesis Reference With Valid Inputs
@@ -79,7 +79,7 @@ Editing Book Should Succeed
     Page Should Contain  ${edited_year}
     Page Should Contain  ${publisher} 
 
-Editing Master Should Succeed
+Editing Masterthesis Should Succeed
     [Arguments]  ${edited_author}  ${edited_title}  ${school}  ${edited_year}
     Page Should Contain  ${edited_author}
     Page Should Contain  ${edited_title}

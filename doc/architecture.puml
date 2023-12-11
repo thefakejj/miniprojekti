@@ -4,7 +4,7 @@ rectangle "UI" {
     rectangle "postarticle.html"    
     rectangle "postbook.html"
     rectangle "postpdfthesis.html"
-    rectangle "postmaster.html"    
+    rectangle "postmasterthesis.html"    
     rectangle "confirmdelete.html"
     'rectangle "error.html"
 }
@@ -24,10 +24,10 @@ interface HTTP
 index.html <--> postarticle.html
 index.html <--> postbook.html
 index.html <--> postpdfthesis.html
-index.html <--> postmaster.html
+index.html <--> postmasterthesis.html
 index.html <-right-> confirmdelete.html
 'postbook.html <--> error.html  
-'postmaster.html <--> error.html
+'postmasterthesis.html <--> error.html
 'confirmdelete.html <--> error.html
 
 

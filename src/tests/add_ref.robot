@@ -24,21 +24,21 @@ Add Book With Invalid Inputs
     Submit Form
     Adding Should Fail With Message  Vuosi väärin!
 
-Add Master With Valid Inputs
+Add Masterthesis With Valid Inputs
     Click Link  Lisää graduviite
-    Fill Master Form  ${username}  ${author}  ${title}  ${school}  ${year}
+    Fill Masterthesis Form  ${username}  ${author}  ${title}  ${school}  ${year}
     Submit Form
     Home Page Should Be Open
 
-Master List Should Show
+Masterthesis List Should Show
     Click Link  Lisää graduviite
-    Fill Master Form  ${username}  ${author}  ${title}  ${school}  ${year}
+    Fill Masterthesis Form  ${username}  ${author}  ${title}  ${school}  ${year}
     Submit Form
-    Adding Master Should Succeed  ${author}  ${title}  ${school}  ${year}
+    Adding Masterthesis Should Succeed  ${author}  ${title}  ${school}  ${year}
 
-Add Master With Invalid Inputs
+Add Masterthesis With Invalid Inputs
     Click Link  Lisää graduviite
-    Fill Master Form  ${username}  ${author}  ${title}  ${school}  4444
+    Fill Masterthesis Form  ${username}  ${author}  ${title}  ${school}  4444
     Submit Form
     Adding Should Fail With Message  Vuosi väärin!
 
@@ -95,11 +95,11 @@ Adding Book Should Succeed
     Page Should Contain  Muokkaa
     Page Should Contain  Poista
 
-Adding Master Should Succeed
+Adding Masterthesis Should Succeed
     [Arguments]  ${author}  ${title}  ${school}  ${year}
     Page Should Contain  key
     Page Should Contain  reftype
-    Page Should Contain  master
+    Page Should Contain  masterthesis
     Page Should Contain  ${author}
     Page Should Contain  author
     Page Should Contain  ${title}

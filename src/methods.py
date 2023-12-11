@@ -50,8 +50,8 @@ def get_books():
     books = result.fetchall()
     return books
 
-def send_master(username, author, title, school, p_year, type, address, month, note):
-    reftype = "master"
+def send_masterthesis(username, author, title, school, p_year, type, address, month, note):
+    reftype = "masterthesis"
 
     if p_year.isalpha():
         raise InvalidInputError("Vuosi väärin!")
@@ -90,15 +90,15 @@ def get_references():
     references = result.fetchall()
     return references
 
-def get_master():
+def get_masterthesis():
     sql = text('''
         SELECT username, key, author, title, year, type, address, month, note, school 
         FROM reference 
-        WHERE reftype LIKE '%master%' 
+        WHERE reftype LIKE '%masterthesis%' 
         ''')
     result = db.session.execute(sql)
-    master = result.fetchall()
-    return master
+    masterthesis = result.fetchall()
+    return masterthesis
 
 def send_article(username, author, title, journal, p_year, volume, number, pages, month, note):
     reftype = "article"
@@ -192,8 +192,8 @@ def get_phdthesis():
 def get_keys():
     sql = text("SELECT key FROM reference")
     result = db.session.execute(sql)
-    master = result.fetchall()
-    return master
+    masterthesis = result.fetchall()
+    return masterthesis
 
 def generate_key(author, year):
     year = str(year)
@@ -257,8 +257,8 @@ def edit_book(username, key, author, title, year, publisher, volume, series, add
     db.session.commit()
     return True
 
-def edit_master(username, key, author, title, school, year, type, address, month, note):
-    reftype = "master"
+def edit_masterthesis(username, key, author, title, school, year, type, address, month, note):
+    reftype = "masterthesis"
 
     if year.isalpha():
         raise InvalidInputError("Vuosi väärin!")
@@ -357,7 +357,7 @@ def edit_phdthesis(username, key, author, title, school, year, type, address, mo
 def get_all_references_dict():
     refs_dict = {}
     refs_dict["books"] = get_books()
-    refs_dict["masters"] = get_master()
+    refs_dict["masterthesiss"] = get_masterthesis()
     refs_dict["articles"] = get_article()
 
     return refs_dict
@@ -378,22 +378,22 @@ note = {{{book[11]}}}
     '''
     return book_ref_text
 
-def create_master_bibtex_format(master):
-    master_ref_text = f'''@masterthesis{{{master[1]},
-author = {{{master[2]}}},
-title = {{{master[3]}}},
-year = {{{master[4]}}},
-type = {{{master[5]}}},
-address = {{{master[6]}}},
-month = {{{master[7]}}},
-note = {{{master[8]}}},
-school = {{{master[9]}}}          
+def create_masterthesis_bibtex_format(masterthesis):
+    masterthesis_ref_text = f'''@masterthesisthesis{{{masterthesis[1]},
+author = {{{masterthesis[2]}}},
+title = {{{masterthesis[3]}}},
+year = {{{masterthesis[4]}}},
+type = {{{masterthesis[5]}}},
+address = {{{masterthesis[6]}}},
+month = {{{masterthesis[7]}}},
+note = {{{masterthesis[8]}}},
+school = {{{masterthesis[9]}}}          
 }}
     '''
-    return master_ref_text
+    return masterthesis_ref_text
 
 def create_article_bibtex_format(article):
-    master_ref_text = f'''@article{{{article[1]},
+    masterthesis_ref_text = f'''@article{{{article[1]},
 author = {{{article[2]}}},
 title = {{{article[3]}}},
 journal = {{{article[4]}}},
@@ -405,7 +405,7 @@ month = {{{article[9]}}},
 note = {{{article[10]}}}         
 }}
     '''
-    return master_ref_text
+    return masterthesis_ref_text
 
 
 def create_bibtex_text():
@@ -414,8 +414,8 @@ def create_bibtex_text():
     for book in refs_dict["books"]:
         bibtex_string += create_book_bibtex_format(book)+"\n"
 
-    for master in refs_dict["masters"]:
-        bibtex_string += create_master_bibtex_format(master)+"\n"
+    for masterthesis in refs_dict["masterthesiss"]:
+        bibtex_string += create_masterthesis_bibtex_format(masterthesis)+"\n"
 
     for article in refs_dict["articles"]:
         bibtex_string += create_article_bibtex_format(article)+"\n"

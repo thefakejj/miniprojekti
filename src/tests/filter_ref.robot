@@ -14,7 +14,7 @@ Filter References By Search Query
     Fill Book Form  ${username}  ${author}  ${title}  ${year}  ${publisher}
     Submit Form
     Click Link  Lisää graduviite
-    Fill Master Form  ${username}  ${author}  ${title}  ${school}  ${year}
+    Fill Masterthesis Form  ${username}  ${author}  ${title}  ${school}  ${year}
     Submit Form
     Input Search Query  ${search_query}
     Submit Search Form

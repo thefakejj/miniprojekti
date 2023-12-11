@@ -9,10 +9,10 @@
     <div class="container m-5">
     {% if edit %}
         <h1> Muokkaa</h1>
-        <form action="/editmaster/{{ view.key }}" method="POST">
+        <form action="/editmasterthesis/{{ view.key }}" method="POST">
     {% else %}
         <h1>Lisää</h1>
-        <form action="/sendmaster" method="POST">
+        <form action="/sendmasterthesis" method="POST">
     {% endif %}
         <br>
         <a class="btn btn-primary" href="/">Takaisin</a>
