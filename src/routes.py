@@ -210,7 +210,7 @@ def editphdthesis(key):
         except methods.InvalidInputError as e:
             return render_template("postphdthesis.html", view=view, edit=True, error=str(e))
 
-@app.route('/getbibtex') # should maybe call something like "create file" first
+@app.route('/getbibtex')
 def download_bibtex():
     methods.create_bibtex_file()
     return send_file(

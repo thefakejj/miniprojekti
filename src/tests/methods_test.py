@@ -8,10 +8,6 @@ from db_connection import get_database_connection
 from methods import InvalidInputError
 from pathlib import Path
 
-# self.connection = get_database_connection()
-# self.engine = create_engine('sqlite:///:memory:')
-# self.connection = self.engine.connect()
-
 class MethodsTest(unittest.TestCase):
     def setUp(self):
         with app.app_context():
