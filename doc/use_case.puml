@@ -8,7 +8,7 @@ usecase "Add reference" as addRef
 usecase "Add article" as addArticle
 usecase "Add book" as addBook
 usecase "Add phd thesis" as addPhd
-usecase "Add master thesis" as addMaster 
+usecase "Add master thesis" as addMasterthesis
 usecase "Modify reference" as modifyRef
 usecase "Delete reference" as deleteRef
 usecase "Display references" as displayRef
@@ -19,7 +19,7 @@ user -- addRef
 addArticle --|> addRef
 addBook --|> addRef
 addRef <|-- addPhd
-addRef <|-- addMaster
+addRef <|-- addMasterthesis
 addRef -- app
 
 user -- modifyRef
