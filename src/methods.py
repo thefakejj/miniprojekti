@@ -9,8 +9,10 @@ class InvalidInputError(Exception):
 
 def send_book(username, author, title, p_year, publisher, volume, series, address, edition, month, note):
     reftype = "book"
-    if p_year.isalpha():
-        raise InvalidInputError("Vuosi väärin!")
+    for char in p_year:
+        if char.isalpha():
+            raise InvalidInputError("Vuosi väärin!")
+
     year = int(p_year)
     if year < 0 or year > 3000:
         raise InvalidInputError("Vuosi väärin!")
@@ -53,8 +55,10 @@ def get_books():
 def send_masterthesis(username, author, title, school, p_year, type, address, month, note):
     reftype = "masterthesis"
 
-    if p_year.isalpha():
-        raise InvalidInputError("Vuosi väärin!")
+    for char in p_year:
+        if char.isalpha():
+            raise InvalidInputError("Vuosi väärin!")
+
     year = int(p_year)
     if year < 0 or year > 3000:
         raise InvalidInputError("Vuosi väärin!")
@@ -103,8 +107,10 @@ def get_masterthesis():
 def send_article(username, author, title, journal, p_year, volume, number, pages, month, note):
     reftype = "article"
 
-    if p_year.isalpha():
-        raise InvalidInputError("Vuosi väärin!")
+    for char in p_year:
+        if char.isalpha():
+            raise InvalidInputError("Vuosi väärin!")
+
     year = int(p_year)
     if year < 0 or year > 3000:
         raise InvalidInputError("Vuosi väärin!")
@@ -148,8 +154,10 @@ def get_article():
 def send_phdthesis(username, author, title, school, p_year, type, address, month, note):
     reftype = "phdthesis"
 
-    if p_year.isalpha():
-        raise InvalidInputError("Vuosi väärin!")
+    for char in p_year:
+        if char.isalpha():
+            raise InvalidInputError("Vuosi väärin!")
+
     year = int(p_year)
     if year < 0 or year > 3000:
         raise InvalidInputError("Vuosi väärin!")
@@ -224,8 +232,11 @@ def delete_reference(key):
 
 def edit_book(username, key, author, title, year, publisher, volume, series, address, edition, month, note):
     reftype = "book"
-    if year.isalpha():
-        raise InvalidInputError("Vuosi väärin!")
+
+    for char in year:
+        if char.isalpha():
+            raise InvalidInputError("Vuosi väärin!")
+
     year = int(year)
     if year < 0 or year > 3000:
         raise InvalidInputError("Vuosi väärin!")
@@ -260,8 +271,9 @@ def edit_book(username, key, author, title, year, publisher, volume, series, add
 def edit_masterthesis(username, key, author, title, school, year, type, address, month, note):
     reftype = "masterthesis"
 
-    if year.isalpha():
-        raise InvalidInputError("Vuosi väärin!")
+    for char in year:
+        if char.isalpha():
+            raise InvalidInputError("Vuosi väärin!")
     year = int(year)
     if year < 0 or year > 3000:
         raise InvalidInputError("Vuosi väärin!")
@@ -292,8 +304,9 @@ def edit_masterthesis(username, key, author, title, school, year, type, address,
 def edit_article(username, key, author, title, journal, year, volume, number, pages, month, note):
     reftype = "article"
     
-    if year.isalpha():
-        raise InvalidInputError("Vuosi väärin!")
+    for char in year:
+        if char.isalpha():
+            raise InvalidInputError("Vuosi väärin!")
     year = int(year)
     if year < 0 or year > 3000:
         raise InvalidInputError("Vuosi väärin!")
@@ -325,8 +338,9 @@ def edit_article(username, key, author, title, journal, year, volume, number, pa
 def edit_phdthesis(username, key, author, title, school, year, type, address, month, note):
     reftype = "phdthesis"
 
-    if year.isalpha():
-        raise InvalidInputError("Vuosi väärin!")
+    for char in year:
+        if char.isalpha():
+            raise InvalidInputError("Vuosi väärin!")
     year = int(year)
     if year < 0 or year > 3000:
         raise InvalidInputError("Vuosi väärin!")
@@ -357,8 +371,9 @@ def edit_phdthesis(username, key, author, title, school, year, type, address, mo
 def get_all_references_dict():
     refs_dict = {}
     refs_dict["books"] = get_books()
-    refs_dict["masterthesiss"] = get_masterthesis()
+    refs_dict["masterthesis"] = get_masterthesis()
     refs_dict["articles"] = get_article()
+    refs_dict["phdthesis"] = get_phdthesis()
 
     return refs_dict
 
@@ -379,7 +394,7 @@ note = {{{book[11]}}}
     return book_ref_text
 
 def create_masterthesis_bibtex_format(masterthesis):
-    masterthesis_ref_text = f'''@masterthesisthesis{{{masterthesis[1]},
+    masterthesis_ref_text = f'''@masterthesis{{{masterthesis[1]},
 author = {{{masterthesis[2]}}},
 title = {{{masterthesis[3]}}},
 year = {{{masterthesis[4]}}},
@@ -408,17 +423,35 @@ note = {{{article[10]}}}
     return masterthesis_ref_text
 
 
+def create_phdthesis_bibtex_format(phd):
+    phdthesis_ref_text = f'''@phdthesis{{{phd[1]},
+author = {{{phd[2]}}},
+title = {{{phd[3]}}},
+year = {{{phd[4]}}},
+type = {{{phd[5]}}},
+address = {{{phd[6]}}},
+month = {{{phd[7]}}},
+note = {{{phd[8]}}},
+school = {{{phd[9]}}}          
+}}
+    '''
+    return phdthesis_ref_text
+
 def create_bibtex_text():
     bibtex_string = ""
     refs_dict = get_all_references_dict()
     for book in refs_dict["books"]:
         bibtex_string += create_book_bibtex_format(book)+"\n"
 
-    for masterthesis in refs_dict["masterthesiss"]:
+    for masterthesis in refs_dict["masterthesis"]:
         bibtex_string += create_masterthesis_bibtex_format(masterthesis)+"\n"
 
     for article in refs_dict["articles"]:
         bibtex_string += create_article_bibtex_format(article)+"\n"
+
+    for phd in refs_dict["phdthesis"]:
+        bibtex_string += create_phdthesis_bibtex_format(phd)+"\n"
+
     return bibtex_string
 
 def create_bibtex_file():

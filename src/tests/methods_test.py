@@ -388,6 +388,24 @@ class MethodsTest(unittest.TestCase):
             keys_after = [key[0] for key in methods.get_keys()]
             self.assertNotIn("Au99", keys_after)
 
+    def test_delete_article(self):
+        with app.app_context():
+            methods.send_article("user4", "Author4", "Title1", "Journal1", "2022", "", "", "", "", "")
+
+            methods.delete_reference("Au22")
+
+            keys_after = [key[0] for key in methods.get_keys()]
+            self.assertNotIn("Au99", keys_after)
+
+    def test_delete_phdthesis(self):
+        with app.app_context():
+            methods.send_phdthesis("user1", "Author1", "Title1", "School1", "1911", "", "", "", "")
+
+            methods.delete_reference("Au11")
+
+            keys_after = [key[0] for key in methods.get_keys()]
+            self.assertNotIn("Au99", keys_after)
+
 #------------------------------------------------------------
 
     def test_edit_book(self):
@@ -431,6 +449,7 @@ class MethodsTest(unittest.TestCase):
             methods.send_book("user7", "Author7", "Title7", "2012", "Publisher7", "", "", "", "", "", "")
             methods.send_masterthesis("user4", "Author4", "Title4", "School4", "2022", "", "", "", "")
             methods.send_article("user3", "Author2", "Title3", "Journal2", "2002", "","","","","")
+            methods.send_phdthesis("user5", "Author1", "Title1", "School1", "2021", "", "", "", "")
             methods.create_bibtex_file()
             self.assertTrue(os.path.exists("src/outputs/references.bib"))
 
@@ -450,11 +469,16 @@ class MethodsTest(unittest.TestCase):
             methods.send_masterthesis("user4", "Author4", "Title4", "School4", "2022", "", "", "", "")
             methods.create_bibtex_file()
             with open("src/outputs/references.bib", 'r', encoding='utf-8') as file:
-                self.assertIn("@masterthesisthesis{Au22,\n", file)
+                self.assertIn("@masterthesis{Au22,\n", file)
             methods.send_article("user2", "Author2", "Title2", "Journal2", "2002", "", "", "", "", "")
             methods.create_bibtex_file()
             with open("src/outputs/references.bib", 'r', encoding='utf-8') as file:
                 self.assertIn("@article{Au02,\n", file)
+            methods.send_phdthesis("user4", "Author5", "Title5", "School5", "2021", "", "", "", "")
+            methods.create_bibtex_file()
+            with open("src/outputs/references.bib", 'r', encoding='utf-8') as file:
+                self.assertIn("@phdthesis{Au21,\n", file)
+
 
 #------------------------------------------------------------
 
