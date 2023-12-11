@@ -42,3 +42,26 @@
 |Paremmin toimineet roolitukset                                  |Yhteinen päämäärä mutta ei yhteistä suunnitelmaa päämäärän saavuttamiseksi|
 |Saimme puskettua projektia eteenpäin                            |Sprint-suunnittelussa jäi huomioimatta arvosteluperusteet       |
 |                                                                |Asioita tapahtuu hieman pimennossa                              |
+
+
+# Sprintti 3 - Retrospektiivi
+* **Actions**
+   * otetaan vähemmän storyja sprinttiin!!! (ja rajoitetaan työaikaa)
+   * Jasperin pitää nukkua paremmin
+   * kotona tehdyt muutokset kannatta ilmaista telegramissa
+   * tehdään tiukemmin tuntikirjanpitoa
+
+| _Glad_                                                   | _Sad_                                                         | _Mad_                                                             |
+|----------------------------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------|
+| Hyvä että jätettiin se yks story heti pois               | Pitäisi osallistua enemmän testien tekoon                     | Testeihin pitäisi osallistua enemmän                                |
+| Testikattavuus näyttää hyvältä                            | Jäin liian pitkäksi jumiin toiminnon tekoon                  |                                                                    |
+| Kommunikaatio pelasi paremmin                             |                                                               |                                                                    |
+| Saatiin kaikki aloitetut storyt valmiiksi                 |                                                               |                                                                    |
+| Sprintti meni hyvin, oli selkeät taskit sprintille         | Parityöskentely toimi hyvin                                    | Pipeline ei pysty lataamaan tiedostoja, meni hermo selvittää asia :( |
+| Parityöskentely toimi hyvin                                |                                                               |                                                                    |
+| Kommunikoitiin paremmin ryhmänä                           |                                                               |                                                                    |
+| Ei otettu liikaa taskeja sprinttiin                       |                                                               |                                                                    |
+| Saatiin hommia tehtyä, mun mielestä varmaan overall vaativin sprintti | Me ollaan sankareita kaikki                              | Mä nukuin tosi huonosti                                           |
+| Projekti näyttää tosi hyvältä                             | .. Pitää varmaan ottaa vähän vähemmän storyja jotta definition of done täyttyy | En saanut unta päikkäreissä                                   |
+| Edelleen hyvä ryhmävibe                                    | Pitäis useammin pistää ehkä telegramiin viestiä siitä mitä on tehnyt kotona projektin eteen (pysytään kärryillä) |                                                                   |
+| Kiitti Seppo ku oot tehny dokumentaatioo sun muuta project backlogausta (Olet useasti ollut oikeassa: esim poetry.lock pitäisi pistää gigignoreen :P) | | |
