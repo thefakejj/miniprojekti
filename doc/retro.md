@@ -10,7 +10,7 @@
 |Tietokantasäätöä ei varmaan tarvitse enää tehdä                 |pariohjelmointi ei toiminut ihan odotetulla tavalla.            |Meni viimetinkaan (minulla)
 |siitä että saatiin melkeinpä kaikki user storyt tehtyä          |kommunikointi paremmaksi.                                       |ei pysytä ajan tasalla kuka tekee mitäkin ja milloin.
 |hyvin rauhallinen ilmapiiri ongelmien edessä                    |en ole omasta mielestäni saanut tarpeeksi aikaan                |robotin envijutut lokaalissa kloonissa on vieläkin epäselvät
-|sopivan leani ja kypsä tapa suhtautua definition of doneen (näytetään demossa se mikä on testattu)|sprintin suunnittelussa voitaisiin ottaa vielä paremmin huomioon sen viikon arvosteluperusteet (joskus ne tulee |pienenä yllärinä)|En tiennyt mitä priorisoida kun työjako oli sekava
+|sopivan leani ja kypsä tapa suhtautua definition of doneen (näytetään demossa se mikä on testattu)|sprintin suunnittelussa voitaisiin ottaa vielä paremmin huomioon sen viikon arvosteluperusteet (joskus ne tulee pienenä yllärinä)|En tiennyt mitä priorisoida kun työjako oli sekava
 |Parityöskentely toimi hyvin                                     |voitaisiin kommunikoida vielä paremmin eri projektin osien statusta / miten niitä tulisi sitten jatkokehittää|
 |Testitietokanta hoidettu                                        |Mun mielestä mulle ja Jasperille jaettu työ oli vähän sekava.   |
 |Hyvä ryhmähenki                                                 |Piti tehdä vähän kaikkea, jonka takia ei tullut aikaseksi paljoa.|
