@@ -10,10 +10,8 @@ class InvalidInputError(Exception):
 def send_book(username, author, title, p_year, publisher, volume, series, address, edition, month, note):
     reftype = "book"
 
-    reference_field_names = ["username", "author", "title", "year", "publisher", "volume", "series", "address", "edition", "month", "note"]
-    reference_values_list = [username, author, title, p_year, publisher, volume, series, address, edition, month, note]
-
-    check_reference_validity(reference_values_list, reference_field_names)
+    check_reference_validity([username, author, title, p_year, publisher, volume, series, address, edition, month, note],
+                             ["username", "author", "title", "year", "publisher", "volume", "series", "address", "edition", "month", "note"])
 
     year = int(p_year)
     key = keygen(author,year)
@@ -32,10 +30,8 @@ def get_books():
 def send_masterthesis(username, author, title, school, p_year, type, address, month, note):
     reftype = "masterthesis"
 
-    reference_field_names = ["username", "author", "title", "school", "year", "type", "address", "month", "note"]
-    reference_values_list = [username, author, title, school, p_year, type, address, month, note]
-
-    check_reference_validity(reference_values_list, reference_field_names)
+    check_reference_validity([username, author, title, school, p_year, type, address, month, note],
+                             ["username", "author", "title", "school", "year", "type", "address", "month", "note"])
 
     year = int(p_year)
     key = keygen(author,year)
@@ -64,10 +60,8 @@ def get_masterthesis():
 def send_article(username, author, title, journal, p_year, volume, number, pages, month, note):
     reftype = "article"
 
-    reference_field_names = ["username", "author", "title", "journal", "year", "volume", "number", "pages", "month", "note"]
-    reference_values_list = [username, author, title, journal, p_year, volume, number, pages, month, note]
-
-    check_reference_validity(reference_values_list, reference_field_names)
+    check_reference_validity([username, author, title, journal, p_year, volume, number, pages, month, note],
+                             ["username", "author", "title", "journal", "year", "volume", "number", "pages", "month", "note"])
 
     year = int(p_year)
     key = keygen(author,year)
@@ -90,10 +84,8 @@ def get_article():
 def send_phdthesis(username, author, title, school, p_year, type, address, month, note):
     reftype = "phdthesis"
 
-    reference_field_names = ["username", "author", "title", "school", "year", "type", "address", "month", "note"]
-    reference_values_list = [username, author, title, school, p_year, type, address, month, note]
-
-    check_reference_validity(reference_values_list, reference_field_names)
+    check_reference_validity([username, author, title, school, p_year, type, address, month, note],
+                             ["username", "author", "title", "school", "year", "type", "address", "month", "note"])
 
     year = int(p_year)
     key = keygen(author,year)
@@ -149,10 +141,8 @@ def delete_reference(key):
 def edit_book(username, key, author, title, year, publisher, volume, series, address, edition, month, note):
     reftype = "book"
 
-    reference_field_names = ["username", "author", "title", "year", "publisher", "volume", "series", "address", "edition", "month", "note"]
-    reference_values_list = [username, author, title, year, publisher, volume, series, address, edition, month, note]
-
-    check_reference_validity(reference_values_list, reference_field_names)
+    check_reference_validity([username, author, title, year, publisher, volume, series, address, edition, month, note],
+                             ["username", "author", "title", "year", "publisher", "volume", "series", "address", "edition", "month", "note"])
 
     year = int(year)
 
@@ -164,10 +154,8 @@ def edit_book(username, key, author, title, year, publisher, volume, series, add
 def edit_masterthesis(username, key, author, title, school, year, type, address, month, note):
     reftype = "masterthesis"
 
-    reference_field_names = ["username", "author", "title", "school", "year", "type", "address", "month", "note"]
-    reference_values_list = [username, author, title, school, year, type, address, month, note]
-
-    check_reference_validity(reference_values_list, reference_field_names)
+    check_reference_validity([username, author, title, school, year, type, address, month, note],
+                             ["username", "author", "title", "school", "year", "type", "address", "month", "note"])
 
     year = int(year)
 
@@ -179,10 +167,8 @@ def edit_masterthesis(username, key, author, title, school, year, type, address,
 def edit_article(username, key, author, title, journal, year, volume, number, pages, month, note):
     reftype = "article"
     
-    reference_field_names = ["username", "author", "title", "journal", "year", "volume", "number", "pages", "month", "note"]
-    reference_values_list = [username, author, title, journal, year, volume, number, pages, month, note]
-
-    check_reference_validity(reference_values_list, reference_field_names)
+    check_reference_validity([username, author, title, journal, year, volume, number, pages, month, note],
+                             ["username", "author", "title", "journal", "year", "volume", "number", "pages", "month", "note"])
 
     year = int(year)
 
@@ -194,10 +180,8 @@ def edit_article(username, key, author, title, journal, year, volume, number, pa
 def edit_phdthesis(username, key, author, title, school, year, type, address, month, note):
     reftype = "phdthesis"
 
-    reference_field_names = ["username", "author", "title", "school", "year", "type", "address", "month", "note"]
-    reference_values_list = [username, author, title, school, year, type, address, month, note]
-
-    check_reference_validity(reference_values_list, reference_field_names)
+    check_reference_validity([username, author, title, school, year, type, address, month, note],
+                             ["username", "author", "title", "school", "year", "type", "address", "month", "note"])
 
     year = int(year)
 
