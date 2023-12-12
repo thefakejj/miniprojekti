@@ -166,7 +166,7 @@ def edit_masterthesis(username, key, author, title, school, year, type, address,
 
 def edit_article(username, key, author, title, journal, year, volume, number, pages, month, note):
     reftype = "article"
-    
+
     check_reference_validity([username, author, title, journal, year, volume, number, pages, month, note],
                              ["username", "author", "title", "journal", "year", "volume", "number", "pages", "month", "note"])
 
