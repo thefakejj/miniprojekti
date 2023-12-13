@@ -13,7 +13,7 @@ Olemme tyytyväisiä siitä, että meillä oli hauskaa yhdessä koko projektin a
 
 Projekti konkretisoi meille ketterän ohjelmistokehityksen periaatteita ja sitä, kuinka niillä pyritään ratkaisemaan ohjelmistokehitystiimin arjessa vastaantulevia haasteita. Erityisesti kirkastui backlogin käyttö oman työskentelyn ohjaamisessa ja statuksen kommunikoinnissa muulle tiimille. Ylipäätään kommunikaation merkitys yhteisessä tekemisessä tuli hyvin selväksi. Myös tekemisen jakaminen selkeisiin taskeihin oli silmiä avaava kokemus. Yllätyksenä tuli, kuinka helposti tekemisen fokus ajautuu täysin väärille urille. Yllättävää oli myös, kuinka vaikeaa on pitäytyä allokoidussa aikamäärässä kun taskeja on yhä tekemättä. Lopulta oli hienoa huomata, kuinka retrojen kautta saimme parannettua toimintatapojamme.
 
-Meillä olisi ollut projektin tiimoilta mahdollisuus tutustua konkreettisesti myös test-driven development -metodologiaan, feature branchien käyttöön, koodin sisäisen laadunhallintaan ja backlogien hallintaan tarkoitukseen soveltuvalla ohjelmistolla mutta valitettavasti emme tarttuneet tähän avoinna olevaan mahdollisuuteen.
+Meillä olisi ollut projektin tiimoilta mahdollisuus tutustua konkreettisesti myös test-driven development -metodologiaan, koodin sisäisen laadunhallintaan ja backlogien hallintaan tarkoitukseen soveltuvalla ohjelmistolla mutta valitettavasti emme tarttuneet tähän avoinna olevaan mahdollisuuteen. Vain osa tiimistä tutustui feature branchien käyttöön, mutta jälkeenpäin katsottuna loputkin olisivat halunneet tutustua tekniikkaan.
 
 Mikään projektissa ei tuntunut varsinaisesti turhalta, vaikka 1\. sprintin sekoilu olikin hieman turhauttavaa. Päälimmäiseksi mieleen jäi ajatus "_kaikesta_ opitaan".
 
