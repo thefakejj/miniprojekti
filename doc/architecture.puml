@@ -7,7 +7,6 @@ rectangle "UI" {
     rectangle "postmasterthesis.html"    
     rectangle "confirmdelete.html"
     'rectangle "error.html"
-    rectangle "dummy"
 }
 
 rectangle "Backend" {
