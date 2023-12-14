@@ -72,3 +72,4 @@ After starting the application open the following url with a browser: http://127
   * _Muokkaa_ link opens a screen for editing the reference details
     * Clicking _Takaising_ returns to previous screen.
     * Clicking _Tallenna muutokset_ saves the changes.
+ 
