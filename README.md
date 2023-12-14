@@ -14,10 +14,10 @@ This is **Nelosen oppilaat** group's repository for Ohjelmistotuotanto course
 [**Raportti**](doc/raportti.md)
 
 ## Use Case Overview
-![UML_UseCase](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/thefakejj/miniprojekti/master/doc/use_case.puml&autorefresh)
+![UML_UseCase](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/thefakejj/miniprojekti/master/doc/use_case.puml)
 
 ## Architecture Overview
-![UML_Architecture](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/thefakejj/miniprojekti/master/doc/architecture.puml&autorefresh)
+![UML_Architecture](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/thefakejj/miniprojekti/master/doc/architecture.puml)
 
 ## Weekly Schedule
 * **Monday**
